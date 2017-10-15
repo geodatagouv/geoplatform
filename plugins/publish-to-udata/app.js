@@ -1,7 +1,6 @@
 'use strict'
 
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
 const express = require('express')
 const session = require('express-session')
 const passport = require('passport')
@@ -22,7 +21,6 @@ module.exports = function () {
 
   app.use(cors({ origin: true, credentials: true }))
   app.use(bodyParser.json())
-  app.use(cookieParser())
 
   app.use(session({
     secret: process.env.COOKIE_SECRET,
