@@ -17,7 +17,6 @@
         "DATAGOUV_URL": "https://demo.data.gouv.fr",
         "DATAGOUV_CLIENT_ID": "",
         "DATAGOUV_CLIENT_SECRET": "",
-        "DATAGOUV_CB_URL": "http://localhost:5000/dgv/oauth/callback",
         "ROOT_URL": "http://localhost:5000",
         "LINK_ANALYZER_URL": "http://localhost:6000",
         "LINK_ANALYZER_TOKEN": "abcdefgh",
