@@ -27,7 +27,7 @@
     "connect-mongo": "^2.0.0",
     "cors": "^2.5.2",
     "csv-parse": "^1.2.0",
-    "csw-client": "^0.14.0",
+    "csw-client": "^0.15.0",
     "debug": "^2.1.2",
     "delayed-jobs": "^0.1.0",
     "express": "^4.11.2",
