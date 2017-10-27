@@ -2,10 +2,36 @@
 
 /* eslint-env mocha */
 const { getLicenseFromLinks } = require('../lib/metadata/common/licenses')
+const { getLicenseFromConstraints } = require('../lib/metadata/iso/licenses')
 const { getAllContacts } = require('../lib/metadata/iso/contacts')
 const { getSpatialResolution } = require('../lib/metadata/iso/spatial-resolution')
 const { getDates } = require('../lib/metadata/iso/dates')
 const expect = require('expect.js')
+
+describe('getLicenseFromConstraints()', () => {
+  const constraints = [
+    {
+      useLimitation: [
+        'Licence OdBL http://www.openstreetmap.org/copyright/fr',
+        'mention obligatoire "projet BANO ODbL"',
+      ],
+      accessConstraints: [
+        'otherRestrictions',
+      ],
+      useConstraints: [
+        'license',
+      ],
+      otherConstraints: [
+        'Pas de restriction d’accès public',
+      ],
+    },
+  ]
+
+  it('should detect ODbL', () => {
+    const result = getLicenseFromConstraints(constraints)
+    expect(result).to.be('odc-odbl')
+  })
+})
 
 describe('convertDataset.getLicenseFromLinks()', () => {
 
