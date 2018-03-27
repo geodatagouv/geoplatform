@@ -1,18 +1,9 @@
 {
-  "name": "geogw",
-  "version": "0.1.0-dev",
-  "description": "A gateway to reconcile Inspire and Open Data",
-  "keywords": [
-    "inspire",
-    "opendata",
-    "gateway"
-  ],
-  "author": "Jerome Desboeufs <jerome.desboeufs@gmail.com>",
+  "name": "@geoplatform/core",
+  "version": "0.0.0",
+  "description": "Core API and processing tools for geoplatform",
+  "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jdesboeufs/geogw/issues"
-  },
-  "homepage": "https://github.com/jdesboeufs/geogw",
   "scripts": {
     "lint": "xo",
     "test": "mocha"
@@ -69,6 +60,6 @@
     "space": 2
   },
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 8.0.0"
   }
 }
