@@ -7,8 +7,8 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 const sessionMongo = require('connect-mongo')
 const cors = require('cors')
-const { omit } = require('lodash')
-const { ensureLoggedIn } = require('./middlewares')
+const {omit} = require('lodash')
+const {ensureLoggedIn} = require('./middlewares')
 
 require('./models')
 require('./passport')
@@ -16,10 +16,9 @@ require('./passport')
 const MongoStore = sessionMongo(session)
 
 module.exports = function () {
-
   const app = express()
 
-  app.use(cors({ origin: true, credentials: true }))
+  app.use(cors({origin: true, credentials: true}))
   app.use(bodyParser.json())
 
   app.use(session({
@@ -28,8 +27,8 @@ module.exports = function () {
     saveUninitialized: false,
     resave: false,
     store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-    }),
+      mongooseConnection: mongoose.connection
+    })
   }))
 
   app.use(passport.initialize())
@@ -40,7 +39,7 @@ module.exports = function () {
     next()
   }
 
-  app.get('/login', extractRedirectUrl, passport.authenticate('udata', { scope: 'default' }))
+  app.get('/login', extractRedirectUrl, passport.authenticate('udata', {scope: 'default'}))
 
   app.get('/logout', extractRedirectUrl, (req, res) => {
     req.logout()
@@ -48,10 +47,10 @@ module.exports = function () {
     req.session.redirectTo = undefined
   })
 
-  app.get('/oauth/callback', function (req, res) {
+  app.get('/oauth/callback', (req, res) => {
     passport.authenticate('udata', {
       successRedirect: req.session.redirectTo,
-      failureRedirect: '/',
+      failureRedirect: '/'
     })(req, res)
     req.session.redirectTo = undefined
   })
@@ -62,7 +61,7 @@ module.exports = function () {
   app.use('/api', require('./routes/organizations')())
   app.use('/api', require('./routes/datasets')())
 
-  app.get('/api/me', ensureLoggedIn, function (req, res) {
+  app.get('/api/me', ensureLoggedIn, (req, res) => {
     res.send(omit(req.user, 'accessToken'))
   })
 

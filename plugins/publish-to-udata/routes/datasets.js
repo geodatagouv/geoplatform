@@ -2,21 +2,27 @@
 
 const express = require('express')
 const organizations = require('../controllers/organizations')
-const { fetch, publish, unpublish, globalMetrics, metrics, published, notPublishedYet, publishedByOthers, synchronizeAll } = require('../controllers/datasets')
-const { ensureLoggedIn, isEditorOf, organizationIsSet } = require('../middlewares')
+const {fetch, publish, unpublish, globalMetrics, metrics, published, notPublishedYet, publishedByOthers, synchronizeAll} = require('../controllers/datasets')
+const {ensureLoggedIn, isEditorOf, organizationIsSet} = require('../middlewares')
 
 function isPublished(req, res, next) {
-  if (req.publicationInfo) return next()
+  if (req.publicationInfo) {
+    return next()
+  }
   res.sendStatus(400)
 }
 
 function isNotPublished(req, res, next) {
-  if (!req.publicationInfo) return next()
+  if (!req.publicationInfo) {
+    return next()
+  }
   res.sendStatus(400)
 }
 
 function validatePublicationParams(req, res, next) {
-  if (!req.body.organization) return res.sendStatus(400)
+  if (!req.body.organization) {
+    return res.sendStatus(400)
+  }
   next()
 }
 

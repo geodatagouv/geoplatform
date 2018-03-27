@@ -1,8 +1,8 @@
 'use strict'
 
 const express = require('express')
-const { fetch, list, show, createOrUpdate, showProfile } = require('../controllers/organizations')
-const { ensureLoggedIn, isAdminOf } = require('../middlewares')
+const {fetch, list, show, createOrUpdate, showProfile} = require('../controllers/organizations')
+const {ensureLoggedIn, isAdminOf} = require('../middlewares')
 
 module.exports = function () {
   const router = express.Router()

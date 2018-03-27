@@ -1,11 +1,11 @@
 'use strict'
 
 /* eslint-env mocha */
-const { getLicenseFromLinks } = require('../lib/metadata/common/licenses')
-const { getLicenseFromConstraints } = require('../lib/metadata/iso/licenses')
-const { getAllContacts } = require('../lib/metadata/iso/contacts')
-const { getSpatialResolution } = require('../lib/metadata/iso/spatial-resolution')
-const { getDates } = require('../lib/metadata/iso/dates')
+const {getLicenseFromLinks} = require('../lib/metadata/common/licenses')
+const {getLicenseFromConstraints} = require('../lib/metadata/iso/licenses')
+const {getAllContacts} = require('../lib/metadata/iso/contacts')
+const {getSpatialResolution} = require('../lib/metadata/iso/spatial-resolution')
+const {getDates} = require('../lib/metadata/iso/dates')
 const expect = require('expect.js')
 
 describe('getLicenseFromConstraints()', () => {
@@ -13,18 +13,18 @@ describe('getLicenseFromConstraints()', () => {
     {
       useLimitation: [
         'Licence OdBL http://www.openstreetmap.org/copyright/fr',
-        'mention obligatoire "projet BANO ODbL"',
+        'mention obligatoire "projet BANO ODbL"'
       ],
       accessConstraints: [
-        'otherRestrictions',
+        'otherRestrictions'
       ],
       useConstraints: [
-        'license',
+        'license'
       ],
       otherConstraints: [
-        'Pas de restriction d’accès public',
-      ],
-    },
+        'Pas de restriction d’accès public'
+      ]
+    }
   ]
 
   it('should detect ODbL', () => {
@@ -34,7 +34,6 @@ describe('getLicenseFromConstraints()', () => {
 })
 
 describe('convertDataset.getLicenseFromLinks()', () => {
-
   describe('called with an empty array', () => {
     it('should return undefined', () => {
       const result = getLicenseFromLinks([])
@@ -46,13 +45,12 @@ describe('convertDataset.getLicenseFromLinks()', () => {
     it('should return fr-lo', () => {
       const result = getLicenseFromLinks([
         {
-          name: 'Licence ouverte (Etalab)',
-        },
+          name: 'Licence ouverte (Etalab)'
+        }
       ])
       expect(result).to.be('fr-lo')
     })
   })
-
 })
 
 describe('convertDataset.getAllContacts()', () => {
@@ -69,24 +67,24 @@ describe('convertDataset.getAllContacts()', () => {
               postalCode: '75015',
               city: 'Paris 15e',
               electronicMailAddress: 'info@acme.org',
-              country: 'Groland',
+              country: 'Groland'
             },
             phone: {
               voice: '0147200001',
-              facSimile: '3615',
-            },
-          },
+              facSimile: '3615'
+            }
+          }
         },
         identificationInfo: {
           pointOfContact: [
             {
-              organisationName: 'ACME',
+              organisationName: 'ACME'
             },
             {
-              individualName: 'AAA',
-            },
-          ],
-        },
+              individualName: 'AAA'
+            }
+          ]
+        }
       }
       const result = getAllContacts(metadata)
       expect(result).to.eql([
@@ -99,13 +97,13 @@ describe('convertDataset.getAllContacts()', () => {
           email: 'info@acme.org',
           country: 'Groland',
           phoneNumber: '0147200001',
-          relatedTo: 'metadata',
+          relatedTo: 'metadata'
         },
         {
           organizationName: 'ACME',
           role: 'notDefined',
-          relatedTo: 'data',
-        },
+          relatedTo: 'data'
+        }
       ])
     })
   })
@@ -118,35 +116,35 @@ describe('convertDataset.getDates()', () => {
         citation: {
           date: [
             {
-              date: '1980-01-01',
+              date: '1980-01-01'
             },
             {
               date: 'lol',
-              dateType: 'creation',
+              dateType: 'creation'
             },
             {
               date: '2000-01-01',
-              dateType: 'creation',
+              dateType: 'creation'
             },
             {
               date: '2005-01-01',
-              dateType: 'creation',
+              dateType: 'creation'
             },
             {
               date: '2010-01-01',
-              dateType: 'revision',
+              dateType: 'revision'
             },
             {
               date: '2012-01-01',
-              dateType: 'revision',
-            },
-          ],
-        },
-      },
+              dateType: 'revision'
+            }
+          ]
+        }
+      }
     }
     expect(getDates(record)).to.eql({
       creationDate: '2000-01-01',
-      revisionDate: '2012-01-01',
+      revisionDate: '2012-01-01'
     })
   })
 })
@@ -156,9 +154,9 @@ describe('convertDataset.getSpatialResolution()', () => {
     return {
       identificationInfo: {
         spatialResolution: {
-          distance: { value, unit },
-        },
-      },
+          distance: {value, unit}
+        }
+      }
     }
   }
   describe('no value', () => {
@@ -175,11 +173,11 @@ describe('convertDataset.getSpatialResolution()', () => {
     it('should return value with unit', () => {
       expect(getSpatialResolution(buildWithValues(1, 'rad'))).to.eql({
         value: 1,
-        unit: 'radian',
+        unit: 'radian'
       })
       expect(getSpatialResolution(buildWithValues(1, 'deg'))).to.eql({
         value: 1,
-        unit: 'degree',
+        unit: 'degree'
       })
     })
   })
@@ -187,7 +185,7 @@ describe('convertDataset.getSpatialResolution()', () => {
     it('should default to meter', () => {
       expect(getSpatialResolution(buildWithValues(1, undefined))).to.eql({
         value: 1,
-        unit: 'meter',
+        unit: 'meter'
       })
     })
   })

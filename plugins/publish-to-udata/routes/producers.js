@@ -2,8 +2,8 @@
 
 const express = require('express')
 const organizations = require('../controllers/organizations')
-const { fetch, list, associate, dissociate, listByOrganization } = require('../controllers/producers')
-const { ensureLoggedIn, isAdminOf, organizationIsSet } = require('../middlewares')
+const {fetch, list, associate, dissociate, listByOrganization} = require('../controllers/producers')
+const {ensureLoggedIn, isAdminOf, organizationIsSet} = require('../middlewares')
 
 module.exports = function () {
   const router = express.Router()

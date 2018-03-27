@@ -1,9 +1,9 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const { keyBy } = require('lodash')
+const {keyBy} = require('lodash')
 const Promise = require('bluebird')
-const { getRecord } = require('../geogw')
+const {getRecord} = require('../geogw')
 
 const Dataset = mongoose.model('Dataset')
 const Record = mongoose.model('ConsolidatedRecord')
@@ -19,24 +19,24 @@ function getNotPublishedYetDatasets(organization) {
     .then(publishedIds => {
       return Record
         .find({
-          facets: { $all: [
-            { $elemMatch: { name: 'availability', value: 'yes' } },
-            { $elemMatch: { name: 'opendata', value: 'yes' } },
-          ] },
-          catalogs: { $in: organization.sourceCatalogs },
-          organizations: { $in: organization.producers },
+          facets: {$all: [
+            {$elemMatch: {name: 'availability', value: 'yes'}},
+            {$elemMatch: {name: 'opendata', value: 'yes'}}
+          ]},
+          catalogs: {$in: organization.sourceCatalogs},
+          organizations: {$in: organization.producers}
         })
         .select('recordId metadata.title')
         .lean()
         .exec()
         .filter(record => !publishedIds.includes(record.recordId))
-        .map(record => ({ _id: record.recordId, title: record.metadata.title }))
+        .map(record => ({_id: record.recordId, title: record.metadata.title}))
     })
 }
 
 function getPublishedByOthersDatasets(organization) {
   return Dataset
-    .find({ 'publication.organization': { $ne: organization._id } })
+    .find({'publication.organization': {$ne: organization._id}})
     .select('title publication._id')
     .lean()
     .exec()
@@ -45,8 +45,8 @@ function getPublishedByOthersDatasets(organization) {
 
       return Record
         .find({
-          catalogs: { $in: organization.sourceCatalogs },
-          organizations: { $in: organization.producers },
+          catalogs: {$in: organization.sourceCatalogs},
+          organizations: {$in: organization.producers}
         })
         .select('recordId metadata.title')
         .lean()
@@ -55,18 +55,18 @@ function getPublishedByOthersDatasets(organization) {
         .map(record => ({
           _id: record.recordId,
           title: indexedDatasets[record.recordId].title || record.metadata.title,
-          remoteUrl: remoteUrl(indexedDatasets[record.recordId].publication._id),
+          remoteUrl: remoteUrl(indexedDatasets[record.recordId].publication._id)
         }))
     })
 }
 
 function getPublishedDatasets(organization) {
   return Dataset
-    .find({ 'publication.organization': organization._id })
+    .find({'publication.organization': organization._id})
     .select('title publication._id')
     .lean()
     .exec()
-    .map(dataset => ({ _id: dataset._id, title: dataset.title, remoteUrl: remoteUrl(dataset.publication._id) }))
+    .map(dataset => ({_id: dataset._id, title: dataset.title, remoteUrl: remoteUrl(dataset.publication._id)}))
 }
 
 function getMetrics(organization) {
@@ -75,11 +75,11 @@ function getMetrics(organization) {
     getPublishedByOthersDatasets(organization),
     getNotPublishedYetDatasets(organization),
 
-    function (published, publishedByOthers, notPublishedYet) {
+    (published, publishedByOthers, notPublishedYet) => {
       return {
         published: published.length,
         publishedByOthers: publishedByOthers.length,
-        notPublishedYet: notPublishedYet.length,
+        notPublishedYet: notPublishedYet.length
       }
     }
   )
@@ -87,7 +87,7 @@ function getMetrics(organization) {
 
 function getGlobalMetrics() {
   return Dataset.count({}).exec()
-    .then(publishedCount => ({ published: publishedCount }))
+    .then(publishedCount => ({published: publishedCount}))
 }
 
 /* Actions */
@@ -97,8 +97,10 @@ exports.fetch = function (req, res, next, id) {
     getRecord(id),
     Dataset.findById(id).exec(),
 
-    function (record, publicationInfo) {
-      if (!record) return res.sendStatus(404)
+    (record, publicationInfo) => {
+      if (!record) {
+        return res.sendStatus(404)
+      }
       req.dataset = record
       if (publicationInfo && publicationInfo.publication && publicationInfo.publication.organization) {
         req.publicationInfo = publicationInfo
@@ -110,8 +112,8 @@ exports.fetch = function (req, res, next, id) {
 }
 
 exports.publish = function (req, res, next) {
-  (new Dataset({ _id: req.dataset.recordId }))
-    .asyncPublish({ organizationId: req.body.organization })
+  (new Dataset({_id: req.dataset.recordId}))
+    .asyncPublish({organizationId: req.body.organization})
     .then(() => res.sendStatus(202))
     .catch(next)
 }
@@ -125,7 +127,7 @@ exports.unpublish = function (req, res, next) {
 exports.synchronizeAll = function (req, res, next) {
   const unpublishIfRecordNotFound = req.query.unpublishIfRecordNotFound === 'yes' // Opt-in option
   const removeIfTargetDatasetNotFound = req.query.removeIfTargetDatasetNotFound !== 'no' // Opt-out option
-  Dataset.asyncSynchronizeAll({ unpublishIfRecordNotFound, removeIfTargetDatasetNotFound })
+  Dataset.asyncSynchronizeAll({unpublishIfRecordNotFound, removeIfTargetDatasetNotFound})
     .then(() => res.sendStatus(202))
     .catch(next)
 }

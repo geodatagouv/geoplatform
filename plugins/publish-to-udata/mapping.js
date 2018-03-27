@@ -2,13 +2,13 @@
 
 const moment = require('moment')
 const Handlebars = require('handlebars')
-const { filter, kebabCase } = require('lodash')
-const { strRight } = require('underscore.string')
+const {filter, kebabCase} = require('lodash')
+const {strRight} = require('underscore.string')
 const debug = require('debug')('mapping')
 
 moment.locale('fr')
 
-var bodyTemplate = Handlebars.compile(
+const bodyTemplate = Handlebars.compile(
   `{{metadata.description}}
 
 {{#if metadata.lineage}}
@@ -47,28 +47,28 @@ exports.map = function (sourceDataset) {
   sourceDataset.inlineOrganizations = (sourceDataset.organizations || []).join(', ')
 
   sourceDataset.history = (sourceDataset.metadata.history || [])
-    .filter(function (ev) {
+    .filter(ev => {
       return ev.date && moment(ev.date).isValid() && ev.type && ['creation', 'revision', 'publication'].includes(ev.type)
     })
-    .map(function (ev) {
-      var labels = {
+    .map(ev => {
+      const labels = {
         creation: 'Création',
         revision: 'Mise à jour',
-        publication: 'Publication',
+        publication: 'Publication'
       }
-      return { date: moment(ev.date).format('L'), description: labels[ev.type] }
+      return {date: moment(ev.date).format('L'), description: labels[ev.type]}
     })
 
-  var out = {
+  const out = {
     title: sourceDataset.metadata.title,
     description: bodyTemplate(sourceDataset),
     extras: {
       'inspire:identifier': sourceDataset.metadata.id,
-      geogw_recordId: sourceDataset.recordId,
+      geogw_recordId: sourceDataset.recordId
     },
     license: sourceDataset.metadata.license,
     supplier: {},
-    resources: [],
+    resources: []
   }
 
   if (sourceDataset.metadata.keywords) {
@@ -79,31 +79,35 @@ exports.map = function (sourceDataset) {
   }
 
   if (sourceDataset.dataset.distributions) {
-    var processedFeatureTypes = []
+    const processedFeatureTypes = []
 
-    sourceDataset.dataset.distributions.forEach(function (distribution) {
-      if (!distribution.available) return
-      var rootUrl
+    sourceDataset.dataset.distributions.forEach(distribution => {
+      if (!distribution.available) {
+        return
+      }
+      let rootUrl
 
       if (distribution.type === 'wfs-featureType') {
         rootUrl = process.env.ROOT_URL + '/api/geogw/services/' + distribution.service + '/feature-types/' + distribution.typeName + '/download'
-        if (processedFeatureTypes.includes(rootUrl)) return // Cannot be added twice
+        if (processedFeatureTypes.includes(rootUrl)) {
+          return
+        } // Cannot be added twice
         processedFeatureTypes.push(rootUrl)
-        var simplifiedTypeName = strRight(distribution.typeName, ':')
+        const simplifiedTypeName = strRight(distribution.typeName, ':')
 
         out.resources.push({
           url: rootUrl + '?format=GeoJSON&projection=WGS84',
           title: simplifiedTypeName + ' (export GeoJSON)',
           description: 'Conversion à la volée du jeu de données d\'origine ' + simplifiedTypeName + ' au format GeoJSON',
           format: 'JSON',
-          fileType: 'remote',
+          fileType: 'remote'
         })
         out.resources.push({
           url: rootUrl + '?format=SHP&projection=WGS84',
           title: simplifiedTypeName + ' (export SHP/WGS-84)',
           description: 'Conversion à la volée du jeu de données d\'origine ' + simplifiedTypeName + ' au format Shapefile (WGS-84)',
           format: 'SHP',
-          fileType: 'remote',
+          fileType: 'remote'
         })
       } else if (distribution.type === 'file-package' && distribution.layer) {
         rootUrl = process.env.ROOT_URL + '/api/geogw/file-packages/' + distribution.hashedLocation + '/download'
@@ -111,28 +115,28 @@ exports.map = function (sourceDataset) {
           url: distribution.location,
           title: 'Archive complète',
           format: 'ZIP',
-          fileType: 'remote',
+          fileType: 'remote'
         })
         out.resources.push({
           url: rootUrl + '?format=GeoJSON&projection=WGS84',
           title: `${distribution.layer} (export GeoJSON)`,
           description: 'Conversion à la volée au format GeoJSON',
           format: 'JSON',
-          fileType: 'remote',
+          fileType: 'remote'
         })
         out.resources.push({
           url: rootUrl + '?format=SHP&projection=WGS84',
           title: `${distribution.layer} (export SHP/WGS-84)`,
           description: 'Conversion à la volée au format Shapefile (WGS-84)',
           format: 'SHP',
-          fileType: 'remote',
+          fileType: 'remote'
         })
       } else if (distribution.type === 'file-package' && distribution.originalDistribution) {
         out.resources.push({
           url: distribution.location,
           title: distribution.name,
           format: 'ZIP',
-          fileType: 'remote',
+          fileType: 'remote'
         })
       }
     })
@@ -142,8 +146,12 @@ exports.map = function (sourceDataset) {
     debug('No publishable resources for %s (%s)', sourceDataset.metadata.title, sourceDataset.recordId)
   }
 
-  if (out.title.length === 0) throw new Error('title is a required field')
-  if (out.description.length === 0) throw new Error('description is a required field')
+  if (out.title.length === 0) {
+    throw new Error('title is a required field')
+  }
+  if (out.description.length === 0) {
+    throw new Error('description is a required field')
+  }
 
   return out
 }

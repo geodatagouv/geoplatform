@@ -8,14 +8,14 @@ const strategy = new OAuth2Strategy({
   tokenURL: process.env.DATAGOUV_URL + '/oauth/token',
   clientID: process.env.DATAGOUV_CLIENT_ID,
   clientSecret: process.env.DATAGOUV_CLIENT_SECRET,
-  callbackURL: `${process.env.ROOT_URL}/dgv/oauth/callback`,
-}, function(accessToken, refreshToken, profile, done) {
-  dgv.getProfile(accessToken)
-    .then(profile => {
-      profile.accessToken = accessToken
-      done(null, profile)
-    })
-    .catch(done)
-})
+  callbackURL: `${process.env.ROOT_URL}/dgv/oauth/callback`
+}, ((accessToken, refreshToken, profile, done) => {
+    dgv.getProfile(accessToken)
+      .then(profile => {
+        profile.accessToken = accessToken
+        done(null, profile)
+      })
+      .catch(done)
+  }))
 
-module.exports = { strategy }
+module.exports = {strategy}

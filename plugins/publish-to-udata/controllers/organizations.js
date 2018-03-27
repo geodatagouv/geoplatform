@@ -1,9 +1,9 @@
 'use strict'
 
 const mongoose = require('mongoose')
-const { pick } = require('lodash')
+const {pick} = require('lodash')
 const Promise = require('bluebird')
-const { getOrganization } = require('../udata')
+const {getOrganization} = require('../udata')
 
 const Organization = mongoose.model('Organization')
 const Producer = mongoose.model('Producer')
@@ -13,11 +13,11 @@ const EDITABLE_FIELDS = ['sourceCatalogs']
 exports.fetch = function (req, res, next, id) {
   Promise.join(
     Organization.findById(id),
-    Producer.find({ associatedTo: id }).select('-associatedTo').exec(),
+    Producer.find({associatedTo: id}).select('-associatedTo').exec(),
 
-    function (organization, producers) {
+    (organization, producers) => {
       if (!organization) {
-        req.organization = new Organization({ _id: id })
+        req.organization = new Organization({_id: id})
       } else {
         req.organization = organization
         req.organization.producers = producers
@@ -28,7 +28,9 @@ exports.fetch = function (req, res, next, id) {
 }
 
 exports.show = function (req, res) {
-  if (!req.organization) return res.sendStatus(404)
+  if (!req.organization) {
+    return res.sendStatus(404)
+  }
   const organization = req.organization.toObject()
   organization.producers = req.organization.producers
   res.send(organization)
@@ -44,8 +46,10 @@ exports.createOrUpdate = function (req, res, next) {
 }
 
 exports.list = function (req, res, next) {
-  Organization.find().exec(function (err, organizations) {
-    if (err) return next(err)
+  Organization.find().exec((err, organizations) => {
+    if (err) {
+      return next(err)
+    }
     res.send(organizations)
   })
 }

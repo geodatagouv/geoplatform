@@ -1,9 +1,11 @@
 'use strict'
 
-const { getUserRoleInOrganization } = require('./udata')
+const {getUserRoleInOrganization} = require('./udata')
 
 function ensureLoggedIn(req, res, next) {
-  if (!req.user) return res.sendStatus(401)
+  if (!req.user) {
+    return res.sendStatus(401)
+  }
   next()
 }
 
@@ -12,7 +14,9 @@ function isAdminOf(organizationIdExtractor) {
     const organizationId = organizationIdExtractor(req)
     getUserRoleInOrganization(req.user.id, organizationId)
       .then(userRole => {
-        if (userRole === 'admin') return next()
+        if (userRole === 'admin') {
+          return next()
+        }
         res.sendStatus(403)
       })
       .catch(next)
@@ -20,7 +24,9 @@ function isAdminOf(organizationIdExtractor) {
 }
 
 function organizationIsSet(req, res, next) {
-  if (!req.organization || req.organization.isNew) return res.sendStatus(404)
+  if (!req.organization || req.organization.isNew) {
+    return res.sendStatus(404)
+  }
   next()
 }
 
@@ -29,7 +35,9 @@ function isEditorOf(organizationIdExtractor) {
     const organizationId = organizationIdExtractor(req)
     getUserRoleInOrganization(req.user.id, organizationId)
       .then(userRole => {
-        if (['admin', 'editor'].includes(userRole)) return next()
+        if (['admin', 'editor'].includes(userRole)) {
+          return next()
+        }
         res.sendStatus(403)
       })
       .catch(next)
@@ -40,5 +48,5 @@ module.exports = {
   ensureLoggedIn,
   isAdminOf,
   isEditorOf,
-  organizationIsSet,
+  organizationIsSet
 }

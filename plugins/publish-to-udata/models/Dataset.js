@@ -6,7 +6,7 @@ const sidekick = require('../../../lib/helpers/sidekick')
 const dgv = require('../udata')
 const map = require('../mapping').map
 const hasha = require('hasha')
-const { getRecord, setRecordPublication, unsetRecordPublication } = require('../geogw')
+const {getRecord, setRecordPublication, unsetRecordPublication} = require('../geogw')
 const redlock = require('../redlock')
 const stringify = require('json-stable-stringify')
 
@@ -14,7 +14,11 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
 function clearLock(lock, err) {
-  return lock.unlock().then(() => { if (err) throw err })
+  return lock.unlock().then(() => {
+    if (err) {
+      throw err
+    }
+  })
 }
 
 function getPublicationLock(recordId) {
@@ -22,7 +26,9 @@ function getPublicationLock(recordId) {
     .then(lock => {
       return mongoose.model('Dataset').findById(recordId).exec()
         .then(publication => {
-          if (publication) throw new Error('Dataset already published')
+          if (publication) {
+            throw new Error('Dataset already published')
+          }
           return lock
         })
         .catch(err => clearLock(lock, err)) // Release lock
@@ -30,13 +36,11 @@ function getPublicationLock(recordId) {
 }
 
 function getHash(dataset) {
-  return hasha(stringify(dataset), { algorithm: 'sha1' })
+  return hasha(stringify(dataset), {algorithm: 'sha1'})
 }
 
-
-
 const schema = new Schema({
-  _id: { type: String },
+  _id: {type: String},
 
   title: String,
 
@@ -45,17 +49,17 @@ const schema = new Schema({
   // Attributes related to the publication on the udata platform
   publication: {
     // Unique ID on the udata platform
-    _id: { type: String, unique: true, required: true },
+    _id: {type: String, unique: true, required: true},
 
     // Organization on the udata platform which hold the dataset
-    organization: { type: ObjectId, ref: 'Organization', required: true },
+    organization: {type: ObjectId, ref: 'Organization', required: true},
 
     // Published dataset revision
-    revision: { type: Date },
+    revision: {type: Date},
 
-    createdAt: { type: Date },
-    updatedAt: { type: Date, index: true, sparse: true },
-  },
+    createdAt: {type: Date},
+    updatedAt: {type: Date, index: true, sparse: true}
+  }
 
 })
 
@@ -67,11 +71,15 @@ schema.method('getRecord', function () {
   if (!this.getRecordPromise) {
     this.getRecordPromise = getRecord(this._id)
       .then(record => {
-        if (!record.metadata) throw new Error('Record found but empty metadata: ' + this._id)
+        if (!record.metadata) {
+          throw new Error('Record found but empty metadata: ' + this._id)
+        }
         return record
       })
       .catch(err => {
-        if (err.status === 404) throw new Error('Record not found')
+        if (err.status === 404) {
+          throw new Error('Record not found')
+        }
         throw err
       })
   }
@@ -82,15 +90,13 @@ schema.method('computeDataset', function () {
   return this.getRecord().then(map)
 })
 
-
-
 schema.method('getEligibleOrganizations', function () {
   const Producer = mongoose.model('Producer')
   const Organization = mongoose.model('Organization')
 
   return this.getRecord()
     .then(record => {
-      return Producer.distinct('associatedTo', { _id: { $in: record.organizations } }).exec()
+      return Producer.distinct('associatedTo', {_id: {$in: record.organizations}}).exec()
         .map(organizationId => Organization.findById(organizationId))
         .filter(organization => record.catalogs.some(c => {
           return organization.sourceCatalogs.some(sourceCatalog => sourceCatalog.equals(c))
@@ -105,18 +111,18 @@ schema.method('selectTargetOrganization', function () {
     this.getRecord(),
     this.getEligibleOrganizations(),
 
-    function (record, eligibleOrganizations) {
-      // current organization is eligible
+    (record, eligibleOrganizations) => {
+      // Current organization is eligible
       if (currentOrganization && eligibleOrganizations.some(eo => eo._id.equals(currentOrganization))) {
         return currentOrganization
       }
 
-      // we elected an organization
+      // We elected an organization
       if (eligibleOrganizations.length > 0) {
         return eligibleOrganizations[0]._id
       }
 
-      // we fall back to current organization
+      // We fall back to current organization
       if (currentOrganization) {
         return currentOrganization
       }
@@ -153,14 +159,18 @@ schema.method('update', function (options = {}) {
     )
     .then(dataset => {
       const hash = getHash(dataset)
-      if (!options.force && this.hash && this.hash === hash) throw new Error('Unchanged dataset')
+      if (!options.force && this.hash && this.hash === hash) {
+        throw new Error('Unchanged dataset')
+      }
       this.set('hash', hash)
       return dataset
     })
     .then(dataset => {
       return dgv.updateDataset(datasetId, dataset)
         .catch(err => {
-          if (err.status === 404) throw new Error('Target dataset doesn\'t exist anymore')
+          if (err.status === 404) {
+            throw new Error('Target dataset doesn\'t exist anymore')
+          }
           throw err
         })
     })
@@ -177,12 +187,12 @@ schema.method('asyncUpdate', function (additionalSidekickOptions = {}) {
   if (!this.isPublished()) {
     return Promise.reject(new Error('Dataset not published'))
   }
-  return sidekick('udata:synchronizeOne', Object.assign({}, additionalSidekickOptions, { recordId: this._id, action: 'update' }))
+  return sidekick('udata:synchronizeOne', Object.assign({}, additionalSidekickOptions, {recordId: this._id, action: 'update'}))
 })
 
 schema.method('notifyPublication', function () {
   const remoteUrl = `${process.env.DATAGOUV_URL}/datasets/${this.publication._id}/`
-  return setRecordPublication(this._id, { remoteId: this.publication._id, remoteUrl })
+  return setRecordPublication(this._id, {remoteId: this.publication._id, remoteUrl})
 })
 
 schema.method('publish', function () {
@@ -219,18 +229,20 @@ schema.method('publish', function () {
   })
 })
 
-schema.method('asyncPublish', function ({ organizationId }) {
+schema.method('asyncPublish', function ({organizationId}) {
   if (this.isPublished()) {
     return Promise.reject(new Error('Dataset already published'))
   }
-  return sidekick('udata:synchronizeOne', { recordId: this._id, action: 'publish', organizationId })
+  return sidekick('udata:synchronizeOne', {recordId: this._id, action: 'publish', organizationId})
 })
 
 schema.method('removeAndNotify', function () {
   return this.remove()
     .then(() => unsetRecordPublication(this._id))
     .catch(err => {
-      if (err.status === 404) return
+      if (err.status === 404) {
+        return
+      }
       throw err
     })
     .thenReturn(this)
@@ -251,7 +263,7 @@ schema.method('asyncUnpublish', function () {
   if (!this.isPublished()) {
     return Promise.reject(new Error('Dataset not published'))
   }
-  return sidekick('udata:synchronizeOne', { recordId: this._id, action: 'unpublish' })
+  return sidekick('udata:synchronizeOne', {recordId: this._id, action: 'unpublish'})
 })
 
 schema.method('transferTo', function (targetOrganization, force = false) {
@@ -263,7 +275,7 @@ schema.method('transferTo', function (targetOrganization, force = false) {
     .then(() => this.set('publication.organization', targetOrganization).save())
 })
 
-schema.static('asyncSynchronizeAll', function (options) {
+schema.static('asyncSynchronizeAll', options => {
   return sidekick('udata:synchronizeAll', options)
 })
 

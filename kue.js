@@ -3,7 +3,7 @@
 
 require('./lib/config/jobs')
 
-const { getApp } = require('delayed-jobs')
+const {getApp} = require('delayed-jobs')
 
 const port = process.env.PORT || 3030
 getApp().listen(port)

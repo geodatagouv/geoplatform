@@ -1,11 +1,12 @@
 'use strict'
 
 const mongoose = require('mongoose')
+
 const Dataset = mongoose.model('Dataset')
 
 module.exports = function (job, jobDone) {
-  const { recordId, organizationId, unpublishIfRecordNotFound, removeIfTargetDatasetNotFound } = job.data
-  let { action } = job.data
+  const {recordId, organizationId, unpublishIfRecordNotFound, removeIfTargetDatasetNotFound} = job.data
+  let {action} = job.data
 
   Dataset.findById(recordId).exec()
     .then(foundPublicationInfo => {
@@ -19,7 +20,7 @@ module.exports = function (job, jobDone) {
         action = 'publish'
       }
 
-      const publicationInfo = foundPublicationInfo || new Dataset({ _id: recordId, 'publication.organization': organizationId })
+      const publicationInfo = foundPublicationInfo || new Dataset({_id: recordId, 'publication.organization': organizationId})
 
       return publicationInfo[action]()
         .catch(err => {

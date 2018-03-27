@@ -1,11 +1,11 @@
 'use strict'
 
 const csvParse = require('csv-parse/lib/sync')
-const { readFileSync } = require('fs')
-const { removeDiacritics } = require('natural')
+const {readFileSync} = require('fs')
+const {removeDiacritics} = require('natural')
 
-const rawData = readFileSync(__dirname + '/data/normalized_producers.csv', { encoding: 'utf8' })
-const parsedData = csvParse(rawData, { columns: true })
+const rawData = readFileSync(__dirname + '/data/normalized_producers.csv', {encoding: 'utf8'})
+const parsedData = csvParse(rawData, {columns: true})
 const renameIndex = {}
 const errorIndex = {}
 
@@ -24,8 +24,12 @@ function prepare(typo) {
 
 function normalize(producerName) {
   const preparedTypo = prepare(producerName)
-  if (preparedTypo in errorIndex) throw new Error('Rejected value')
-  if (preparedTypo in renameIndex) return renameIndex[preparedTypo]
+  if (preparedTypo in errorIndex) {
+    throw new Error('Rejected value')
+  }
+  if (preparedTypo in renameIndex) {
+    return renameIndex[preparedTypo]
+  }
   return producerName
 }
 

@@ -5,7 +5,6 @@ const normalizeProducerNames = require('../france/normalizeProducerNames')
 const expect = require('expect.js')
 
 describe('normalizeProducerNames()', () => {
-
   describe('unknown or valid typography', () => {
     it('should return the same string', () => {
       expect(normalizeProducerNames('This is a test')).to.be('This is a test')
@@ -25,5 +24,4 @@ describe('normalizeProducerNames()', () => {
       })
     })
   })
-
 })

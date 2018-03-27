@@ -31,9 +31,11 @@ function getOrganization(organizationId) {
 function addUserToOrganization(userId, organizationId, accessToken) {
   return Promise.resolve(
     withToken(request.post(`${rootUrl}/organizations/${organizationId}/member/${userId}`), accessToken)
-      .send({ role: 'admin' })
+      .send({role: 'admin'})
       .catch(err => {
-        if (err.status && err.status === 409) return // User is already member
+        if (err.status && err.status === 409) {
+          return
+        } // User is already member
         throw err
       })
   )
@@ -77,12 +79,11 @@ function updateDataset(datasetId, dataset) {
   )
   if (dataset.resources.length > 0) {
     return updateOnly
-  } else {
-    return updateOnly.then(publishedDataset => {
-      return Promise.each(publishedDataset.resources, resource => deleteDatasetResource(datasetId, resource.id))
-        .then(() => getDataset(datasetId))
-    })
   }
+  return updateOnly.then(publishedDataset => {
+    return Promise.each(publishedDataset.resources, resource => deleteDatasetResource(datasetId, resource.id))
+      .then(() => getDataset(datasetId))
+  })
 }
 
 function getDataset(datasetId) {
@@ -103,9 +104,9 @@ function createDatasetTransferRequest(datasetId, recipientOrganizationId) {
   return Promise.resolve(
     withApiKey(request.post(rootUrl + '/transfer/'))
       .send({
-        subject: { id: datasetId, class: 'Dataset' },
-        recipient: { id: recipientOrganizationId, class: 'Organization' },
-        comment: 'INSPIRE gateway automated transfer: request',
+        subject: {id: datasetId, class: 'Dataset'},
+        recipient: {id: recipientOrganizationId, class: 'Organization'},
+        comment: 'INSPIRE gateway automated transfer: request'
       })
       .then(resp => resp.body.id)
   )
@@ -114,7 +115,7 @@ function createDatasetTransferRequest(datasetId, recipientOrganizationId) {
 function respondTransferRequest(transferId, response = 'accept') {
   return Promise.resolve(
     withApiKey(request.post(`${rootUrl}/transfer/${transferId}/`))
-      .send({ comment: 'INSPIRE gateway automated transfer: response', response })
+      .send({comment: 'INSPIRE gateway automated transfer: response', response})
   ).thenReturn()
 }
 
@@ -129,9 +130,9 @@ function transferDataset(datasetId, recipientOrganizationId) {
     .then(transferId => respondTransferRequest(transferId, 'accept'))
     .catch(err => {
       if (err.status && err.status === 400 && err.response.body.message === 'Recipient should be different than the current owner') {
-        return
+
       }
     })
 }
 
-module.exports = { getOrganization, addUserToOrganization, removeUserFromOrganization, getProfile, createDataset, updateDataset, deleteDataset, getDataset, getUserRoleInOrganization, transferDataset }
+module.exports = {getOrganization, addUserToOrganization, removeUserFromOrganization, getProfile, createDataset, updateDataset, deleteDataset, getDataset, getUserRoleInOrganization, transferDataset}

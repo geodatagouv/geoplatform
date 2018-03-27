@@ -1,9 +1,9 @@
 'use strict'
 
-var express = require('express')
-var morgan = require('morgan')
+const express = require('express')
+const morgan = require('morgan')
 
-var app = express()
+const app = express()
 
 if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', true)
@@ -14,6 +14,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(require('./app'))
 
-app.listen(process.env.PORT, function () {
+app.listen(process.env.PORT, () => {
   console.log('Now listing on port %d', process.env.PORT)
 })
