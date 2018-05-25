@@ -2,7 +2,7 @@
 
 const moment = require('moment')
 const Handlebars = require('handlebars')
-const {filter, kebabCase} = require('lodash')
+const {get, filter, kebabCase} = require('lodash')
 const {strRight} = require('underscore.string')
 const debug = require('debug')('mapping')
 
@@ -64,6 +64,7 @@ exports.map = function (sourceDataset) {
     description: bodyTemplate(sourceDataset),
     extras: {
       'inspire:identifier': sourceDataset.metadata.id,
+      'inspire:resource_identifier': get(sourceDataset, 'metadata.resourceId'),
       'geop:dataset_id': sourceDataset.recordId
     },
     license: sourceDataset.metadata.license,
