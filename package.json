@@ -8,10 +8,8 @@
     "lint": "xo",
     "test": "mocha",
     "start": "node server",
-    "worker": "node worker"
-  },
-  "bin": {
-    "geop": "bin/geop.js"
+    "worker": "node worker",
+    "seed": "node scripts/seed"
   },
   "dependencies": {
     "@etalab/fr-bounding-boxes": "^0.1.3",
@@ -38,6 +36,7 @@
     "lodash": "^4",
     "mississippi": "^1.3.0",
     "moment": "^2.14.1",
+    "mongodb": "^3.0.8",
     "mongoose": "^5.0.2",
     "morgan": "^1.5.1",
     "natural": "^0.5.4",
