@@ -36,3 +36,4 @@ clients.json
 deploy.sh
 
 /data
+.env

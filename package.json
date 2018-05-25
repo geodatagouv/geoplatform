@@ -10,6 +10,9 @@
     "start": "node server",
     "worker": "node worker"
   },
+  "bin": {
+    "geop": "bin/geop.js"
+  },
   "dependencies": {
     "@etalab/fr-bounding-boxes": "^0.1.3",
     "@turf/turf": "^5.1.6",
@@ -22,6 +25,7 @@
     "csw-client": "^0.15.0",
     "debug": "^2.1.2",
     "delayed-jobs": "^0.1.0",
+    "dotenv": "^5.0.1",
     "express": "^4.11.2",
     "express-session": "^1.15.6",
     "file-type": "^5.2.0",
