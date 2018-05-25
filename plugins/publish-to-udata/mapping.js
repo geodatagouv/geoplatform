@@ -64,7 +64,7 @@ exports.map = function (sourceDataset) {
     description: bodyTemplate(sourceDataset),
     extras: {
       'inspire:identifier': sourceDataset.metadata.id,
-      geogw_recordId: sourceDataset.recordId
+      'geop:dataset_id': sourceDataset.recordId
     },
     license: sourceDataset.metadata.license,
     supplier: {},
@@ -100,7 +100,10 @@ exports.map = function (sourceDataset) {
           title: simplifiedTypeName + ' (export GeoJSON)',
           description: 'Conversion à la volée du jeu de données d\'origine ' + simplifiedTypeName + ' au format GeoJSON',
           format: 'JSON',
-          fileType: 'remote'
+          fileType: 'remote',
+          extras: {
+            'geop:resource_id': `wfs:${distribution.service}/${distribution.typeName}`
+          }
         })
         out.resources.push({
           url: rootUrl + '?format=SHP&projection=WGS84',
@@ -122,7 +125,10 @@ exports.map = function (sourceDataset) {
           title: `${distribution.layer} (export GeoJSON)`,
           description: 'Conversion à la volée au format GeoJSON',
           format: 'JSON',
-          fileType: 'remote'
+          fileType: 'remote',
+          extras: {
+            'geop:resource_id': `file-package:${distribution.hashedLocation}/${distribution.layer}`
+          }
         })
         out.resources.push({
           url: rootUrl + '?format=SHP&projection=WGS84',
