@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "lint": "xo",
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node server",
+    "worker": "node worker"
   },
   "dependencies": {
     "@etalab/fr-bounding-boxes": "^0.1.3",
