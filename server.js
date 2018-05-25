@@ -14,6 +14,8 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(require('./app'))
 
-app.listen(process.env.PORT, () => {
-  console.log('Now listing on port %d', process.env.PORT)
+const port = process.env.PORT || 5000
+
+app.listen(port, () => {
+  console.log('Now listening on port %d', port)
 })
