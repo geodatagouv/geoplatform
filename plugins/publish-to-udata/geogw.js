@@ -1,7 +1,6 @@
 'use strict'
 
-const request = require('superagent')
-const Promise = require('bluebird')
+const got = require('got')
 
 const ROOT_URL = process.env.GEOGW_URL + '/api/geogw'
 const TOKEN = process.env.GEOGW_TOKEN
@@ -15,32 +14,38 @@ function publicationUrl(recordId) {
   return `${recordUrl(recordId)}/publications/${TARGET}`
 }
 
-exports.getRecord = function (recordId) {
-  return Promise.resolve(
-    request.get(recordUrl(recordId))
-      .then(res => res.body)
-  )
+exports.getRecord = async function (recordId) {
+  const {body} = await got(recordUrl(recordId), {
+    json: true
+  })
+
+  return body
 }
 
-exports.setRecordPublication = function (recordId, publicationInfo) {
-  return Promise.resolve(
-    request.put(publicationUrl(recordId))
-      .set('Authorization', `Basic ${TOKEN}`)
-      .send(publicationInfo)
-      .then(res => res.body)
-  )
+exports.setRecordPublication = async function (recordId, publicationInfo) {
+  const {body} = await got.put(publicationUrl(recordId), {
+    headers: {
+      authorization: `Basic ${TOKEN}`
+    },
+    json: true,
+    body: publicationInfo
+  })
+
+  return body
 }
 
 exports.unsetRecordPublication = function (recordId) {
-  return Promise.resolve(
-    request.del(publicationUrl(recordId))
-      .set('Authorization', `Basic ${TOKEN}`)
-  ).thenReturn()
+  return got.delete(publicationUrl(recordId), {
+    headers: {
+      authorization: `Basic ${TOKEN}`
+    }
+  })
 }
 
-exports.getPublications = function () {
-  return Promise.resolve(
-    request.get(`${ROOT_URL}/publications/${TARGET}`)
-      .then(res => res.body)
-  )
+exports.getPublications = async function () {
+  const {body} = await got(`${ROOT_URL}/publications/${TARGET}`, {
+    json: true
+  })
+
+  return body
 }
