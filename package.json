@@ -16,7 +16,6 @@
     "@turf/turf": "^5.1.6",
     "bbox-match": "^0.1.0",
     "bluebird": "^3.3.0",
-    "body-parser": "^1.11.0",
     "connect-mongo": "^2.0.0",
     "cors": "^2.5.2",
     "csv-parse": "^1.2.0",
