@@ -45,7 +45,6 @@
     "passport-oauth2": "^1.4.0",
     "pump": "^3.0.0",
     "request": "^2.79.0",
-    "require-all": "^2.2.0",
     "stream-each": "^1.2.3",
     "superagent": "^3.5.2",
     "through2": "^2.0.3",
