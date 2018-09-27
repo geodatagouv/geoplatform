@@ -1,14 +1,15 @@
 {
-  "name": "@geoplatform/core",
+  "name": "geoplatform",
   "version": "1.0.0",
-  "description": "Core API and processing tools for geoplatform",
+  "public": false,
+  "description": "Core API and processing tools for geo.data.gouv.fr",
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
   "license": "MIT",
   "scripts": {
     "lint": "xo",
     "test": "mocha",
-    "start": "node server",
-    "worker": "node worker",
+    "start:web": "node server.js",
+    "start:worker": "node worker.js",
     "seed": "node scripts/seed"
   },
   "dependencies": {
