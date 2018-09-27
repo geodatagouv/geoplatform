@@ -4,6 +4,11 @@ FROM node:8-alpine AS build
 RUN mkdir -p /opt/geoplatform-web
 WORKDIR /opt/geoplatform-web
 
+RUN apk add \
+    python \
+    make \
+    g++
+
 COPY package.json yarn.lock ./
 RUN yarn --production
 
