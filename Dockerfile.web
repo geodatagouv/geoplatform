@@ -1,0 +1,22 @@
+# 1/2 Create build image
+FROM node:8-alpine AS build
+
+RUN mkdir -p /opt/geoplatform-web
+WORKDIR /opt/geoplatform-web
+
+COPY package.json yarn.lock ./
+RUN yarn --production
+
+# 2/2 Create production image
+FROM node:8-alpine
+
+RUN mkdir -p /opt/geoplatform-web
+WORKDIR /opt/geoplatform-web
+
+COPY --from=build /opt/geoplatform-web .
+COPY . .
+
+ENV NODE_ENV=production
+
+EXPOSE 5000
+CMD ["node", "server.js"]
