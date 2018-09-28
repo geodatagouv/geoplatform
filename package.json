@@ -1,6 +1,6 @@
 {
   "name": "@geoplatform/core",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Core API and processing tools for geoplatform",
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
   "license": "MIT",
