@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib.metadata.iso.contacts getAllContacts() should return contacts array when called with representative metadata 1`] = `
+Array [
+  Object {
+    "address": "1 rue République",
+    "country": "Groland",
+    "email": "info@acme.org",
+    "organizationName": "Tralala",
+    "phoneNumber": "0147200001",
+    "postalCode": "75015",
+    "relatedTo": "metadata",
+    "role": "owner",
+    "town": "Paris 15e",
+  },
+  Object {
+    "organizationName": "ACME",
+    "relatedTo": "data",
+    "role": "notDefined",
+  },
+]
+`;
