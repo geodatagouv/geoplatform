@@ -12,6 +12,9 @@
     "start:worker": "node worker.js",
     "seed": "node scripts/seed"
   },
+  "engines": {
+    "node": ">= 8.0.0"
+  },
   "dependencies": {
     "@etalab/fr-bounding-boxes": "^0.1.3",
     "@turf/turf": "^5.1.6",
@@ -56,7 +59,9 @@
     "wfs-client": "^0.3.0"
   },
   "devDependencies": {
+    "codecov": "^3.1.0",
     "expect.js": "^0.3.1",
+    "lerna-changelog": "^0.8.0",
     "mocha": "^3.4.2",
     "xo": "^0.20.3"
   },
@@ -64,7 +69,16 @@
     "semicolon": false,
     "space": 2
   },
-  "engines": {
-    "node": ">= 8.0.0"
+  "changelog": {
+    "cacheDir": ".changelog",
+    "labels": {
+      "bug": ":bug: Bug Fix",
+      "cleanup": ":shower: Cleanup",
+      "documentation": ":memo: Documentation",
+      "enhancement": ":rocket: Enhancement",
+      "performance": ":racehorse: Performance",
+      "security": ":policeman: Security"
+    },
+    "repo": "geodatagouv/geoplatform"
   }
 }
