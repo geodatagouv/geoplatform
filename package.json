@@ -83,7 +83,6 @@
     "collectCoverageFrom": [
       "server.js",
       "worker.js",
-      "app.js",
       "lib/**/*.js",
       "plugins/**/*.js",
       "france/**/*.js"
