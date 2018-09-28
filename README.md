@@ -7,6 +7,20 @@
 [![codecov](https://badgen.net/codecov/c/github/geodatagouv/geoplatform)](https://codecov.io/gh/geodatagouv/geoplatform)
 [![XO code style](https://badgen.net/badge/code%20style/XO/cyan)](https://github.com/xojs/xo)
 
+## Getting started
+
+### Requirements
+
+This requires a few services in order to function properly:
+
+- A MongoDB (>= 3) server:
+  - `MONGO_URL` defaults to `mongodb://localhost:27017`
+  - `MONGO_DB` defaults to `link-proxy`
+
+- A redis server:
+  - `REDIS_HOST` defaults to `localhost`
+  - `REDIS_PORT` defaults to `6379`
+
 ### Services
 
 This exposes two services:
