@@ -1,21 +1,17 @@
 # 1/2 Create build image
-FROM node:8-alpine AS build
+FROM node:8 AS build
 
 RUN mkdir -p /opt/geoplatform-worker
 WORKDIR /opt/geoplatform-worker
-
-RUN apk add \
-    python \
-    make \
-    g++
 
 COPY package.json yarn.lock ./
 RUN yarn --production
 
 # 2/2 Create production image
-FROM node:8-alpine
+FROM node:8-slim
 
-RUN apk update && apk --no-cache add gdal
+RUN apt-get update -qq && \
+    apt-get install -qq -y gdal-bin
 
 RUN mkdir -p /opt/geoplatform-worker
 WORKDIR /opt/geoplatform-worker
