@@ -9,6 +9,7 @@ RUN yarn --production
 
 # 2/2 Create production image
 FROM node:8-slim
+ARG SOURCE_COMMIT=unknown
 
 RUN apt-get update -qq && \
     apt-get install -qq -y gdal-bin
@@ -19,7 +20,13 @@ WORKDIR /opt/geoplatform-web
 COPY --from=build /opt/geoplatform-web .
 COPY . .
 
-ENV NODE_ENV=production
+ENV NODE_ENV=production \
+    SENTRY_DSN_FILE=sentry_dsn \
+    SENTRY_RELEASE=${SOURCE_COMMIT}
+
+RUN mkdir -p /opt/bin
+COPY docker/scripts/entrypoint.sh /opt/bin/
 
 EXPOSE 5000
+ENTRYPOINT ["/opt/bin/entrypoint.sh"]
 CMD ["node", "server.js"]
