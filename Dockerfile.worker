@@ -11,9 +11,6 @@ RUN yarn --production
 FROM node:8-slim
 ARG SOURCE_COMMIT=unknown
 
-RUN apt-get update -qq && \
-    apt-get install -qq -y gdal-bin
-
 RUN mkdir -p /opt/geoplatform-worker
 WORKDIR /opt/geoplatform-worker
 
