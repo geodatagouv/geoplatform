@@ -11,7 +11,7 @@ module.exports = [
       status: 'new',
       pending: false,
       processing: false,
-      finishedAt: '2018-01-01T00:00:00.000Z'
+      finishedAt: new Date('2018-01-01T00:00:00.000Z')
     },
     processing: false
   },
@@ -25,7 +25,7 @@ module.exports = [
       status: 'new',
       pending: false,
       processing: false,
-      finishedAt: '2018-01-01T00:00:00.000Z'
+      finishedAt: new Date('2018-01-01T00:00:00.000Z')
     },
     processing: false
   },
@@ -39,7 +39,7 @@ module.exports = [
       status: 'new',
       pending: false,
       processing: false,
-      finishedAt: '2018-01-01T00:00:00.000Z'
+      finishedAt: new Date('2018-01-01T00:00:00.000Z')
     },
     processing: false
   },
@@ -53,7 +53,7 @@ module.exports = [
       status: 'new',
       pending: false,
       processing: false,
-      finishedAt: '2018-01-01T00:00:00.000Z'
+      finishedAt: new Date('2018-01-01T00:00:00.000Z')
     },
     processing: false
   }
