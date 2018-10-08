@@ -1,10 +1,13 @@
 'use strict'
 
-const csvParse = require('csv-parse/lib/sync')
+const {join} = require('path')
 const {readFileSync} = require('fs')
+const csvParse = require('csv-parse/lib/sync')
 const {removeDiacritics} = require('natural')
 
-const rawData = readFileSync(__dirname + '/data/normalized_producers.csv', {encoding: 'utf8'})
+const rawData = readFileSync(join(__dirname, 'data/normalized_producers.csv'), {
+  encoding: 'utf8'
+})
 const parsedData = csvParse(rawData, {columns: true})
 const renameIndex = {}
 const errorIndex = {}
@@ -22,7 +25,7 @@ function prepare(typo) {
   return removeDiacritics(typo.toLowerCase()).replace(/(\W|_)/g, '')
 }
 
-function normalize(producerName) {
+function normalizeName(producerName) {
   const preparedTypo = prepare(producerName)
   if (preparedTypo in errorIndex) {
     throw new Error('Rejected value')
@@ -33,4 +36,4 @@ function normalize(producerName) {
   return producerName
 }
 
-module.exports = normalize
+module.exports = {normalizeName}

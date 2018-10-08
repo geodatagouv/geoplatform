@@ -5,8 +5,29 @@ const mongo = require('../lib/util/mongo')
 
 async function main() {
   await mongo.connect()
-  await mongo.db.collection('services').insertMany(require('../france/fixtures/dev/services'))
-  await mongo.db.collection('catalogs').insertMany(require('../france/fixtures/dev/catalogs'))
+
+  await Promise.all(
+    require('../france/fixtures/dev/services').map(async service => {
+      try {
+        await mongo.db.collection('services').insertOne(service)
+        console.log(`[+] services: inserted ${service.location}`)
+      } catch (error) {
+        console.log(`[-] services: failed inserting ${service.location}`)
+      }
+    })
+  )
+
+  await Promise.all(
+    require('../france/fixtures/dev/catalogs').map(async catalog => {
+      try {
+        await mongo.db.collection('catalogs').insertOne(catalog)
+        console.log(`[+] catalogs: inserted ${catalog.name}`)
+      } catch (error) {
+        console.log(`[-] catalogs: failed inserting ${catalog.name}`)
+      }
+    })
+  )
+
   await mongo.disconnect()
 }
 

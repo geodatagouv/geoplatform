@@ -1,18 +1,8 @@
 require('dotenv').config()
 
-const express = require('express')
-const morgan = require('morgan')
+require('./lib/init') // eslint-disable-line import/no-unassigned-import
 
-const app = express()
-
-if (process.env.NODE_ENV === 'production') {
-  app.set('trust proxy', true)
-  app.use(morgan(':req[x-real-ip] - - [:date] ":method :url HTTP/:http-version" :status - :response-time ms - :res[content-length] ":referrer"'))
-} else {
-  app.use(morgan('dev'))
-}
-
-app.use(require('./app'))
+const app = require('./lib/express')
 
 const port = process.env.PORT || 5000
 
