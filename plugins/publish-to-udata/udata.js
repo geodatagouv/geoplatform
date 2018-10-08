@@ -1,138 +1,195 @@
-'use strict'
+const got = require('got')
 
-const request = require('superagent')
-const Promise = require('bluebird')
+const {DATAGOUV_URL, UDATA_PUBLICATION_USER_API_KEY} = process.env
 
-const rootUrl = process.env.DATAGOUV_URL + '/api/1'
-const apiKey = process.env.UDATA_PUBLICATION_USER_API_KEY
+const client = got.extend({
+  baseUrl: `${DATAGOUV_URL}/api/1`
+})
 
-function withApiKey(req) {
-  return req.set('X-API-KEY', apiKey)
+async function getProfile(accessToken) {
+  const {body} = await client.get(`/me/`, {
+    json: true,
+    headers: {
+      authorization: `Bearer ${accessToken}`
+    }
+  })
+
+  return body
 }
 
-function withToken(req, token) {
-  return req.set('Authorization', `Bearer ${token}`)
+async function getOrganization(organizationId) {
+  const {body} = await client.get(`/organizations/${organizationId}/`, {
+    json: true
+  })
+
+  return body
 }
 
-function getProfile(accessToken) {
-  return Promise.resolve(
-    withToken(request.get(rootUrl + '/me/'), accessToken)
-      .then(resp => resp.body)
-  )
-}
-
-function getOrganization(organizationId) {
-  return Promise.resolve(
-    request.get(`${rootUrl}/organizations/${organizationId}/`)
-      .then(resp => resp.body)
-  )
-}
-
-function addUserToOrganization(userId, organizationId, accessToken) {
-  return Promise.resolve(
-    withToken(request.post(`${rootUrl}/organizations/${organizationId}/member/${userId}`), accessToken)
-      .send({role: 'admin'})
-      .catch(err => {
-        if (err.status && err.status === 409) {
-          return
-        } // User is already member
-        throw err
-      })
-  )
-}
-
-function removeUserFromOrganization(userId, organizationId, accessToken) {
-  return Promise.resolve(
-    withToken(request.del(`${rootUrl}/organizations/${organizationId}/member/${userId}`), accessToken)
-      .set('content-length', 0)
-  ).thenReturn()
-}
-
-function getUserRoleInOrganization(userId, organizationId) {
-  return getOrganization(organizationId)
-    .then(organization => {
-      const membership = organization.members.find(membership => membership.user.id === userId)
-      return membership ? membership.role : 'none'
+async function addUserToOrganization(userId, organizationId, accessToken) {
+  try {
+    await client.post(`/organizations/${organizationId}/member/${userId}/`, {
+      json: true,
+      headers: {
+        authorization: `Bearer ${accessToken}`
+      },
+      body: {
+        role: 'admin'
+      }
     })
-}
+  } catch (error) {
+    if (error.statusCode === 409) {
+      // User is already a member, ignoring
+      return
+    }
 
-function deleteDatasetResource(datasetId, resourceId) {
-  return Promise.resolve(
-    withApiKey(request.del(rootUrl + '/datasets/' + datasetId + '/resources/' + resourceId + '/'))
-      .set('content-length', 0)
-  ).thenReturn()
-}
-
-function createDataset(dataset) {
-  return Promise.resolve(
-    withApiKey(request.post(rootUrl + '/datasets/'))
-      .send(dataset)
-      .then(resp => resp.body)
-  )
-}
-
-function updateDataset(datasetId, dataset) {
-  const updateOnly = Promise.resolve(
-    withApiKey(request.put(rootUrl + '/datasets/' + datasetId + '/'))
-      .send(dataset)
-      .then(resp => resp.body)
-  )
-  if (dataset.resources.length > 0) {
-    return updateOnly
+    throw error
   }
-  return updateOnly.then(publishedDataset => {
-    return Promise.each(publishedDataset.resources, resource => deleteDatasetResource(datasetId, resource.id))
-      .then(() => getDataset(datasetId))
+}
+
+async function removeUserFromOrganization(userId, organizationId, accessToken) {
+  await client.delete(`/organizations/${organizationId}/member/${userId}/`, {
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+      'content-length': 0
+    }
   })
 }
 
-function getDataset(datasetId) {
-  return Promise.resolve(
-    withApiKey(request.get(rootUrl + '/datasets/' + datasetId + '/'))
-      .then(resp => resp.body)
+async function getUserRoleInOrganization(userId, organizationId) {
+  const organization = await getOrganization(organizationId)
+
+  const membership = organization.members.find(
+    membership => membership.user.id === userId
   )
+
+  return membership ? membership.role : 'none'
 }
 
-function deleteDataset(datasetId) {
-  return Promise.resolve(
-    withApiKey(request.del(rootUrl + '/datasets/' + datasetId + '/'))
-      .set('content-length', 0)
-  ).thenReturn()
+async function deleteDatasetResource(datasetId, resourceId) {
+  await client.delete(`/datasets/${datasetId}/resources/${resourceId}/`, {
+    headers: {
+      'X-API-KEY': UDATA_PUBLICATION_USER_API_KEY,
+      'content-length': 0
+    }
+  })
 }
 
-function createDatasetTransferRequest(datasetId, recipientOrganizationId) {
-  return Promise.resolve(
-    withApiKey(request.post(rootUrl + '/transfer/'))
-      .send({
-        subject: {id: datasetId, class: 'Dataset'},
-        recipient: {id: recipientOrganizationId, class: 'Organization'},
-        comment: 'INSPIRE gateway automated transfer: request'
-      })
-      .then(resp => resp.body.id)
+async function createDataset(dataset) {
+  const {body} = await client.post('/datasets/', {
+    json: true,
+    headers: {
+      'X-API-KEY': UDATA_PUBLICATION_USER_API_KEY
+    },
+    body: dataset
+  })
+
+  return body
+}
+
+async function updateDataset(datasetId, dataset) {
+  const {body} = await client.put(`/datasets/${datasetId}/`, {
+    json: true,
+    headers: {
+      'X-API-KEY': UDATA_PUBLICATION_USER_API_KEY
+    },
+    body: dataset
+  })
+
+  if (dataset.resources.length > 0) {
+    return body
+  }
+
+  await Promise.all(
+    body.resources.map(resource => deleteDatasetResource(datasetId, resource.id))
   )
-}
 
-function respondTransferRequest(transferId, response = 'accept') {
-  return Promise.resolve(
-    withApiKey(request.post(`${rootUrl}/transfer/${transferId}/`))
-      .send({comment: 'INSPIRE gateway automated transfer: response', response})
-  ).thenReturn()
-}
-
-function transferDataset(datasetId, recipientOrganizationId) {
   return getDataset(datasetId)
-    .catch(err => {
-      if (err.status && err.status === 404) {
-        throw new Error('Dataset doesn\'t exist')
-      }
-    })
-    .then(() => createDatasetTransferRequest(datasetId, recipientOrganizationId))
-    .then(transferId => respondTransferRequest(transferId, 'accept'))
-    .catch(err => {
-      if (err.status && err.status === 400 && err.response.body.message === 'Recipient should be different than the current owner') {
-
-      }
-    })
 }
 
-module.exports = {getOrganization, addUserToOrganization, removeUserFromOrganization, getProfile, createDataset, updateDataset, deleteDataset, getDataset, getUserRoleInOrganization, transferDataset}
+async function getDataset(datasetId) {
+  const {body} = await client.get(`/datasets/${datasetId}/`, {
+    json: true,
+    headers: {
+      'X-API-KEY': UDATA_PUBLICATION_USER_API_KEY
+    }
+  })
+
+  return body
+}
+
+async function deleteDataset(datasetId) {
+  await client.delete(`/datasets/${datasetId}/`, {
+    headers: {
+      'X-API-KEY': UDATA_PUBLICATION_USER_API_KEY,
+      'content-length': 0
+    }
+  })
+}
+
+async function createDatasetTransferRequest(datasetId, recipientOrganizationId) {
+  const {body} = await client.post('/transfer/', {
+    json: true,
+    headers: {
+      'X-API-KEY': UDATA_PUBLICATION_USER_API_KEY
+    },
+    body: {
+      subject: {
+        id: datasetId,
+        class: 'Dataset'
+      },
+      recipient: {
+        id: recipientOrganizationId,
+        class: 'Organization'
+      },
+      comment: 'INSPIRE gateway automated transfer: request'
+    }
+  })
+
+  return body.id
+}
+
+async function respondTransferRequest(transferId, response = 'accept') {
+  await client.post(`/transfer/${transferId}/`, {
+    json: true,
+    headers: {
+      'X-API-KEY': UDATA_PUBLICATION_USER_API_KEY
+    },
+    body: {
+      comment: 'INSPIRE gateway automated transfer: response',
+      response
+    }
+  })
+}
+
+async function transferDataset(datasetId, recipientOrganizationId) {
+  try {
+    await getDataset(datasetId)
+  } catch (error) {
+    throw new Error('Dataset doesn’t exist')
+  }
+
+  try {
+    const transferId = await createDatasetTransferRequest(datasetId, recipientOrganizationId)
+
+    await respondTransferRequest(transferId)
+  } catch (error) {
+    if (error.statusCode === 400 && error.body.message === 'Recipient should be different than the current owner') {
+      // Swallow this error…
+    } else {
+      throw error
+    }
+  }
+}
+
+module.exports = {
+  getOrganization,
+  addUserToOrganization,
+  removeUserFromOrganization,
+  getProfile,
+  createDataset,
+  updateDataset,
+  deleteDataset,
+  getDataset,
+  getUserRoleInOrganization,
+  transferDataset
+}
