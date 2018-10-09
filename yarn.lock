@@ -1156,6 +1156,11 @@
     "@turf/invariant" "^5.1.5"
     d3-voronoi "1.1.2"
 
+"@tusbar/cache-control@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@tusbar/cache-control/-/cache-control-0.2.1.tgz#f8c70862210c806f991a7703ab0cf58de54214af"
+  integrity sha512-ANB5V76JegxjuNDlztZnvaiJhOScnamWde8Z0HwkmS7WTuhCRG2fgsPDjU+yo0+i4GLAWcTBuuE0kigWUXUo1w==
+
 "@types/babel-types@*", "@types/babel-types@^7.0.0":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@types/babel-types/-/babel-types-7.0.1.tgz#1405e5396968c4302994b0161ce405b72b874257"
