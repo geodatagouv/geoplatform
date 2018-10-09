@@ -1,4 +1,4 @@
-const {ObjectID} = require('../../../lib/util/mongo')
+const {ObjectID} = require('../../../lib/utils/mongo')
 
 module.exports = [
   {
