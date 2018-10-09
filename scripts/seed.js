@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 require('dotenv').config()
 
-const mongo = require('../lib/util/mongo')
+const mongo = require('../lib/utils/mongo')
 
 async function main() {
   await mongo.connect()
