@@ -37,7 +37,7 @@
     "hasha": "^3.0.0",
     "ipaddr.js": "^1.0.1",
     "json-stable-stringify": "^1.0.0",
-    "lodash": "^4",
+    "lodash": "^4.17.11",
     "moment": "^2.14.1",
     "mongodb": "^3.0.8",
     "mongoose": "^5.0.2",
