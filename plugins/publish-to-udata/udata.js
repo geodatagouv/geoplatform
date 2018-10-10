@@ -1,4 +1,4 @@
-const got = require('got')
+const got = require('./got')
 
 const {DATAGOUV_URL, UDATA_PUBLICATION_USER_API_KEY} = process.env
 

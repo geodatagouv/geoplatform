@@ -1,5 +1,6 @@
 const {Router} = require('express')
-const got = require('got')
+
+const got = require('./got')
 
 const ALLOWED_METHODS = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE']
 const baseUrl = process.env.DATAGOUV_URL + '/api'
