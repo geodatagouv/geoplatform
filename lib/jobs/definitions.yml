@@ -26,3 +26,7 @@
 
 - name: lookup-wfs
   concurrency: 5
+
+- name: compute-catalog-metrics
+  uniqueKey: catalogId
+  concurrency: 5
