@@ -8,7 +8,7 @@ const rootUrl = process.env.DATAGOUV_URL + '/api'
 const ALLOWED_METHODS = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE']
 
 module.exports = function () {
-  const router = express.Router({strict: true})
+  const router = new express.Router({strict: true})
 
   router.all('*', (req, res, next) => {
     if (!ALLOWED_METHODS.includes(req.method)) {

@@ -1,7 +1,4 @@
-'use strict'
-/* eslint no-console: off */
-
-require('./lib/config/jobs')
+require('./lib/config/jobs') // eslint-disable-line import/no-unassigned-import
 
 const {getApp} = require('delayed-jobs')
 

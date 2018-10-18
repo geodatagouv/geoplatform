@@ -187,7 +187,7 @@ schema.method('asyncUpdate', function (additionalSidekickOptions = {}) {
   if (!this.isPublished()) {
     return Promise.reject(new Error('Dataset not published'))
   }
-  return sidekick('udata:synchronizeOne', Object.assign({}, additionalSidekickOptions, {recordId: this._id, action: 'update'}))
+  return sidekick('udata:synchronizeOne', {...additionalSidekickOptions, recordId: this._id, action: 'update'})
 })
 
 schema.method('notifyPublication', function () {
