@@ -29,7 +29,7 @@
     "del": "^3.0.0",
     "delayed-jobs": "^0.1.0",
     "dotenv": "^5.0.1",
-    "express": "^4.11.2",
+    "express": "^4.16.4",
     "express-session": "^1.15.6",
     "file-type": "^10.0.0",
     "fresh": "^0.5.2",
