@@ -15,7 +15,7 @@ This requires a few services in order to function properly:
 
 - A MongoDB (>= 3) server:
   - `MONGO_URL` defaults to `mongodb://localhost:27017`
-  - `MONGO_DB` defaults to `link-proxy`
+  - `MONGO_DB` defaults to `geogw`
 
 - A redis server:
   - `REDIS_HOST` defaults to `localhost`
