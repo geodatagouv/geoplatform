@@ -1,6 +1,12 @@
-const {normalizeName} = require('../../france/producer')
+const {producers, normalizeName} = require('../../france/producer')
 
 describe('france.producer', () => {
+  describe('producers', () => {
+    it('should have parsed the producers csv', () => {
+      expect(producers).toMatchSnapshot()
+    })
+  })
+
   describe('normalizeName()', () => {
     it('should return the same string for unknown or valid typography', () => {
       expect(normalizeName('This is a test')).toBe('This is a test')

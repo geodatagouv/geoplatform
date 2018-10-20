@@ -8,11 +8,11 @@ const {removeDiacritics} = require('natural')
 const rawData = readFileSync(join(__dirname, 'data/normalized_producers.csv'), {
   encoding: 'utf8'
 })
-const parsedData = csvParse(rawData, {columns: true})
+const producers = csvParse(rawData, {columns: true})
 const renameIndex = {}
 const errorIndex = {}
 
-parsedData.forEach(entry => {
+producers.forEach(entry => {
   const producerNotHarmonized = prepare(entry.producer_not_harmonized)
   if (entry.producer_type === '90 Non rempli & Erreurs probables') {
     errorIndex[producerNotHarmonized] = true
@@ -36,4 +36,7 @@ function normalizeName(producerName) {
   return producerName
 }
 
-module.exports = {normalizeName}
+module.exports = {
+  producers,
+  normalizeName
+}
