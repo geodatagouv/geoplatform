@@ -54,7 +54,7 @@
     "superagent": "^3.5.2",
     "through2": "^2.0.3",
     "tldjs": "^2.0.0",
-    "underscore.string": "^3.0",
+    "underscore.string": "^3.3",
     "unzipper": "^0.9.3",
     "urijs": "^1.16.1",
     "wfs-client": "^0.3.0"
