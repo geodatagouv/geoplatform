@@ -2848,10 +2848,10 @@ del@^3.0.0:
     pify "^3.0.0"
     rimraf "^2.2.8"
 
-delayed-jobs@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/delayed-jobs/-/delayed-jobs-0.1.0.tgz#ad4d55f885d58a96cd120c10dcf5347b454a6ed1"
-  integrity sha512-XEba38xWJsSVoq8hrzowec0ZhlaxY+/uxU6ZVlW/Zi89HuSXGOIORTNHx3kZRdhEhKXpkYasdTdMB1962x0d4w==
+delayed-jobs@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/delayed-jobs/-/delayed-jobs-0.2.2.tgz#17c25a448d7d3338be5b8182e1c71c8fc35898a7"
+  integrity sha512-S2fI/+U7ljA+pcbriw+LuxlFgbYceDMT0uI2Zcqa0pgjZGdHQaXSP0S9SCdquMbAIlYaQwh0AvYMSse4OZU9mw==
   dependencies:
     debug "^3.0.1"
     js-yaml "^3.9.1"
