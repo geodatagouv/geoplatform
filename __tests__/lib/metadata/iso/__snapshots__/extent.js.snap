@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib.metadata.iso.extent getConsolidatedExtent() should return a GeoJSON polygon of the extent 1`] = `
+Object {
+  "coordinates": Array [
+    Array [
+      Array [
+        4.21911199683101,
+        43.0377552055724,
+      ],
+      Array [
+        7.818162622198166,
+        43.0377552055724,
+      ],
+      Array [
+        7.818162622198166,
+        45.0667722061971,
+      ],
+      Array [
+        4.21911199683101,
+        45.0667722061971,
+      ],
+      Array [
+        4.21911199683101,
+        43.0377552055724,
+      ],
+    ],
+  ],
+  "type": "Polygon",
+}
+`;
