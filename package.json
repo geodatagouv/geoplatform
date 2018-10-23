@@ -55,7 +55,7 @@
     "through2": "^2.0.3",
     "tldjs": "^2.0.0",
     "underscore.string": "^3.3",
-    "unzipper": "^0.9.3",
+    "unzipper": "^0.9.4",
     "urijs": "^1.16.1",
     "wfs-client": "^0.4.0"
   },
