@@ -20,7 +20,7 @@
     "@turf/turf": "^5.1.6",
     "@tusbar/cache-control": "^0.3.0",
     "bbox-match": "^0.1.0",
-    "bluebird": "^3.3.0",
+    "bluebird": "^3.5.2",
     "connect-mongo": "^2.0.0",
     "cors": "^2.5.2",
     "csv-parse": "^3.1.3",
