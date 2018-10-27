@@ -8650,10 +8650,10 @@ webworker-threads@>=0.6.2:
     bindings "^1.2.1"
     nan "^2.4.0"
 
-wfs-client@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/wfs-client/-/wfs-client-0.4.0.tgz#c7f899ec215b35db094edd2226b6913c8350d00c"
-  integrity sha512-KwKWMb9RrF2DwoubfVj6jUopgMOxknOLtYDkcX7wH1mr+MVF/tfDhP5LJrsZy2m4HcxkgEOuHQIJVwnHAd/JSg==
+wfs-client@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/wfs-client/-/wfs-client-0.4.1.tgz#d701ca3a8d11c64d5cb59db1190befda2f81dc5d"
+  integrity sha512-hKHEIAIYKSoZwvmFkV22sMUp/2cLladsuU+a0mAN3v7U6gOcT2GezZI+xsFvwqbh3PbNd14cng8upxme1CdMIg==
   dependencies:
     debug "^4.1.0"
     got "^9.2.2"
