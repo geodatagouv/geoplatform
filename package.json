@@ -96,6 +96,9 @@
   "xo": {
     "semicolon": false,
     "space": 2,
+    "ignores": [
+      "plugins/publish-to-udata/**/*.js"
+    ],
     "rules": {
       "camelcase": "warn",
       "unicorn/filename-case": "warn"
