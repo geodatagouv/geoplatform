@@ -6,7 +6,7 @@ const {fetch, list, associate, dissociate, listByOrganization} = require('../con
 const {ensureLoggedIn, isAdminOf, organizationIsSet} = require('../middlewares')
 
 module.exports = function () {
-  const router = express.Router()
+  const router = new express.Router()
 
   router.param('organizationId', organizations.fetch)
   router.param('producerId', fetch)

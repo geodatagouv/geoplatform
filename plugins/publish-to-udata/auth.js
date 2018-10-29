@@ -9,13 +9,15 @@ const strategy = new OAuth2Strategy({
   clientID: process.env.DATAGOUV_CLIENT_ID,
   clientSecret: process.env.DATAGOUV_CLIENT_SECRET,
   callbackURL: `${process.env.ROOT_URL}/dgv/oauth/callback`
-}, ((accessToken, refreshToken, profile, done) => {
-    dgv.getProfile(accessToken)
-      .then(profile => {
-        profile.accessToken = accessToken
-        done(null, profile)
-      })
-      .catch(done)
-  }))
+}, (async (accessToken, refreshToken, profile, done) => {
+  try {
+    const profile = await dgv.getProfile(accessToken)
+    profile.accessToken = accessToken
+
+    done(null, profile)
+  } catch (error) {
+    done(error)
+  }
+}))
 
 module.exports = {strategy}

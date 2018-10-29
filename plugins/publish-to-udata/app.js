@@ -9,8 +9,8 @@ const cors = require('cors')
 const {omit} = require('lodash')
 const {ensureLoggedIn} = require('./middlewares')
 
-require('./models')
-require('./passport')
+require('./models') // eslint-disable-line import/no-unassigned-import
+require('./passport') // eslint-disable-line import/no-unassigned-import
 
 const MongoStore = sessionMongo(session)
 

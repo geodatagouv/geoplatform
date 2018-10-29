@@ -5,7 +5,7 @@ const {fetch, list, show, createOrUpdate, showProfile} = require('../controllers
 const {ensureLoggedIn, isAdminOf} = require('../middlewares')
 
 module.exports = function () {
-  const router = express.Router()
+  const router = new express.Router()
 
   router.param('organizationId', fetch)
 

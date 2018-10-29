@@ -27,7 +27,7 @@ function validatePublicationParams(req, res, next) {
 }
 
 module.exports = function () {
-  const router = express.Router()
+  const router = new express.Router()
 
   router.param('organizationId', organizations.fetch)
   router.param('datasetId', fetch)
