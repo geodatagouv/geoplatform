@@ -1,6 +1,6 @@
 'use strict'
 
-const got = require('got')
+const got = require('./got')
 
 const ROOT_URL = process.env.GEOGW_URL + '/api/geogw'
 const TOKEN = process.env.GEOGW_TOKEN
