@@ -125,11 +125,20 @@ exports.fetch = function (req, res, next, id) {
     .catch(next)
 }
 
-exports.publish = function (req, res, next) {
-  (new Dataset({_id: req.dataset.recordId}))
-    .asyncPublish({organizationId: req.body.organization})
-    .then(() => res.sendStatus(202))
-    .catch(next)
+exports.publish = async function (req, res, next) {
+  try {
+    const dataset = new Dataset({
+      _id: req.dataset.recordId
+    })
+
+    await dataset.asyncPublish({
+      organizationId: req.body.organization
+    })
+
+    res.status(202).send()
+  } catch (error) {
+    next(error)
+  }
 }
 
 exports.unpublish = function (req, res, next) {

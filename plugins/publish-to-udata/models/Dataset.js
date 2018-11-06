@@ -4,39 +4,13 @@ const mongoose = require('mongoose')
 const Promise = require('bluebird')
 const hasha = require('hasha')
 const stringify = require('json-stable-stringify')
+const {enqueue} = require('bull-manager')
 const dgv = require('../udata')
 const {map} = require('../mapping')
 const {getRecord, setRecordPublication, unsetRecordPublication} = require('../geogw')
-const redlock = require('../redlock')
 
 const {Schema} = mongoose
 const {ObjectId} = Schema.Types
-
-const sidekick = (name, data, options) => {
-  console.log('RUNNING JOB:', name, data, options)
-}
-
-function clearLock(lock, err) {
-  return lock.unlock().then(() => {
-    if (err) {
-      throw err
-    }
-  })
-}
-
-function getPublicationLock(recordId) {
-  return redlock.lock(`udata:${recordId}:publish`, 10000)
-    .then(lock => {
-      return mongoose.model('Dataset').findById(recordId).exec()
-        .then(publication => {
-          if (publication) {
-            throw new Error('Dataset already published')
-          }
-          return lock
-        })
-        .catch(err => clearLock(lock, err)) // Release lock
-    })
-}
 
 function getHash(dataset) {
   return hasha(stringify(dataset), {algorithm: 'sha1'})
@@ -89,22 +63,29 @@ schema.method('getRecord', function () {
   return this.getRecordPromise
 })
 
-schema.method('computeDataset', function () {
-  return this.getRecord().then(map)
+schema.method('computeDataset', async function () {
+  const record = await this.getRecord()
+  return map(record)
 })
 
-schema.method('getEligibleOrganizations', function () {
+schema.method('getEligibleOrganizations', async function () {
   const Producer = mongoose.model('Producer')
   const Organization = mongoose.model('Organization')
 
-  return this.getRecord()
-    .then(record => {
-      return Producer.distinct('associatedTo', {_id: {$in: record.organizations}}).exec()
-        .map(organizationId => Organization.findById(organizationId))
-        .filter(organization => record.catalogs.some(c => {
-          return organization.sourceCatalogs.some(sourceCatalog => sourceCatalog.equals(c))
-        }))
+  const record = await this.getRecord()
+  const organizationIds = await Producer.distinct('associatedTo', {
+    _id: {$in: record.organizations}
+  }).exec()
+
+  const organizations = await Promise.all(
+    organizationIds.map(organizationId => {
+      return Organization.findById(organizationId)
     })
+  )
+
+  return organizations.filter(organization => record.catalogs.some(c => {
+    return organization.sourceCatalogs.some(sourceCatalog => sourceCatalog.equals(c))
+  }))
 })
 
 schema.method('selectTargetOrganization', function () {
@@ -186,11 +167,16 @@ schema.method('update', function (options = {}) {
     })
 })
 
-schema.method('asyncUpdate', function (additionalSidekickOptions = {}) {
+schema.method('asyncUpdate', function (data = {}) {
   if (!this.isPublished()) {
     return Promise.reject(new Error('Dataset not published'))
   }
-  return sidekick('udata:synchronizeOne', {...additionalSidekickOptions, recordId: this._id, action: 'update'})
+
+  return enqueue('udata-sync-one', {
+    ...data,
+    recordId: this._id,
+    action: 'update'
+  })
 })
 
 schema.method('notifyPublication', function () {
@@ -203,40 +189,43 @@ schema.method('publish', function () {
     return Promise.reject(new Error('Dataset already published'))
   }
 
-  return getPublicationLock(this._id).then(lock => {
-    return Promise
-      .join(
-        this.computeDataset(),
-        this.selectTargetOrganization(this.publication.organization),
+  return Promise
+    .join(
+      this.computeDataset(),
+      this.selectTargetOrganization(this.publication.organization),
 
-        (dataset, targetOrganization) => {
-          this.set('hash', getHash(dataset))
-          dataset.organization = targetOrganization
-          return dgv.createDataset(dataset)
-        }
-      )
-      .then(publishedDataset => {
-        const now = new Date()
-        return this
-          .set('title', publishedDataset.title)
-          .set('publication.updatedAt', now)
-          .set('publication.createdAt', now)
-          .set('publication._id', publishedDataset.id)
-          .set('publication.organization', publishedDataset.organization.id)
-          .save()
-      })
-      .then(() => this.notifyPublication())
-      .then(() => clearLock(lock))
-      .thenReturn(this)
-      .catch(err => clearLock(lock, err))
-  })
+      (dataset, targetOrganization) => {
+        this.set('hash', getHash(dataset))
+        dataset.organization = targetOrganization
+        return dgv.createDataset(dataset)
+      }
+    )
+    .then(publishedDataset => {
+      const now = new Date()
+      return this
+        .set('title', publishedDataset.title)
+        .set('publication.updatedAt', now)
+        .set('publication.createdAt', now)
+        .set('publication._id', publishedDataset.id)
+        .set('publication.organization', publishedDataset.organization.id)
+        .save()
+    })
+    .then(() => this.notifyPublication())
+    .thenReturn(this)
 })
 
-schema.method('asyncPublish', function ({organizationId}) {
+schema.method('asyncPublish', async function ({organizationId}) {
   if (this.isPublished()) {
-    return Promise.reject(new Error('Dataset already published'))
+    throw new Error('Dataset already published')
   }
-  return sidekick('udata:synchronizeOne', {recordId: this._id, action: 'publish', organizationId})
+
+  console.log('publishing?')
+
+  await enqueue('udata-sync-one', {
+    recordId: this._id,
+    action: 'publish',
+    organizationId
+  })
 })
 
 schema.method('removeAndNotify', function () {
@@ -266,7 +255,11 @@ schema.method('asyncUnpublish', function () {
   if (!this.isPublished()) {
     return Promise.reject(new Error('Dataset not published'))
   }
-  return sidekick('udata:synchronizeOne', {recordId: this._id, action: 'unpublish'})
+
+  return enqueue('udata-sync-one', {
+    recordId: this._id,
+    action: 'unpublish'
+  })
 })
 
 schema.method('transferTo', function (targetOrganization, force = false) {
@@ -278,8 +271,8 @@ schema.method('transferTo', function (targetOrganization, force = false) {
     .then(() => this.set('publication.organization', targetOrganization).save())
 })
 
-schema.static('asyncSynchronizeAll', options => {
-  return sidekick('udata:synchronizeAll', options)
+schema.static('asyncSynchronizeAll', data => {
+  return enqueue('udata-sync-all', data)
 })
 
 mongoose.model('Dataset', schema)

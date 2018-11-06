@@ -7,12 +7,19 @@ const mongoose = require('mongoose')
 const sessionMongo = require('connect-mongo')
 const cors = require('cors')
 const {omit} = require('lodash')
+const {joinJobQueue} = require('bull-manager')
+
 const {ensureLoggedIn} = require('./middlewares')
+const jobs = require('./jobs/definition')
 
 require('./models') // eslint-disable-line import/no-unassigned-import
 require('./passport') // eslint-disable-line import/no-unassigned-import
 
 const MongoStore = sessionMongo(session)
+
+for (const job of jobs) {
+  joinJobQueue(job.name, job.options)
+}
 
 const app = express()
 
