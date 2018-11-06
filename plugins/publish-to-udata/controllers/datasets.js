@@ -8,65 +8,79 @@ const {getRecord} = require('../geogw')
 const Dataset = mongoose.model('Dataset')
 const Record = mongoose.model('ConsolidatedRecord')
 
+const {DATAGOUV_URL} = process.env
+
 /* Helpers */
 
-function remoteUrl(remoteId) {
-  return `${process.env.DATAGOUV_URL}/datasets/${remoteId}/`
+function getRemoteUrl(remoteId) {
+  return `${DATAGOUV_URL}/datasets/${remoteId}/`
 }
 
-function getNotPublishedYetDatasets(organization) {
-  return Dataset.distinct('_id').exec()
-    .then(publishedIds => {
-      return Record
-        .find({
-          facets: {$all: [
-            {$elemMatch: {name: 'availability', value: 'yes'}},
-            {$elemMatch: {name: 'opendata', value: 'yes'}}
-          ]},
-          catalogs: {$in: organization.sourceCatalogs},
-          organizations: {$in: organization.producers}
-        })
-        .select('recordId metadata.title')
-        .lean()
-        .exec()
-        .filter(record => !publishedIds.includes(record.recordId))
-        .map(record => ({_id: record.recordId, title: record.metadata.title}))
+async function getNotPublishedYetDatasets(organization) {
+  const publishedIds = await Dataset.distinct('_id').exec()
+
+  const records = await Record
+    .find({
+      facets: {$all: [
+        {$elemMatch: {name: 'availability', value: 'yes'}},
+        {$elemMatch: {name: 'opendata', value: 'yes'}}
+      ]},
+      catalogs: {$in: organization.sourceCatalogs},
+      organizations: {$in: organization.producers}
     })
+    .select('recordId metadata.title')
+    .lean()
+    .exec()
+
+  return records
+    .filter(record => !publishedIds.includes(record.recordId))
+    .map(record => ({
+      _id: record.recordId,
+      title: record.metadata.title
+    }))
 }
 
-function getPublishedByOthersDatasets(organization) {
-  return Dataset
+async function getPublishedByOthersDatasets(organization) {
+  const datasets = await Dataset
     .find({'publication.organization': {$ne: organization._id}})
     .select('title publication._id')
     .lean()
     .exec()
-    .then(datasets => {
-      const indexedDatasets = keyBy(datasets, '_id')
 
-      return Record
-        .find({
-          catalogs: {$in: organization.sourceCatalogs},
-          organizations: {$in: organization.producers}
-        })
-        .select('recordId metadata.title')
-        .lean()
-        .exec()
-        .filter(record => record.recordId in indexedDatasets)
-        .map(record => ({
-          _id: record.recordId,
-          title: indexedDatasets[record.recordId].title || record.metadata.title,
-          remoteUrl: remoteUrl(indexedDatasets[record.recordId].publication._id)
-        }))
+  const indexedDatasets = keyBy(datasets, '_id')
+
+  const records = await Record
+    .find({
+      _id: {$in: Object.keys(indexedDatasets)},
+      catalogs: {$in: organization.sourceCatalogs},
+      organizations: {$in: organization.producers}
     })
+    .select('recordId metadata.title')
+    .lean()
+    .exec()
+
+  return records.map(record => {
+    const indexed = indexedDatasets[record.recordId]
+
+    return {
+      _id: record.recordId,
+      title: indexed.title || record.metadata.title,
+      remoteUrl: getRemoteUrl(indexed.publication._id)
+    }
+  })
 }
 
-function getPublishedDatasets(organization) {
-  return Dataset
+async function getPublishedDatasets(organization) {
+  const datasets = await Dataset
     .find({'publication.organization': organization._id})
     .select('title publication._id')
     .lean()
     .exec()
-    .map(dataset => ({_id: dataset._id, title: dataset.title, remoteUrl: remoteUrl(dataset.publication._id)}))
+
+  return datasets.map(dataset => ({
+    ...dataset,
+    remoteUrl: getRemoteUrl(dataset.publication._id)
+  }))
 }
 
 function getMetrics(organization) {

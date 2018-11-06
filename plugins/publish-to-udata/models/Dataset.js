@@ -2,16 +2,19 @@
 
 const mongoose = require('mongoose')
 const Promise = require('bluebird')
-const sidekick = require('../../../lib/helpers/sidekick')
-const dgv = require('../udata')
-const map = require('../mapping').map
 const hasha = require('hasha')
+const stringify = require('json-stable-stringify')
+const dgv = require('../udata')
+const {map} = require('../mapping')
 const {getRecord, setRecordPublication, unsetRecordPublication} = require('../geogw')
 const redlock = require('../redlock')
-const stringify = require('json-stable-stringify')
 
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
+const {Schema} = mongoose
+const {ObjectId} = Schema.Types
+
+const sidekick = (name, data, options) => {
+  console.log('RUNNING JOB:', name, data, options)
+}
 
 function clearLock(lock, err) {
   return lock.unlock().then(() => {

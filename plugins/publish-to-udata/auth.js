@@ -1,14 +1,14 @@
-'use strict'
-
 const OAuth2Strategy = require('passport-oauth2').Strategy
 const dgv = require('./udata')
 
+const {DATAGOUV_URL, DATAGOUV_CLIENT_ID, DATAGOUV_CLIENT_SECRET, ROOT_URL} = process.env
+
 const strategy = new OAuth2Strategy({
-  authorizationURL: process.env.DATAGOUV_URL + '/oauth/authorize',
-  tokenURL: process.env.DATAGOUV_URL + '/oauth/token',
-  clientID: process.env.DATAGOUV_CLIENT_ID,
-  clientSecret: process.env.DATAGOUV_CLIENT_SECRET,
-  callbackURL: `${process.env.ROOT_URL}/dgv/oauth/callback`
+  authorizationURL: `${DATAGOUV_URL}/oauth/authorize`,
+  tokenURL: `${DATAGOUV_URL}/oauth/token`,
+  clientID: DATAGOUV_CLIENT_ID,
+  clientSecret: DATAGOUV_CLIENT_SECRET,
+  callbackURL: `${ROOT_URL}/dgv/oauth/callback`
 }, (async (accessToken, refreshToken, profile, done) => {
   try {
     const profile = await dgv.getProfile(accessToken)

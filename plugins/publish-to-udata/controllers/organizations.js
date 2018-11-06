@@ -36,13 +36,19 @@ exports.show = function (req, res) {
   res.send(organization)
 }
 
-exports.createOrUpdate = function (req, res, next) {
-  req.organization
-    .set(pick(req.body, ...EDITABLE_FIELDS))
-    .save()
-    .then(() => req.organization.enable(req.user.accessToken))
-    .then(() => res.send(req.organization))
-    .catch(next)
+exports.createOrUpdate = async function (req, res, next) {
+  try {
+    await req.organization
+      .set(pick(req.body, ...EDITABLE_FIELDS))
+      .save()
+
+    await req.organization.enable(req.user.accessToken)
+
+    res.send(req.organization)
+  } catch (error) {
+    console.log('ERROR', error)
+    next(error)
+  }
 }
 
 exports.list = function (req, res, next) {

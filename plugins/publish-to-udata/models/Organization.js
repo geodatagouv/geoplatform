@@ -1,14 +1,12 @@
-'use strict'
-
 const mongoose = require('mongoose')
-const Promise = require('bluebird')
 const {addUserToOrganization, removeUserFromOrganization} = require('../udata')
 
-const Schema = mongoose.Schema
+const {Schema} = mongoose
 const {ObjectId} = Schema.Types
 
-const schema = new Schema({
+const {UDATA_PUBLICATION_USER_ID} = process.env
 
+const schema = new Schema({
   /* Dates */
   createdAt: Date,
   updatedAt: Date,
@@ -18,29 +16,32 @@ const schema = new Schema({
 
   /* Configuration */
   sourceCatalogs: [ObjectId]
-
 })
 
-schema.method('enable', function (accessToken) {
+schema.method('enable', async function (accessToken) {
   if (this.enabled) {
-    return Promise.resolve(this)
+    return this
   }
 
-  const userId = process.env.UDATA_PUBLICATION_USER_ID
-  return addUserToOrganization(userId, this._id, accessToken)
-    .then(() => this.set('enabled', true).save())
-    .thenReturn(this)
+  await addUserToOrganization(UDATA_PUBLICATION_USER_ID, this._id, accessToken)
+  await this
+    .set('enabled', true)
+    .save()
+
+  return this
 })
 
-schema.method('disable', function (accessToken) {
+schema.method('disable', async function (accessToken) {
   if (!this.enabled) {
-    return Promise.resolve(this)
+    return this
   }
 
-  const userId = process.env.UDATA_PUBLICATION_USER_ID
-  return removeUserFromOrganization(userId, this._id, accessToken)
-    .then(() => this.set('enabled', false).save())
-    .thenReturn(this)
+  await removeUserFromOrganization(UDATA_PUBLICATION_USER_ID, this._id, accessToken)
+  await this
+    .set('enabled', false)
+    .save()
+
+  return this
 })
 
 schema.pre('save', function (next) {

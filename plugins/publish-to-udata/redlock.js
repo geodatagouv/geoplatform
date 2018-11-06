@@ -2,7 +2,7 @@
 
 const Redlock = require('redlock')
 
-const client = require('redis').createClient(
+const client = require('ioredis').createClient(
   process.env.REDIS_PORT,
   process.env.REDIS_HOST
 )
