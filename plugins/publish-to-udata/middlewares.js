@@ -24,7 +24,7 @@ function isAdminOf(organizationIdExtractor) {
 }
 
 function organizationIsSet(req, res, next) {
-  if (!req.organization || req.organization.isNew) {
+  if (!req.organization) {
     return next(new Http404())
   }
 

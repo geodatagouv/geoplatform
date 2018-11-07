@@ -22,10 +22,11 @@ exports.fetch = async (req, res, next, id) => {
 
     if (organization) {
       req.organization = organization
-      req.organization.producers = producers
     } else {
       req.organization = new Organization({_id: id})
     }
+
+    req.organization.producers = producers || []
 
     next()
   } catch (error) {
