@@ -31,13 +31,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@sindresorhus/is@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.11.0.tgz#a65970040a5b55c4713452666703b92a6c331fdb"
-  integrity sha512-i5Zh5+3QARyXtzq3Bd2Lg3aBRFLcgYbNoap3Hyu1uRN8X+D+0JMqqc4uk4XjhNxfVdCnL8WHUA2wxa33QCC50w==
-  dependencies:
-    symbol-observable "^1.2.0"
-
 "@sindresorhus/is@^0.12.0":
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.12.0.tgz#55c37409c809e802efea25911a579731adfc6e07"
@@ -1956,19 +1949,6 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
-cacheable-request@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/cacheable-request/-/cacheable-request-5.0.0.tgz#7ce347741c48d85c76bc41b78f6bf13e2907056d"
-  integrity sha512-gU53XCfodl+GZ37ecX/uLobGE+WvgE2QE3VfhX7sPf04Kc35tNPip3IfCKfqJ2e04HLuHRxFCWgGWttv8OQbfw==
-  dependencies:
-    clone-response "^1.0.2"
-    get-stream "^4.0.0"
-    http-cache-semantics "^4.0.0"
-    keyv "^3.0.0"
-    lowercase-keys "^1.0.1"
-    normalize-url "^3.1.0"
-    responselike "^1.0.2"
-
 cacheable-request@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cacheable-request/-/cacheable-request-5.1.0.tgz#ce0958e977bdb4a5b718464049793b8d4bf7d75d"
@@ -3854,26 +3834,10 @@ got@^6.7.1:
     unzip-response "^2.0.1"
     url-parse-lax "^1.0.0"
 
-got@^9.2.2:
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/got/-/got-9.2.2.tgz#d6cb73f40d4cb512864c2f66f275f258ab43aa25"
-  integrity sha512-XLXmtO1QxLuzj6t4JBClWD1NI/bMvsR9utYl0yyPg49eUJjqU7HaQhPDvSVGwYoSbAqsRfe5aNZXHl1Zctzwmw==
-  dependencies:
-    "@sindresorhus/is" "^0.11.0"
-    "@szmarczak/http-timer" "^1.1.0"
-    cacheable-request "^5.0.0"
-    decompress-response "^3.3.0"
-    duplexer3 "^0.1.4"
-    get-stream "^4.0.0"
-    mimic-response "^1.0.1"
-    p-cancelable "^0.5.0"
-    to-readable-stream "^1.0.0"
-    url-parse-lax "^3.0.0"
-
-got@^9.3.0:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/got/-/got-9.3.0.tgz#9187472a6e7c642264d041b0e670fd8bb1eebb67"
-  integrity sha512-4WTeObCRe7hatjQmeCwmkviu+ibyfeF5v6De+FeZdfsLEIe/7d9rl3VOzrknXveeQV/Pq/+f+KbscBQsP8ZxUg==
+got@^9.2.2, got@^9.3.1:
+  version "9.3.1"
+  resolved "https://registry.yarnpkg.com/got/-/got-9.3.1.tgz#f0e6d531e6ece50375de4f18a640b716862f102c"
+  integrity sha512-lIVTDQipyF6uz7FpfHJ2Yd67tgb58C6eKAE46CYPqPj4BEkCT/HgdeRx8nF64BbVJWasEtlEJ3OBziuwl8tYrA==
   dependencies:
     "@sindresorhus/is" "^0.12.0"
     "@szmarczak/http-timer" "^1.1.0"
@@ -6321,11 +6285,6 @@ osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
-
-p-cancelable@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/p-cancelable/-/p-cancelable-0.5.1.tgz#b797a33c43c645cd70d5a838b1d25352b9e29e75"
-  integrity sha512-vkOBXQgQb03QTOoMeeB5/uS2W3iafXzQLaIh7ChHjEb8DDT06sWJizhdOACL1Sittl5dFqsyumJ4rD1WUF8Isw==
 
 p-cancelable@^1.0.0:
   version "1.0.0"
