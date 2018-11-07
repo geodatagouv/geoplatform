@@ -5,6 +5,7 @@ module.exports = [
     name: 'udata-sync-all',
     concurrency: 1,
     options: {
+      jobId: 'unique', // Only one at a time
       timeout: ms('20m')
     }
   },

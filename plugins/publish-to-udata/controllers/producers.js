@@ -1,81 +1,77 @@
-'use strict'
-
 const mongoose = require('mongoose')
+
+const am = require('../../../lib/api/middlewares/async')
+const {Http404} = require('../../../lib/api/errors')
 
 const Producer = mongoose.model('Producer')
 const Record = mongoose.model('ConsolidatedRecord')
 
-exports.list = function (req, res, next) {
-  Producer
-    .find()
-    .lean()
-    .exec((err, producers) => {
-      if (err) {
-        return next(err)
-      }
-      res.send(producers)
-    })
-}
+/* Params */
 
-exports.fetch = function (req, res, next, id) {
-  Producer.findById(id, (err, producer) => {
-    if (err) {
-      return next(err)
-    }
+exports.fetch = async (req, res, next, id) => {
+  try {
+    const producer = await Producer.findById(id)
     if (!producer) {
-      return res.sendStatus(404)
+      throw new Http404()
     }
+
     req.producer = producer
+
     next()
-  })
-}
-
-exports.associate = function (req, res, next) {
-  Producer.create({_id: req.body._id, associatedTo: req.organization._id}, (err, producer) => {
-    if (err) {
-      return next(err)
-    }
-    res.send(producer)
-  })
-}
-
-exports.dissociate = function (req, res, next) {
-  if (!req.producer.associatedTo.equals(req.organization._id)) {
-    return res.sendStatus(404)
+  } catch (error) {
+    next(error)
   }
-  Producer.findByIdAndRemove(req.producer._id, err => {
-    if (err) {
-      return next(err)
-    }
-    res.status(204).end()
+}
+
+/* Actions */
+
+exports.list = am(async (req, res) => {
+  const producers = await Producer.find().lean().exec()
+  res.send(producers)
+})
+
+exports.associate = am(async (req, res) => {
+  const producer = await Producer.create({
+    _id: req.body._id,
+    associatedTo: req.organization._id
   })
+
+  res.send(producer)
+})
+
+exports.dissociate = am(async (req, res) => {
+  if (!req.producer.associatedTo.equals(req.organization._id)) {
+    throw new Http404()
+  }
+
+  await Producer.findByIdAndRemove(req.producer._id)
+
+  res.status(204).end()
+})
+
+const facetEligibilityCondition = {
+  $all: [
+    {$elemMatch: {name: 'availability', value: 'yes'}},
+    {$elemMatch: {name: 'opendata', value: 'yes'}}
+  ]
 }
 
-const facetEligibilityCondition = {$all: [
-  {$elemMatch: {name: 'availability', value: 'yes'}},
-  {$elemMatch: {name: 'opendata', value: 'yes'}}
-]}
+exports.listByOrganization = am(async (req, res) => {
+  const eligibleProducerNames = await Record.distinct('organizations', {
+    facets: facetEligibilityCondition,
+    catalogs: {$in: req.organization.sourceCatalogs}
+  }).exec()
 
-exports.listByOrganization = function (req, res, next) {
-  Record
-    .distinct('organizations', {
-      facets: facetEligibilityCondition,
-      catalogs: {$in: req.organization.sourceCatalogs}
-    })
-    .exec()
-    .then(eligibleProducersNames => {
-      return Producer.find({_id: {$in: eligibleProducersNames}}).lean().exec()
-        .then(associatedProducers => {
-          const associatedProducersNames = associatedProducers.map(ap => ap._id)
-          const producers = associatedProducers
-          eligibleProducersNames.forEach(eligibleProducerName => {
-            if (!associatedProducersNames.includes(eligibleProducerName)) {
-              producers.push({_id: eligibleProducerName})
-            }
-          })
-          return producers
-        })
-    })
-    .then(producers => res.send(producers))
-    .catch(next)
-}
+  const producers = await Producer.find({_id: {$in: eligibleProducerNames}}).lean().exec()
+  const associatedProducersNames = producers.map(ap => ap._id)
+
+  for (const eligibleProducerName of eligibleProducerNames) {
+    if (!associatedProducersNames.includes(eligibleProducerName)) {
+      producers.push({
+        _id: eligibleProducerName
+      })
+    }
+  }
+
+  res.send(producers)
+})

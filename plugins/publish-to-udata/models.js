@@ -1,5 +1,3 @@
-'use strict'
-
-require('./models/Dataset')
-require('./models/Organization')
-require('./models/Producer')
+require('./models/Dataset') // eslint-disable-line import/no-unassigned-import
+require('./models/Organization') // eslint-disable-line import/no-unassigned-import
+require('./models/Producer') // eslint-disable-line import/no-unassigned-import

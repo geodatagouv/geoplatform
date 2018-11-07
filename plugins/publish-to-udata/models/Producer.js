@@ -1,9 +1,7 @@
-'use strict'
-
 const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
+const {Schema} = mongoose
+const {ObjectId} = Schema.Types
 
 const schema = new Schema({
   _id: String,

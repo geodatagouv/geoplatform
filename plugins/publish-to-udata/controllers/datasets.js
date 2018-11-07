@@ -1,8 +1,9 @@
-'use strict'
-
 const mongoose = require('mongoose')
 const {keyBy} = require('lodash')
-const Promise = require('bluebird')
+
+const am = require('../../../lib/api/middlewares/async')
+const {Http404} = require('../../../lib/api/errors')
+
 const {getRecord} = require('../geogw')
 
 const Dataset = mongoose.model('Dataset')
@@ -83,104 +84,101 @@ async function getPublishedDatasets(organization) {
   }))
 }
 
-function getMetrics(organization) {
-  return Promise.join(
+async function getMetrics(organization) {
+  const [published, publishedByOthers, notPublishedYet] = await Promise.all([
     getPublishedDatasets(organization),
     getPublishedByOthersDatasets(organization),
-    getNotPublishedYetDatasets(organization),
+    getNotPublishedYetDatasets(organization)
+  ])
 
-    (published, publishedByOthers, notPublishedYet) => {
-      return {
-        published: published.length,
-        publishedByOthers: publishedByOthers.length,
-        notPublishedYet: notPublishedYet.length
-      }
-    }
-  )
+  return {
+    published: published.length,
+    publishedByOthers: publishedByOthers.length,
+    notPublishedYet: notPublishedYet.length
+  }
 }
 
-function getGlobalMetrics() {
-  return Dataset.count({}).exec()
-    .then(publishedCount => ({published: publishedCount}))
+async function getGlobalMetrics() {
+  const publishedCount = await Dataset.count({}).exec()
+
+  return {
+    published: publishedCount
+  }
 }
 
-/* Actions */
+/* Params */
 
-exports.fetch = function (req, res, next, id) {
-  Promise.join(
-    getRecord(id),
-    Dataset.findById(id).exec(),
-
-    (record, publicationInfo) => {
-      if (!record) {
-        return res.sendStatus(404)
-      }
-      req.dataset = record
-      if (publicationInfo && publicationInfo.publication && publicationInfo.publication.organization) {
-        req.publicationInfo = publicationInfo
-      }
-      next()
-    }
-  )
-    .catch(next)
-}
-
-exports.publish = async function (req, res, next) {
+exports.fetch = async (req, res, next, id) => {
   try {
-    const dataset = new Dataset({
-      _id: req.dataset.recordId
-    })
+    const [record, publicationInfo] = await Promise.all([
+      getRecord(id),
+      Dataset.findById(id).exec()
+    ])
 
-    await dataset.asyncPublish({
-      organizationId: req.body.organization
-    })
+    if (!record) {
+      throw new Http404()
+    }
 
-    res.status(202).send()
+    req.dataset = record
+    if (publicationInfo && publicationInfo.publication && publicationInfo.publication.organization) {
+      req.publicationInfo = publicationInfo
+    }
+
+    next()
   } catch (error) {
     next(error)
   }
 }
 
-exports.unpublish = function (req, res, next) {
-  req.publicationInfo.asyncUnpublish()
-    .then(() => res.sendStatus(202))
-    .catch(next)
-}
+/* Actions */
 
-exports.synchronizeAll = function (req, res, next) {
-  const unpublishIfRecordNotFound = req.query.unpublishIfRecordNotFound === 'yes' // Opt-in option
-  const removeIfTargetDatasetNotFound = req.query.removeIfTargetDatasetNotFound !== 'no' // Opt-out option
-  Dataset.asyncSynchronizeAll({unpublishIfRecordNotFound, removeIfTargetDatasetNotFound})
-    .then(() => res.sendStatus(202))
-    .catch(next)
-}
+exports.publish = am(async (req, res) => {
+  const dataset = new Dataset({
+    _id: req.dataset.recordId
+  })
 
-exports.metrics = function (req, res, next) {
-  getMetrics(req.organization)
-    .then(metrics => res.send(metrics))
-    .catch(next)
-}
+  await dataset.asyncPublish({
+    organizationId: req.body.organization
+  })
 
-exports.globalMetrics = function (req, res, next) {
-  getGlobalMetrics()
-    .then(metrics => res.send(metrics))
-    .catch(next)
-}
+  res.status(202).send()
+})
 
-exports.notPublishedYet = function (req, res, next) {
-  getNotPublishedYetDatasets(req.organization)
-    .then(datasets => res.send(datasets))
-    .catch(next)
-}
+exports.unpublish = am(async (req, res) => {
+  await req.publicationInfo.asyncUnpublish()
+  res.status(202).send()
+})
 
-exports.published = function (req, res, next) {
-  getPublishedDatasets(req.organization)
-    .then(datasets => res.send(datasets))
-    .catch(next)
-}
+exports.synchronizeAll = am(async (req, res) => {
+  await Dataset.asyncSynchronizeAll({
+    unpublishIfRecordNotFound: req.query.unpublishIfRecordNotFound === 'yes', // Opt-in
+    removeIfTargetDatasetNotFound: req.query.removeIfTargetDatasetNotFound !== 'no' // Opt-out
+  })
 
-exports.publishedByOthers = function (req, res, next) {
-  getPublishedByOthersDatasets(req.organization)
-    .then(datasets => res.send(datasets))
-    .catch(next)
-}
+  res.status(202).send()
+})
+
+exports.metrics = am(async (req, res) => {
+  const metrics = await getMetrics(req.organization)
+  res.send(metrics)
+})
+
+exports.globalMetrics = am(async (req, res) => {
+  const metrics = await getGlobalMetrics()
+  res.send(metrics)
+})
+
+exports.notPublishedYet = am(async (req, res) => {
+  const datasets = await getNotPublishedYetDatasets(req.organization)
+  res.send(datasets)
+})
+
+exports.published = am(async (req, res) => {
+  const datasets = await getPublishedDatasets(req.organization)
+  res.send(datasets)
+})
+
+exports.publishedByOthers = am(async (req, res) => {
+  const datasets = await getPublishedByOthersDatasets(req.organization)
+  res.send(datasets)
+})

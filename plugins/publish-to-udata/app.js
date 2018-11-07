@@ -1,6 +1,5 @@
 'use strict'
-
-const express = require('express')
+const {Router, json} = require('express')
 const session = require('express-session')
 const passport = require('passport')
 const mongoose = require('mongoose')
@@ -8,6 +7,8 @@ const sessionMongo = require('connect-mongo')
 const cors = require('cors')
 const {omit} = require('lodash')
 const {joinJobQueue} = require('bull-manager')
+
+const sentry = require('../../lib/utils/sentry')
 
 const {ensureLoggedIn} = require('./middlewares')
 const jobs = require('./jobs/definition')
@@ -21,12 +22,12 @@ for (const job of jobs) {
   joinJobQueue(job.name, job.options)
 }
 
-const app = express()
+const router = new Router()
 
-app.use(cors({origin: true, credentials: true}))
-app.use(express.json())
+router.use(cors({origin: true, credentials: true}))
+router.use(json())
 
-app.use(session({
+router.use(session({
   secret: process.env.COOKIE_SECRET,
   name: 'sid',
   saveUninitialized: false,
@@ -36,24 +37,23 @@ app.use(session({
   })
 }))
 
-app.use(passport.initialize())
-app.use(passport.session())
+router.use(passport.initialize())
+router.use(passport.session())
 
-function extractRedirectUrl(req, res, next) {
+const extractRedirectUrl = (req, res, next) => {
   req.session.redirectTo = req.query.redirect
-  console.log(req.query.redirect, 'extracted')
   next()
 }
 
-app.get('/login', extractRedirectUrl, passport.authenticate('udata', {scope: 'default'}))
+router.get('/login', extractRedirectUrl, passport.authenticate('udata', {scope: 'default'}))
 
-app.get('/logout', extractRedirectUrl, (req, res) => {
+router.get('/logout', extractRedirectUrl, (req, res) => {
   req.logout()
   res.redirect(req.session.redirectTo)
   req.session.redirectTo = undefined
 })
 
-app.get('/oauth/callback', (req, res) => {
+router.get('/oauth/callback', (req, res) => {
   passport.authenticate('udata', {
     successRedirect: req.session.redirectTo,
     failureRedirect: '/'
@@ -61,14 +61,28 @@ app.get('/oauth/callback', (req, res) => {
   req.session.redirectTo = undefined
 })
 
-app.use('/proxy-api', require('./udata-proxy'))
+router.use('/proxy-api', require('./udata-proxy'))
 
-app.use('/api', require('./routes/producers')())
-app.use('/api', require('./routes/organizations')())
-app.use('/api', require('./routes/datasets')())
+router.use('/api', require('./routes/producers'))
+router.use('/api', require('./routes/organizations'))
+router.use('/api', require('./routes/datasets'))
 
-app.get('/api/me', ensureLoggedIn, (req, res) => {
+router.get('/api/me', ensureLoggedIn, (req, res) => {
   res.send(omit(req.user, 'accessToken'))
 })
 
-module.exports = app
+router.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
+  const {statusCode = 500} = error
+
+  if (typeof error.toJSON === 'function') {
+    return res.status(statusCode).send(error.toJSON())
+  }
+
+  sentry.captureException(error)
+  res.status(statusCode).send({
+    code: statusCode,
+    error: 'An unexpected error happened'
+  })
+})
+
+module.exports = router

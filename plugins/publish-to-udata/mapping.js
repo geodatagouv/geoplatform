@@ -1,9 +1,6 @@
-'use strict'
-
 const moment = require('moment')
 const Handlebars = require('handlebars')
 const {get, filter, kebabCase} = require('lodash')
-const {strRight} = require('underscore.string')
 const debug = require('debug')('mapping')
 
 moment.locale('fr')
@@ -92,7 +89,7 @@ exports.map = function (sourceDataset) {
           out.resources.push({
             url: `${ROOT_URL}/api/geogw/services/${resource.serviceId}/feature-types/${feature.name}/download?format=GeoJSON&projection=WGS84`,
             title: `${feature.name} (export GeoJSON)`,
-            description: `Conversion à la volée du jeu de données d’origine ${feature.name} au format GeoJSON`,
+            description: 'Conversion à la volée au format GeoJSON',
             format: 'JSON',
             fileType: 'remote',
             extras: {
@@ -101,8 +98,8 @@ exports.map = function (sourceDataset) {
           })
           out.resources.push({
             url: `${ROOT_URL}/api/geogw/services/${resource.serviceId}/feature-types/${feature.name}/download?format=SHP&projection=WGS84`,
-            title: `${feature.name} (export GeoJSON)`,
-            description: `Conversion à la volée du jeu de données d’origine ${feature.name} au format GeoJSON`,
+            title: `${feature.name} (export SHP/WGS-84)`,
+            description: 'Conversion à la volée au format Shapefile (WGS-84)',
             format: 'SHP',
             fileType: 'remote'
           })
@@ -116,7 +113,6 @@ exports.map = function (sourceDataset) {
             out.resources.push({
               url: download.url,
               title: `${download.name} (archive)`,
-              description: resource.name,
               format: 'ZIP',
               fileType: 'remote'
             })
@@ -124,8 +120,36 @@ exports.map = function (sourceDataset) {
 
           switch (resource.resourceType) {
             case 'vector': {
-
+              out.resources.push({
+                url: `${ROOT_URL}/api/geogw/links/${resource.proxyId}/downloads/${download.id}/download?format=GeoJSON&projection=WGS84`,
+                title: `${download.name} (export GeoJSON)`,
+                description: 'Conversion à la volée au format GeoJSON',
+                format: 'JSON',
+                fileType: 'remote',
+                extras: {
+                  'geop:resource_id': `file:${resource.proxyId}/${download.id}`
+                }
+              })
+              out.resources.push({
+                url: `${ROOT_URL}/api/geogw/links/${resource.proxyId}/downloads/${download.id}/download?format=SHP&projection=WGS84`,
+                title: `${download.name} (export SHP/WGS-84)`,
+                description: 'Conversion à la volée au format Shapefile (WGS-84)',
+                format: 'SHP',
+                fileType: 'remote'
+              })
+              break
             }
+
+            default:
+              if (!download.archive) {
+                out.resources.push({
+                  url: `${ROOT_URL}/api/geogw/links/${resource.proxyId}/downloads/${download.id}/download?format=SHP&projection=WGS84`,
+                  title: download.name,
+                  format: download.type.toUpperCase(),
+                  fileType: 'remote'
+                })
+              }
+              break
           }
         }
         break
@@ -136,44 +160,7 @@ exports.map = function (sourceDataset) {
     }
   }
 
-  // if (sourceDataset.dataset.distributions) {
-  //   const processedFeatureTypes = []
-
-  //     } else if (distribution.type === 'file-package' && distribution.layer) {
-  //       rootUrl = process.env.ROOT_URL + '/api/geogw/file-packages/' + distribution.hashedLocation + '/download'
-  //       out.resources.push({
-  //         url: distribution.location,
-  //         title: 'Archive complète',
-  //         format: 'ZIP',
-  //         fileType: 'remote'
-  //       })
-  //       out.resources.push({
-  //         url: rootUrl + '?format=GeoJSON&projection=WGS84',
-  //         title: `${distribution.layer} (export GeoJSON)`,
-  //         description: 'Conversion à la volée au format GeoJSON',
-  //         format: 'JSON',
-  //         fileType: 'remote',
-  //         extras: {
-  //           'geop:resource_id': `file-package:${distribution.hashedLocation}/${distribution.layer}`
-  //         }
-  //       })
-  //       out.resources.push({
-  //         url: rootUrl + '?format=SHP&projection=WGS84',
-  //         title: `${distribution.layer} (export SHP/WGS-84)`,
-  //         description: 'Conversion à la volée au format Shapefile (WGS-84)',
-  //         format: 'SHP',
-  //         fileType: 'remote'
-  //       })
-  //     } else if (distribution.type === 'file-package' && distribution.originalDistribution) {
-  //       out.resources.push({
-  //         url: distribution.location,
-  //         title: distribution.name,
-  //         format: 'ZIP',
-  //         fileType: 'remote'
-  //       })
-  //     }
-  //   })
-  // }
+  console.log(out.resources)
 
   if (out.resources.length === 0) {
     debug('No publishable resources for %s (%s)', sourceDataset.metadata.title, sourceDataset.recordId)

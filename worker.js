@@ -19,12 +19,15 @@ async function main() {
       onError: shutdown
     }),
     prefix: 'geoplatform',
-    onError: (job, err) => sentry.captureException(err, {
-      extra: {
-        queue: job.queue.name,
-        ...job.data
-      }
-    })
+    onError: (job, err) => {
+      console.log(JSON.stringify(err.body, null, 2))
+      sentry.captureException(err, {
+        extra: {
+          queue: job.queue.name,
+          ...job.data
+        }
+      })
+    }
   })
 
   await Promise.all(
