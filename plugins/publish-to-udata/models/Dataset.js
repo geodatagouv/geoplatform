@@ -3,7 +3,7 @@ const hasha = require('hasha')
 const stringify = require('json-stable-stringify')
 const {enqueue} = require('bull-manager')
 const dgv = require('../udata')
-const {map} = require('../mapping')
+const mapping = require('../mapping')
 const {getRecord, setRecordPublication, unsetRecordPublication} = require('../geogw')
 
 const {Schema} = mongoose
@@ -55,7 +55,7 @@ schema.method('getRecord', async function () {
 
 schema.method('computeDataset', async function () {
   const record = await this.getRecord()
-  return map(record)
+  return mapping.map(record)
 })
 
 schema.method('getEligibleOrganizations', async function () {

@@ -179,7 +179,7 @@ function extractTags(keywords = []) {
   return tags
 }
 
-exports.map = function (sourceDataset) {
+function map(sourceDataset) {
   const inlineOrganizations = (sourceDataset.organizations || []).join(', ')
 
   const {alternateLinks, resources} = extractResources(sourceDataset.resources)
@@ -217,4 +217,8 @@ exports.map = function (sourceDataset) {
   }
 
   return result
+}
+
+module.exports = {
+  map
 }
