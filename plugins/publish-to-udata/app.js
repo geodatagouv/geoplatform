@@ -1,4 +1,3 @@
-'use strict'
 const {Router, json} = require('express')
 const session = require('express-session')
 const passport = require('passport')
