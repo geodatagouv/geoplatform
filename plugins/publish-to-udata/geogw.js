@@ -1,11 +1,6 @@
-'use strict'
-
 const got = require('./got')
 
 const {ROOT_URL} = process.env
-
-const TOKEN = process.env.GEOGW_TOKEN
-const TARGET = process.env.GEOGW_PUBLICATION_TARGET
 
 const client = got.extend({
   baseUrl: `${ROOT_URL}/api/geogw`
@@ -20,10 +15,7 @@ async function getRecord(recordId) {
 }
 
 async function setRecordPublication(recordId, publicationInfo) {
-  const {body} = await client.put(`/records/${recordId}/publications/${TARGET}`, {
-    headers: {
-      authorization: `Basic ${TOKEN}`
-    },
+  const {body} = await client.put(`/records/${recordId}/publications/dgv`, {
     json: true,
     body: publicationInfo
   })
@@ -32,15 +24,11 @@ async function setRecordPublication(recordId, publicationInfo) {
 }
 
 function unsetRecordPublication(recordId) {
-  return client.delete(`/records/${recordId}/publications/${TARGET}`, {
-    headers: {
-      authorization: `Basic ${TOKEN}`
-    }
-  })
+  return client.delete(`/records/${recordId}/publications/dgv`)
 }
 
 async function getPublications() {
-  const {body} = await client.get(`${ROOT_URL}/publications/${TARGET}`, {
+  const {body} = await client.get(`${ROOT_URL}/publications/dgv`, {
     json: true
   })
 
