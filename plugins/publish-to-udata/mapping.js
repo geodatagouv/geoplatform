@@ -56,7 +56,7 @@ function extractServiceResources(service) {
       format: 'JSON',
       fileType: 'remote',
       extras: {
-        'geop:resource_id': `${service.serviceType}:${service.serviceId}/${feature.typeName}`
+        'geop:resource_id': `service.${service.serviceType}:${service.serviceId}/${feature.name}`
       }
     })
 
@@ -85,7 +85,7 @@ function extractDownloadResources(resource) {
       })
     }
 
-    switch (resource.resourceType) {
+    switch (download.resourceType) {
       case 'vector': {
         resources.push({
           url: `${ROOT_URL}/api/geogw/links/${resource.proxyId}/downloads/${download.id}/download?format=GeoJSON&projection=WGS84`,
@@ -94,7 +94,7 @@ function extractDownloadResources(resource) {
           format: 'JSON',
           fileType: 'remote',
           extras: {
-            'geop:resource_id': `file:${resource.proxyId}/${download.id}`
+            'geop:resource_id': `download:${resource.proxyId}/${download.id}`
           }
         })
         resources.push({
