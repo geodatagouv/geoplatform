@@ -53,7 +53,6 @@
     "passport-oauth2": "^1.4.0",
     "pump": "^3.0.0",
     "raven": "^2.6.4",
-    "redlock": "^3.1.2",
     "stream-each": "^1.2.3",
     "through2": "^3.0.0",
     "tldjs": "^2.0.0",

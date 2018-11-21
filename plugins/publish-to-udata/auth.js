@@ -13,7 +13,6 @@ const strategy = new OAuth2Strategy({
   try {
     const profile = await dgv.getProfile(accessToken)
     profile.accessToken = accessToken
-
     done(null, profile)
   } catch (error) {
     done(error)
