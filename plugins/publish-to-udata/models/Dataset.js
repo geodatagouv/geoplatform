@@ -1,39 +1,15 @@
-'use strict'
-
 const mongoose = require('mongoose')
-const Promise = require('bluebird')
-const sidekick = require('../../../lib/helpers/sidekick')
-const dgv = require('../udata')
-const map = require('../mapping').map
 const hasha = require('hasha')
-const {getRecord, setRecordPublication, unsetRecordPublication} = require('../geogw')
-const redlock = require('../redlock')
 const stringify = require('json-stable-stringify')
+const {enqueue} = require('bull-manager')
+const dgv = require('../udata')
+const mapping = require('../mapping')
+const {getRecord, setRecordPublication, unsetRecordPublication} = require('../geogw')
 
-const Schema = mongoose.Schema
-const ObjectId = Schema.Types.ObjectId
+const {Schema} = mongoose
+const {ObjectId} = Schema.Types
 
-function clearLock(lock, err) {
-  return lock.unlock().then(() => {
-    if (err) {
-      throw err
-    }
-  })
-}
-
-function getPublicationLock(recordId) {
-  return redlock.lock(`udata:${recordId}:publish`, 10000)
-    .then(lock => {
-      return mongoose.model('Dataset').findById(recordId).exec()
-        .then(publication => {
-          if (publication) {
-            throw new Error('Dataset already published')
-          }
-          return lock
-        })
-        .catch(err => clearLock(lock, err)) // Release lock
-    })
-}
+const {DATAGOUV_URL} = process.env
 
 function getHash(dataset) {
   return hasha(stringify(dataset), {algorithm: 'sha1'})
@@ -67,216 +43,216 @@ schema.method('isPublished', function () {
   return this.publication && this.publication._id
 })
 
-schema.method('getRecord', function () {
-  if (!this.getRecordPromise) {
-    this.getRecordPromise = getRecord(this._id)
-      .then(record => {
-        if (!record.metadata) {
-          throw new Error('Record found but empty metadata: ' + this._id)
-        }
-        return record
-      })
-      .catch(err => {
-        if (err.status === 404) {
-          throw new Error('Record not found')
-        }
-        throw err
-      })
+schema.method('getRecord', async function () {
+  const record = await getRecord(this._id)
+
+  if (!record.metadata) {
+    throw new Error('Record found but empty metadata: ' + this._id)
   }
-  return this.getRecordPromise
+
+  return record
 })
 
-schema.method('computeDataset', function () {
-  return this.getRecord().then(map)
+schema.method('computeDataset', async function () {
+  const record = await this.getRecord()
+  return mapping.map(record)
 })
 
-schema.method('getEligibleOrganizations', function () {
+schema.method('getEligibleOrganizations', async function () {
   const Producer = mongoose.model('Producer')
   const Organization = mongoose.model('Organization')
 
-  return this.getRecord()
-    .then(record => {
-      return Producer.distinct('associatedTo', {_id: {$in: record.organizations}}).exec()
-        .map(organizationId => Organization.findById(organizationId))
-        .filter(organization => record.catalogs.some(c => {
-          return organization.sourceCatalogs.some(sourceCatalog => sourceCatalog.equals(c))
-        }))
+  const record = await this.getRecord()
+  const organizationIds = await Producer.distinct('associatedTo', {
+    _id: {$in: record.organizations}
+  }).exec()
+
+  const organizations = await Promise.all(
+    organizationIds.map(organizationId => {
+      return Organization.findById(organizationId)
     })
-})
-
-schema.method('selectTargetOrganization', function () {
-  const currentOrganization = this.publication.organization
-
-  return Promise.join(
-    this.getRecord(),
-    this.getEligibleOrganizations(),
-
-    (record, eligibleOrganizations) => {
-      // Current organization is eligible
-      if (currentOrganization && eligibleOrganizations.some(eo => eo._id.equals(currentOrganization))) {
-        return currentOrganization
-      }
-
-      // We elected an organization
-      if (eligibleOrganizations.length > 0) {
-        return eligibleOrganizations[0]._id
-      }
-
-      // We fall back to current organization
-      if (currentOrganization) {
-        return currentOrganization
-      }
-
-      throw new Error('No eligible organization found!')
-    }
   )
+
+  return organizations.filter(organization => record.catalogs.some(c => {
+    return organization.sourceCatalogs.some(sourceCatalog => sourceCatalog.equals(c))
+  }))
 })
 
-schema.method('update', function (options = {}) {
-  if (!this.isPublished()) {
-    return Promise.reject(new Error('Dataset not published'))
+schema.method('selectTargetOrganization', async function () {
+  const currentOrganization = this.publication.organization
+  const eligibleOrganizations = await this.getEligibleOrganizations()
+
+  // Current organization is eligible
+  if (currentOrganization && eligibleOrganizations.some(eo => eo._id.equals(currentOrganization))) {
+    return currentOrganization
   }
+
+  // We elected an organization
+  if (eligibleOrganizations.length > 0) {
+    return eligibleOrganizations[0]._id
+  }
+
+  // We fall back to current organization
+  if (currentOrganization) {
+    return currentOrganization
+  }
+
+  throw new Error('No eligible organization found!')
+})
+
+schema.method('update', async function (options = {}) {
+  if (!this.isPublished()) {
+    throw new Error('Dataset not published')
+  }
+
   const datasetId = this.publication._id
 
-  return Promise
-    .join(
-      this.computeDataset(),
-      this.selectTargetOrganization(this.publication.organization),
+  const [dataset, targetOrganization] = await Promise.all([
+    this.computeDataset(),
+    this.selectTargetOrganization(this.publication.organization)
+  ])
 
-      (dataset, targetOrganization) => {
-        if (targetOrganization !== this.publication.organization) {
-          return this.transferTo(targetOrganization)
-            .catch(err => {
-              if (err.message === 'Dataset doesn\'t exist') {
-                throw new Error('Target dataset doesn\'t exist anymore')
-              }
-              throw err
-            })
-            .thenReturn(dataset)
-        }
-        return dataset
+  if (targetOrganization !== this.publication.organization) {
+    try {
+      await this.transferTo(targetOrganization)
+    } catch (error) {
+      if (error.message === 'Dataset doesn’t exist') {
+        throw new Error('Target dataset doesnt exist anymore')
       }
-    )
-    .then(dataset => {
-      const hash = getHash(dataset)
-      if (!options.force && this.hash && this.hash === hash) {
-        throw new Error('Unchanged dataset')
-      }
-      this.set('hash', hash)
-      return dataset
-    })
-    .then(dataset => {
-      return dgv.updateDataset(datasetId, dataset)
-        .catch(err => {
-          if (err.status === 404) {
-            throw new Error('Target dataset doesn\'t exist anymore')
-          }
-          throw err
-        })
-    })
-    .then(publishedDataset => {
-      return this
-        .set('title', publishedDataset.title)
-        .set('publication.updatedAt', new Date())
-        .set('publication.organization', publishedDataset.organization.id)
-        .save()
-    })
+      throw error
+    }
+  }
+
+  const hash = getHash(dataset)
+  if (!options.force && this.hash && this.hash === hash) {
+    throw new Error('Unchanged dataset')
+  }
+  this.set('hash', hash)
+
+  let publishedDataset
+  try {
+    publishedDataset = await dgv.updateDataset(datasetId, dataset)
+  } catch (error) {
+    if (error.statusCode === 404) {
+      throw new Error('Target dataset doesn’t exist anymore')
+    }
+    throw error
+  }
+
+  return this
+    .set('title', publishedDataset.title)
+    .set('publication.updatedAt', new Date())
+    .set('publication.organization', publishedDataset.organization.id)
+    .save()
 })
 
-schema.method('asyncUpdate', function (additionalSidekickOptions = {}) {
+schema.method('asyncUpdate', function (data = {}) {
   if (!this.isPublished()) {
-    return Promise.reject(new Error('Dataset not published'))
-  }
-  return sidekick('udata:synchronizeOne', {...additionalSidekickOptions, recordId: this._id, action: 'update'})
-})
-
-schema.method('notifyPublication', function () {
-  const remoteUrl = `${process.env.DATAGOUV_URL}/datasets/${this.publication._id}/`
-  return setRecordPublication(this._id, {remoteId: this.publication._id, remoteUrl})
-})
-
-schema.method('publish', function () {
-  if (this.isPublished()) {
-    return Promise.reject(new Error('Dataset already published'))
+    throw new Error('Dataset not published')
   }
 
-  return getPublicationLock(this._id).then(lock => {
-    return Promise
-      .join(
-        this.computeDataset(),
-        this.selectTargetOrganization(this.publication.organization),
-
-        (dataset, targetOrganization) => {
-          this.set('hash', getHash(dataset))
-          dataset.organization = targetOrganization
-          return dgv.createDataset(dataset)
-        }
-      )
-      .then(publishedDataset => {
-        const now = new Date()
-        return this
-          .set('title', publishedDataset.title)
-          .set('publication.updatedAt', now)
-          .set('publication.createdAt', now)
-          .set('publication._id', publishedDataset.id)
-          .set('publication.organization', publishedDataset.organization.id)
-          .save()
-      })
-      .then(() => this.notifyPublication())
-      .then(() => clearLock(lock))
-      .thenReturn(this)
-      .catch(err => clearLock(lock, err))
+  return enqueue('udata-sync-one', {
+    ...data,
+    recordId: this._id,
+    action: 'update'
   })
 })
 
-schema.method('asyncPublish', function ({organizationId}) {
+schema.method('notifyPublication', function () {
+  return setRecordPublication(this._id, {
+    remoteId: this.publication._id,
+    remoteUrl: `${DATAGOUV_URL}/datasets/${this.publication._id}/`
+  })
+})
+
+schema.method('publish', async function () {
   if (this.isPublished()) {
-    return Promise.reject(new Error('Dataset already published'))
+    throw new Error('Dataset already published')
   }
-  return sidekick('udata:synchronizeOne', {recordId: this._id, action: 'publish', organizationId})
+
+  const [dataset, targetOrganization] = await Promise.all([
+    this.computeDataset(),
+    this.selectTargetOrganization(this.publication.organization)
+  ])
+
+  this.set('hash', getHash(dataset))
+  dataset.organization = targetOrganization
+  const publishedDataset = await dgv.createDataset(dataset)
+
+  const now = new Date()
+  await this
+    .set('title', publishedDataset.title)
+    .set('publication.updatedAt', now)
+    .set('publication.createdAt', now)
+    .set('publication._id', publishedDataset.id)
+    .set('publication.organization', publishedDataset.organization.id)
+    .save()
+
+  await this.notifyPublication()
+
+  return this
 })
 
-schema.method('removeAndNotify', function () {
-  return this.remove()
-    .then(() => unsetRecordPublication(this._id))
-    .catch(err => {
-      if (err.status === 404) {
-        return
-      }
-      throw err
-    })
-    .thenReturn(this)
+schema.method('asyncPublish', async function ({organizationId}) {
+  if (this.isPublished()) {
+    throw new Error('Dataset already published')
+  }
+
+  await enqueue('udata-sync-one', {
+    recordId: this._id,
+    action: 'publish',
+    organizationId
+  })
 })
 
-schema.method('unpublish', function () {
+schema.method('removeAndNotify', async function () {
+  try {
+    await this.remove()
+
+    await unsetRecordPublication(this._id)
+  } catch (error) {
+    if (error.statusCode === 404) {
+      return
+    }
+    throw error
+  }
+
+  return this
+})
+
+schema.method('unpublish', async function () {
   if (!this.isPublished()) {
-    return Promise.reject(new Error('Dataset not published'))
+    throw new Error('Dataset not published')
   }
 
-  return Promise.resolve(
-    dgv.deleteDataset(this.publication._id)
-      .then(() => this.removeAndNotify())
-  ).thenReturn(this)
+  await dgv.deleteDataset(this.publication._id)
+
+  return this.removeAndNotify()
 })
 
 schema.method('asyncUnpublish', function () {
   if (!this.isPublished()) {
-    return Promise.reject(new Error('Dataset not published'))
+    throw new Error('Dataset not published')
   }
-  return sidekick('udata:synchronizeOne', {recordId: this._id, action: 'unpublish'})
+
+  return enqueue('udata-sync-one', {
+    recordId: this._id,
+    action: 'unpublish'
+  })
 })
 
-schema.method('transferTo', function (targetOrganization, force = false) {
+schema.method('transferTo', async function (targetOrganization, force = false) {
   if (targetOrganization === this.publication.organization && !force) {
-    return Promise.resolve(this)
+    return this
   }
 
-  return dgv.transferDataset(this.publication._id, targetOrganization)
-    .then(() => this.set('publication.organization', targetOrganization).save())
+  await dgv.transferDataset(this.publication._id, targetOrganization)
+
+  return this.set('publication.organization', targetOrganization).save()
 })
 
-schema.static('asyncSynchronizeAll', options => {
-  return sidekick('udata:synchronizeAll', options)
+schema.static('asyncSynchronizeAll', data => {
+  return enqueue('udata-sync-all', data)
 })
 
 mongoose.model('Dataset', schema)

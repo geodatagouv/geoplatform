@@ -8,6 +8,8 @@ const createRedis = require('./lib/utils/redis')
 
 const jobs = require('./lib/jobs/definition')
 
+const {registerJobs: registerUdataJobs} = require('./plugins/publish-to-udata/jobs')
+
 async function main() {
   await mongoose.connect()
 
@@ -17,12 +19,14 @@ async function main() {
       onError: shutdown
     }),
     prefix: 'geoplatform',
-    onError: (job, err) => sentry.captureException(err, {
-      extra: {
-        queue: job.queue.name,
-        ...job.data
-      }
-    })
+    onError: (job, err) => {
+      sentry.captureException(err, {
+        extra: {
+          queue: job.queue.name,
+          ...job.data
+        }
+      })
+    }
   })
 
   await Promise.all(
@@ -35,6 +39,8 @@ async function main() {
       }, job.options)
     })
   )
+
+  await registerUdataJobs()
 
   mongoose.connection.on('disconnected', () => {
     shutdown(new Error('Mongo connection was closed'))

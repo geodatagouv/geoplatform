@@ -2,23 +2,19 @@ const {Router} = require('express')
 
 const got = require('./got')
 
-const ALLOWED_METHODS = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE']
 const baseUrl = process.env.DATAGOUV_URL + '/api'
 
 const router = new Router({
   strict: true
 })
 
-router.all('*', (req, res, next) => {
-  if (!ALLOWED_METHODS.includes(req.method)) {
-    return res.status(405).send()
-  }
-
+router.all('*', async (req, res) => {
   const options = {
     baseUrl,
-    body: req.body,
     method: req.method,
-    throwHttpErrors: false
+    throwHttpErrors: false,
+    json: true,
+    body: req.body
   }
 
   if (req.user) {
@@ -27,12 +23,10 @@ router.all('*', (req, res, next) => {
     }
   }
 
-  got
-    .stream(req.path, options)
-    .on('error', error => {
-      next(error)
-    })
-    .pipe(res)
+  const response = await got(req.url, options)
+
+  res.status(response.statusCode)
+  res.send(response.body)
 })
 
 module.exports = router

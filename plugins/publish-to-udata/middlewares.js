@@ -1,47 +1,47 @@
-'use strict'
+const am = require('../../lib/api/middlewares/async')
+const {Http403, Http404} = require('../../lib/api/errors')
 
 const {getUserRoleInOrganization} = require('./udata')
 
 function ensureLoggedIn(req, res, next) {
   if (!req.user) {
-    return res.sendStatus(401)
+    return res.status(401).send()
   }
   next()
 }
 
 function isAdminOf(organizationIdExtractor) {
-  return (req, res, next) => {
+  return am(async (req, res, next) => {
     const organizationId = organizationIdExtractor(req)
-    getUserRoleInOrganization(req.user.id, organizationId)
-      .then(userRole => {
-        if (userRole === 'admin') {
-          return next()
-        }
-        res.sendStatus(403)
-      })
-      .catch(next)
-  }
+    const userRole = await getUserRoleInOrganization(req.user.id, organizationId)
+
+    if (userRole === 'admin') {
+      return next()
+    }
+
+    throw new Http403()
+  })
 }
 
 function organizationIsSet(req, res, next) {
-  if (!req.organization || req.organization.isNew) {
-    return res.sendStatus(404)
+  if (!req.organization) {
+    return next(new Http404())
   }
+
   next()
 }
 
 function isEditorOf(organizationIdExtractor) {
-  return (req, res, next) => {
+  return am(async (req, res, next) => {
     const organizationId = organizationIdExtractor(req)
-    getUserRoleInOrganization(req.user.id, organizationId)
-      .then(userRole => {
-        if (['admin', 'editor'].includes(userRole)) {
-          return next()
-        }
-        res.sendStatus(403)
-      })
-      .catch(next)
-  }
+    const userRole = await getUserRoleInOrganization(req.user.id, organizationId)
+
+    if (['admin', 'editor'].includes(userRole)) {
+      return next()
+    }
+
+    throw new Http403()
+  })
 }
 
 module.exports = {

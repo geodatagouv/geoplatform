@@ -1,8 +1,9 @@
-'use strict'
-
 const mongoose = require('mongoose')
 const {pick} = require('lodash')
-const Promise = require('bluebird')
+
+const am = require('../../../lib/api/middlewares/async')
+const {Http404} = require('../../../lib/api/errors')
+
 const {getOrganization} = require('../udata')
 
 const Organization = mongoose.model('Organization')
@@ -10,52 +11,58 @@ const Producer = mongoose.model('Producer')
 
 const EDITABLE_FIELDS = ['sourceCatalogs']
 
-exports.fetch = function (req, res, next, id) {
-  Promise.join(
-    Organization.findById(id),
-    Producer.find({associatedTo: id}).select('-associatedTo').exec(),
+/* Params */
 
-    (organization, producers) => {
-      if (!organization) {
-        req.organization = new Organization({_id: id})
-      } else {
-        req.organization = organization
-        req.organization.producers = producers
-      }
-      next()
+exports.fetch = async (req, res, next, id) => {
+  try {
+    const [organization, producers] = await Promise.all([
+      Organization.findById(id),
+      Producer.find({associatedTo: id}).select('-associatedTo').exec()
+    ])
+
+    if (organization) {
+      req.organization = organization
+    } else {
+      req.organization = new Organization({_id: id})
     }
-  ).catch(next)
+
+    req.organization.producers = producers || []
+
+    next()
+  } catch (error) {
+    next(error)
+  }
 }
 
-exports.show = function (req, res) {
+/* Actions */
+
+exports.show = am((req, res) => {
   if (!req.organization) {
-    return res.sendStatus(404)
+    throw new Http404()
   }
+
   const organization = req.organization.toObject()
   organization.producers = req.organization.producers
-  res.send(organization)
-}
 
-exports.createOrUpdate = function (req, res, next) {
-  req.organization
+  res.send(organization)
+})
+
+exports.createOrUpdate = am(async (req, res) => {
+  await req.organization
     .set(pick(req.body, ...EDITABLE_FIELDS))
     .save()
-    .then(() => req.organization.enable(req.user.accessToken))
-    .then(() => res.send(req.organization))
-    .catch(next)
-}
 
-exports.list = function (req, res, next) {
-  Organization.find().exec((err, organizations) => {
-    if (err) {
-      return next(err)
-    }
-    res.send(organizations)
-  })
-}
+  await req.organization.enable(req.user.accessToken)
 
-exports.showProfile = function (req, res, next) {
-  getOrganization(req.params.organizationId)
-    .then(organization => res.send(organization))
-    .catch(next)
-}
+  res.send(req.organization)
+})
+
+exports.list = am(async (req, res) => {
+  const organizations = await Organization.find().exec()
+  res.send(organizations)
+})
+
+exports.showProfile = am(async (req, res) => {
+  const organization = await getOrganization(req.params.organizationId)
+  res.send(organization)
+})

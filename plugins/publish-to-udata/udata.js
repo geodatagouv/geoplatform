@@ -7,7 +7,7 @@ const client = got.extend({
 })
 
 async function getProfile(accessToken) {
-  const {body} = await client.get(`/me/`, {
+  const {body} = await client.get('/me/', {
     json: true,
     headers: {
       authorization: `Bearer ${accessToken}`
@@ -27,7 +27,7 @@ async function getOrganization(organizationId) {
 
 async function addUserToOrganization(userId, organizationId, accessToken) {
   try {
-    await client.post(`/organizations/${organizationId}/member/${userId}/`, {
+    await client.post(`/organizations/${organizationId}/member/${userId}`, {
       json: true,
       headers: {
         authorization: `Bearer ${accessToken}`
@@ -47,7 +47,7 @@ async function addUserToOrganization(userId, organizationId, accessToken) {
 }
 
 async function removeUserFromOrganization(userId, organizationId, accessToken) {
-  await client.delete(`/organizations/${organizationId}/member/${userId}/`, {
+  await client.delete(`/organizations/${organizationId}/member/${userId}`, {
     headers: {
       authorization: `Bearer ${accessToken}`,
       'content-length': 0
