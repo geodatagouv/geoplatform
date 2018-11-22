@@ -52,7 +52,7 @@ async function getPublishedByOthersDatasets(organization) {
 
   const records = await Record
     .find({
-      _id: {$in: Object.keys(indexedDatasets)},
+      recordId: {$in: Object.keys(indexedDatasets)},
       catalogs: {$in: organization.sourceCatalogs},
       organizations: {$in: organization.producers}
     })
