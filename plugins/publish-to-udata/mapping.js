@@ -51,7 +51,7 @@ function extractServiceResources(service) {
 
     resources.push({
       url: `${ROOT_URL}/api/geogw/services/${service.serviceId}/feature-types/${feature.name}/download?format=GeoJSON&projection=WGS84`,
-      title: `${feature.name} (export GeoJSON)`,
+      title: `${feature.typeName} (export GeoJSON)`,
       description: 'Conversion à la volée au format GeoJSON',
       format: 'JSON',
       fileType: 'remote',
@@ -62,7 +62,7 @@ function extractServiceResources(service) {
 
     resources.push({
       url: `${ROOT_URL}/api/geogw/services/${service.serviceId}/feature-types/${feature.name}/download?format=SHP&projection=WGS84`,
-      title: `${feature.name} (export SHP/WGS-84)`,
+      title: `${feature.typeName} (export SHP/WGS-84)`,
       description: 'Conversion à la volée au format Shapefile (WGS-84)',
       format: 'SHP',
       fileType: 'remote'
@@ -110,9 +110,10 @@ function extractDownloadResources(resource) {
       default:
         if (!download.archive) {
           resources.push({
-            url: `${ROOT_URL}/api/geogw/links/${resource.proxyId}/downloads/${download.id}/download?format=SHP&projection=WGS84`,
+            url: download.url,
             title: download.name,
             format: download.type.toUpperCase(),
+            description: resource.description || resource.name,
             fileType: 'remote'
           })
         }
