@@ -20,7 +20,6 @@ async function main() {
     }),
     prefix: 'geoplatform',
     onError: (job, err) => {
-      console.log(JSON.stringify(err.body, null, 2))
       sentry.captureException(err, {
         extra: {
           queue: job.queue.name,
