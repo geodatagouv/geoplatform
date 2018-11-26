@@ -2280,10 +2280,10 @@ configstore@^3.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
-connect-mongo@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/connect-mongo/-/connect-mongo-2.0.1.tgz#514d649cff1d5d5546c087193245bb54ff5b703b"
-  integrity sha512-ghBvVq0SA0SkTFsbAB8HdF1+uoHdFJICSlrTklNloMKXuRpX9IuVBnG0DlKnXBZSQI0Joyaq22cazsrV9+5g2A==
+connect-mongo@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/connect-mongo/-/connect-mongo-2.0.2.tgz#f3a78acd35ce928969cdb241705b2dcdc9ced7d0"
+  integrity sha512-kc88c3EeQAdS9z/dJb5iHTN/EwHTPjN66YhoXJCyWS4rLGyWbpPyGWlfaJ00Ny3aD34i4Z9RSXV2ARRnkyB8cQ==
   dependencies:
     mongodb "^2.0.36"
 
