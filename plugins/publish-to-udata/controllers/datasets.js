@@ -99,7 +99,7 @@ async function getMetrics(organization) {
 }
 
 async function getGlobalMetrics() {
-  const publishedCount = await Dataset.count({}).exec()
+  const publishedCount = await Dataset.countDocuments({}).exec()
 
   return {
     published: publishedCount
