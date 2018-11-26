@@ -207,7 +207,7 @@ schema.method('asyncPublish', async function ({organizationId}) {
 
 schema.method('removeAndNotify', async function () {
   try {
-    await this.remove()
+    await this.delete()
 
     await unsetRecordPublication(this._id)
   } catch (error) {
