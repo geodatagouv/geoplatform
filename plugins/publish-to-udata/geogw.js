@@ -28,7 +28,7 @@ function unsetRecordPublication(recordId) {
 }
 
 async function getPublications() {
-  const {body} = await client.get(`${ROOT_URL}/publications/dgv`, {
+  const {body} = await client.get('/publications/dgv', {
     json: true
   })
 

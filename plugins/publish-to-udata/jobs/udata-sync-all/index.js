@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Bluebird = require('bluebird')
+const debug = require('debug')('geoplatform:udata:jobs:udata-sync-all')
 
 const {getPublications, unsetRecordPublication} = require('../../geogw')
 
@@ -11,15 +11,21 @@ exports.handler = async function ({data}) {
 
   const datasets = await Dataset.find().exec()
 
-  await Bluebird.map(datasets, async dataset => {
-    if (publishedRecordIds.has(dataset._id)) {
-      publishedRecordIds.delete(dataset._id)
-    } else {
-      await dataset.notifyPublication()
-    }
+  await Promise.all(
+    datasets.map(async dataset => {
+      try {
+        if (publishedRecordIds.has(dataset._id)) {
+          publishedRecordIds.delete(dataset._id)
+        } else {
+          await dataset.notifyPublication()
+        }
 
-    return dataset.asyncUpdate(data)
-  }, {concurrency: 10})
+        await dataset.asyncUpdate(data)
+      } catch (error) {
+        debug(`${dataset._id}: Could not update published dataset`)
+      }
+    })
+  )
 
   return Promise.all(
     [...publishedRecordIds].map(recordId => unsetRecordPublication(recordId))
