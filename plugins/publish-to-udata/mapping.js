@@ -38,7 +38,7 @@ __Liens annexes__
 {{/each}}
 
 {{/if}}
-➞ [Consulter cette fiche sur geo.data.gouv.fr](${GEODATAGOUV_URL}/datasets/{{recordId}})`
+➞ [Consulter cette fiche sur geo.data.gouv.fr](${GEODATAGOUV_URL}/fr/datasets/{{recordId}})`
 )
 
 function extractServiceResources(service) {
