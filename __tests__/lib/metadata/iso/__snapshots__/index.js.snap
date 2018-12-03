@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib.metadata.iso.index convert() extract featureTypes from a service metadata 1`] = `
+Object {
+  "alternateTitle": undefined,
+  "contacts": Array [],
+  "description": undefined,
+  "featureTypes": Array [
+    Object {
+      "relatedTo": "7bcc8a8723759135feb7040380a2f2d7c921280f",
+      "serviceURL": "https://example.com/wfs",
+      "typeName": "bati_avap_paimpol",
+    },
+    Object {
+      "relatedTo": "46a8d50322e881fd4e8b7abc3bc45c38a247532e",
+      "serviceURL": "https://example.com/wfs",
+      "typeName": "elr_avap_paimpol",
+    },
+  ],
+  "id": undefined,
+  "keywords": Array [],
+  "metadataType": "ISO 19139",
+  "resourceId": undefined,
+  "serviceProtocol": "wfs",
+  "serviceType": "download",
+  "serviceURL": "https://example.com/wfs",
+  "title": undefined,
+  "type": "service",
+}
+`;
