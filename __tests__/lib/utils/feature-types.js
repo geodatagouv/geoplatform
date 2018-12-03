@@ -1,6 +1,6 @@
-const {normalizeTypeName} = require('../../../../lib/jobs/consolidate-record/feature-types')
+const {normalizeTypeName} = require('../../../lib/utils/feature-types')
 
-describe('lib.jobs.consolidate-records.feature-types', () => {
+describe('lib.utils.feature-types', () => {
   describe('normalizeTypeName', () => {
     it('should normalize the typeNames', () => {
       const testCases = [
