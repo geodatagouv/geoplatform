@@ -9,7 +9,7 @@ describe('lib.metadata.common.licenses', () => {
 
     it('should return the appropriate license', () => {
       const testCases = [
-        ['Licence ouverte (Etalab)', 'fr-lo']
+        ['Licence ouverte (Etalab)', 'lov2']
       ]
 
       for (const [source, expected] of testCases) {
