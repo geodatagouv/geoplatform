@@ -1,4 +1,4 @@
-const {getWFSServiceLocation} = require('../../../../lib/metadata/iso/services')
+const {getWFSServiceLocation, getCoupledResources} = require('../../../../lib/metadata/iso/services')
 
 describe('lib.metadata.iso.services', () => {
   describe('getWFSServiceLocation()', () => {
@@ -87,6 +87,103 @@ describe('lib.metadata.iso.services', () => {
       }
 
       expect(getWFSServiceLocation(metadata)).toBeNull()
+    })
+  })
+
+  describe('getCoupledResources()', () => {
+    it('should return the coupled resources', () => {
+      const metadata = {
+        identificationInfo: {
+          coupledResource: [
+            {
+              operationName: 'GetFeature',
+              identifier: 'foo1',
+              scopedName: 'feature_type-1'
+            },
+            {
+              operationName: 'GetFeature',
+              identifier: 'foo2',
+              scopedName: 'feature_type-2'
+            }
+          ]
+        }
+      }
+
+      expect(getCoupledResources(metadata)).toMatchSnapshot()
+    })
+
+    it('should dedup duplicated coupled resources', () => {
+      const metadata = {
+        identificationInfo: {
+          coupledResource: [
+            {
+              operationName: 'GetCapabilities',
+              identifier: '9fd801e3-976a-49b6-b84a-0bd448fec8d5',
+              scopedName: 'bati_avap_paimpol'
+            },
+            {
+              operationName: 'DescribeFeatureType',
+              identifier: '9fd801e3-976a-49b6-b84a-0bd448fec8d5',
+              scopedName: 'bati_avap_paimpol'
+            },
+            {
+              operationName: 'GetFeature',
+              identifier: '9fd801e3-976a-49b6-b84a-0bd448fec8d5',
+              scopedName: 'bati_avap_paimpol'
+            },
+            {
+              operationName: 'GetCapabilities',
+              identifier: 'e3b34f32-8081-4451-83e0-4d5fcfd36512',
+              scopedName: 'elr_avap_paimpol'
+            },
+            {
+              operationName: 'DescribeFeatureType',
+              identifier: 'e3b34f32-8081-4451-83e0-4d5fcfd36512',
+              scopedName: 'elr_avap_paimpol'
+            }
+          ]
+        }
+      }
+
+      expect(getCoupledResources(metadata)).toMatchSnapshot()
+    })
+
+    it('should ignore incomplete resources', () => {
+      const metadata = {
+        identificationInfo: {
+          coupledResource: [
+            {
+              operationName: 'GetFeature',
+              identifier: 'foo1'
+            },
+            {
+              identifier: 'foo2',
+              scopedName: 'feature_type-2'
+            },
+            {
+              scopedName: 'feature_type-3'
+            }
+          ]
+        }
+      }
+
+      expect(getCoupledResources(metadata)).toMatchSnapshot()
+    })
+
+    it('should return an empty array if there are no coupled resources', () => {
+      const testCases = [
+        [],
+        null,
+        undefined
+      ]
+
+      for (const coupledResource of testCases) {
+        expect(getCoupledResources({
+          identificationInfo: {
+            coupledResource
+          }
+        })).toEqual([])
+      }
     })
   })
 })

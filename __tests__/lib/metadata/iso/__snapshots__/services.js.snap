@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib.metadata.iso.services getCoupledResources() should dedup duplicated coupled resources 1`] = `
+Array [
+  Object {
+    "identifier": "9fd801e3-976a-49b6-b84a-0bd448fec8d5",
+    "scopedName": "bati_avap_paimpol",
+  },
+  Object {
+    "identifier": "e3b34f32-8081-4451-83e0-4d5fcfd36512",
+    "scopedName": "elr_avap_paimpol",
+  },
+]
+`;
+
+exports[`lib.metadata.iso.services getCoupledResources() should ignore incomplete resources 1`] = `
+Array [
+  Object {
+    "identifier": "foo2",
+    "scopedName": "feature_type-2",
+  },
+]
+`;
+
+exports[`lib.metadata.iso.services getCoupledResources() should return the coupled resources 1`] = `
+Array [
+  Object {
+    "identifier": "foo1",
+    "scopedName": "feature_type-1",
+  },
+  Object {
+    "identifier": "foo2",
+    "scopedName": "feature_type-2",
+  },
+]
+`;
