@@ -108,7 +108,9 @@ function extractDownloadResources(resource) {
       }
 
       default:
-        if (!download.archive) {
+        // Do not publish "other" resourceTypes for now
+        // The resource type mappings are defined in lib/jobs/consolidate-records/links.js
+        if (!download.archive && download.resourceType !== 'other') {
           resources.push({
             url: download.url,
             title: download.name,
