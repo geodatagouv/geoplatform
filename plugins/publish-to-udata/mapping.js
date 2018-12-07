@@ -1,11 +1,18 @@
 const moment = require('moment')
 const Handlebars = require('handlebars')
-const {kebabCase} = require('lodash')
+const {kebabCase, uniqBy, sortBy} = require('lodash')
 const debug = require('debug')('geoplatform:udata:mapping')
 
 moment.locale('fr')
 
 const {GEODATAGOUV_URL, ROOT_URL} = process.env
+
+const DOWNLOAD_RESOURCE_TYPE_ORDER = {
+  vector: 1,
+  raster: 2,
+  table: 3,
+  data: 4
+}
 
 const bodyTemplate = Handlebars.compile(
   `{{metadata.description}}
@@ -75,7 +82,16 @@ function extractServiceResources(service) {
 function extractDownloadResources(resource) {
   const resources = []
 
-  for (const download of resource.downloads) {
+  const downloads = sortBy(
+    uniqBy(resource.downloads, download => {
+      return download.type + download.name
+    }),
+    download => {
+      return DOWNLOAD_RESOURCE_TYPE_ORDER[download.resourceType]
+    }
+  )
+
+  for (const download of downloads) {
     if (download.archive) {
       resources.push({
         url: download.url,
