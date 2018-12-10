@@ -61,7 +61,7 @@ function extractServiceResources(service) {
       title: `${feature.typeName} (export GeoJSON)`,
       description: 'Conversion à la volée au format GeoJSON',
       format: 'JSON',
-      fileType: 'remote',
+      filetype: 'remote',
       extras: {
         'geop:resource_id': `service.${service.serviceType}:${service.serviceId}/${feature.name}`
       }
@@ -72,7 +72,7 @@ function extractServiceResources(service) {
       title: `${feature.typeName} (export SHP/WGS-84)`,
       description: 'Conversion à la volée au format Shapefile (WGS-84)',
       format: 'SHP',
-      fileType: 'remote'
+      filetype: 'remote'
     })
   }
 
@@ -97,7 +97,7 @@ function extractDownloadResources(resource) {
         url: download.url,
         title: `${download.name} (archive)`,
         format: 'ZIP',
-        fileType: 'remote'
+        filetype: 'remote'
       })
     }
 
@@ -108,7 +108,7 @@ function extractDownloadResources(resource) {
           title: `${download.name} (export GeoJSON)`,
           description: 'Conversion à la volée au format GeoJSON',
           format: 'JSON',
-          fileType: 'remote',
+          filetype: 'remote',
           extras: {
             'geop:resource_id': `download:${resource.proxyId}/${download.id}`
           }
@@ -118,7 +118,7 @@ function extractDownloadResources(resource) {
           title: `${download.name} (export SHP/WGS-84)`,
           description: 'Conversion à la volée au format Shapefile (WGS-84)',
           format: 'SHP',
-          fileType: 'remote'
+          filetype: 'remote'
         })
         break
       }
@@ -130,7 +130,7 @@ function extractDownloadResources(resource) {
             title: download.name,
             format: download.type.toUpperCase(),
             description: resource.description || resource.name,
-            fileType: 'remote'
+            filetype: 'remote'
           })
         }
         break
