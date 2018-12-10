@@ -117,7 +117,7 @@ schema.method('update', async function (options = {}) {
       await this.transferTo(targetOrganization)
     } catch (error) {
       if (error.message === 'Dataset doesn’t exist') {
-        throw new Error('Target dataset doesnt exist anymore')
+        throw new Error('Target dataset doesn’t exist anymore')
       }
       throw error
     }
