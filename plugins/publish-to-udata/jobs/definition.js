@@ -12,7 +12,7 @@ module.exports = [
 
   {
     name: 'udata-sync-one',
-    concurrency: 10,
+    concurrency: 7,
     options: {
       jobIdKey: 'recordId'
     }
