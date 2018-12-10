@@ -7,11 +7,19 @@ const client = got.extend({
 })
 
 async function getRecord(recordId) {
-  const {body} = await client.get(`/records/${recordId}`, {
-    json: true
-  })
+  try {
+    const {body} = await client.get(`/records/${recordId}`, {
+      json: true
+    })
 
-  return body
+    return body
+  } catch (error) {
+    if (error.statusCode === 404) {
+      throw new Error('Record not found')
+    }
+
+    throw error
+  }
 }
 
 async function setRecordPublication(recordId, publicationInfo) {

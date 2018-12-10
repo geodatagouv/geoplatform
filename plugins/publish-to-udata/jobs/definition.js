@@ -6,13 +6,13 @@ module.exports = [
     concurrency: 1,
     options: {
       jobId: 'unique', // Only one at a time
-      timeout: ms('20m')
+      timeout: ms('1h')
     }
   },
 
   {
     name: 'udata-sync-one',
-    concurrency: 10,
+    concurrency: 7,
     options: {
       jobIdKey: 'recordId'
     }

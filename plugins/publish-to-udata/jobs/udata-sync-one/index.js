@@ -47,7 +47,7 @@ exports.handler = async function ({data}) {
       return publicationInfo.unpublish()
     }
 
-    if (removeIfTargetDatasetNotFound === true && error.message === 'Target dataset doesn\'t exist anymore' && action === 'update') {
+    if (removeIfTargetDatasetNotFound === true && error.message === 'Target dataset doesn’t exist anymore' && action === 'update') {
       debug(`${recordId}: Target dataset not found. Going to remove the publication info…`)
       return publicationInfo.removeAndNotify()
     }
