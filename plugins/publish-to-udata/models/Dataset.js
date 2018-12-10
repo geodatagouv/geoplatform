@@ -151,7 +151,7 @@ schema.method('asyncUpdate', function (data = {}) {
     throw new Error('Dataset not published')
   }
 
-  return enqueue('udata-sync-one', {
+  return enqueue('udata-sync-one', `update: ${this._id}`, {
     ...data,
     recordId: this._id,
     action: 'update'
@@ -198,7 +198,7 @@ schema.method('asyncPublish', async function ({organizationId}) {
     throw new Error('Dataset already published')
   }
 
-  await enqueue('udata-sync-one', {
+  await enqueue('udata-sync-one', `publish: ${this._id}`, {
     recordId: this._id,
     action: 'publish',
     organizationId
@@ -235,7 +235,7 @@ schema.method('asyncUnpublish', function () {
     throw new Error('Dataset not published')
   }
 
-  return enqueue('udata-sync-one', {
+  return enqueue('udata-sync-one', `unpublish: ${this._id}`, {
     recordId: this._id,
     action: 'unpublish'
   })
@@ -252,7 +252,7 @@ schema.method('transferTo', async function (targetOrganization, force = false) {
 })
 
 schema.static('asyncSynchronizeAll', data => {
-  return enqueue('udata-sync-all', data)
+  return enqueue('udata-sync-all', 'udata-sync-all', data)
 })
 
 mongoose.model('Dataset', schema)
