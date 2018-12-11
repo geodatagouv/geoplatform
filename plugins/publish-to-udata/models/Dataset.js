@@ -252,7 +252,7 @@ schema.method('transferTo', async function (targetOrganization, force = false) {
 })
 
 schema.static('asyncSynchronizeAll', data => {
-  return enqueue('udata-sync-all', 'udata-sync-all', data)
+  return enqueue('udata-sync-all', data)
 })
 
 mongoose.model('Dataset', schema)
