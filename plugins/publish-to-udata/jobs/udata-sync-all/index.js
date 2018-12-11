@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const Bluebird = require('bluebird')
 const debug = require('debug')('geoplatform:udata:jobs:udata-sync-all')
 
+const sentry = require('../../../../lib/utils/sentry')
+
 const {getPublications, unsetRecordPublication} = require('../../geogw')
 
 const Dataset = mongoose.model('Dataset')
@@ -29,6 +31,12 @@ exports.handler = async function ({data}) {
   })
 
   return Promise.all(
-    [...publishedRecordIds].map(recordId => unsetRecordPublication(recordId))
+    [...publishedRecordIds].map(async recordId => {
+      try {
+        await unsetRecordPublication(recordId)
+      } catch (error) {
+        sentry.captureException(error)
+      }
+    })
   )
 }
