@@ -8103,10 +8103,10 @@ unzip-response@^2.0.1:
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
   integrity sha1-0vD3N9FrBhXnKmk17QQhRXLVb5c=
 
-unzipper@^0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.9.4.tgz#c9abf5fc918fc423db73b147afcb98b2a901e7eb"
-  integrity sha512-kGrkTaphmXE+0/A5Q7rwcm/xHlDkXDOGEh6wuiN3SUQsyVWd7V51rwqttlNTT91JrLkfn34MoBNf38unF0vhRw==
+unzipper@^0.9.5:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/unzipper/-/unzipper-0.9.5.tgz#de0637d96c97578d86897beb56d4ac83a08e0101"
+  integrity sha512-qparmWeT3RSupsQAiHZEmeDPMY0dlkxRJhN+xP/trSLBo0Dy43rdIwFinpFw+9dK1Rf1krYMvCjwf8ZLnS7SQw==
   dependencies:
     big-integer "^1.6.17"
     binary "~0.3.0"
