@@ -34,7 +34,7 @@
     "express-session": "^1.15.6",
     "file-type": "^10.6.0",
     "fresh": "^0.5.2",
-    "got": "^9.3.2",
+    "got": "^9.4.0",
     "handlebars": "^4.0.12",
     "hasha": "^3.0.0",
     "ioredis": "^3.2.2",
