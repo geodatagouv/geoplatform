@@ -25,7 +25,7 @@
     "bull-manager": "^1.1.4",
     "connect-mongo": "^2.0.3",
     "cors": "^2.8.5",
-    "csv-parse": "^4.1.0",
+    "csv-parse": "^4.2.0",
     "csw-client": "^0.18.2",
     "debug": "^4.1.0",
     "del": "^3.0.0",

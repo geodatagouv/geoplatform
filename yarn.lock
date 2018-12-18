@@ -2447,10 +2447,10 @@ cssstyle@^1.0.0:
   dependencies:
     cssom "0.3.x"
 
-csv-parse@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.1.0.tgz#54a3bc22ee11d21d3a91a068d5651b07c5126df0"
-  integrity sha512-aRjITEJY05VdMPgdTx0P5vgV6uuJSrPZoa3lsXggQtwbjQJJnGfQe220okcdHZlpZvicM1vnYUEuc8dq0cyJXA==
+csv-parse@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.2.0.tgz#6f3c09c5a46c06f19ca642a7b3104908d45b048c"
+  integrity sha512-t8KGN+ZKIYUUqXznAIZ723KI3IBILImjhN8VUfAod/VCtn/IpW3R24PYCxl81g4/z4R9DruTVyvavyiw2VRLgw==
 
 csw-client@^0.18.2:
   version "0.18.2"
