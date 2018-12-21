@@ -41,7 +41,7 @@
     "ipaddr.js": "^1.8.1",
     "json-stable-stringify": "^1.0.0",
     "lodash": "^4.17.11",
-    "moment": "^2.22.2",
+    "moment": "^2.23.0",
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0",
     "morgan": "^1.9.1",
