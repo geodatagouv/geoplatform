@@ -23,6 +23,7 @@ for (const job of jobs) {
 
 const router = new Router()
 
+router.use(sentry.requestHandler())
 router.use(cors({origin: true, credentials: true}))
 router.use(json())
 
@@ -70,6 +71,7 @@ router.get('/api/me', ensureLoggedIn, (req, res) => {
   res.send(omit(req.user, 'accessToken'))
 })
 
+router.use(sentry.errorHandler())
 router.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
   const {statusCode = 500} = error
 
@@ -77,9 +79,9 @@ router.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
     return res.status(statusCode).send(error.toJSON())
   }
 
-  sentry.captureException(error)
   res.status(statusCode).send({
     code: statusCode,
+    sentry: res.sentry,
     error: 'An unexpected error happened'
   })
 })
