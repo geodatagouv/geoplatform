@@ -23,7 +23,7 @@ for (const job of jobs) {
 
 const router = new Router()
 
-router.use(sentry.requestHandler())
+router.use(sentry.Handlers.requestHandler())
 router.use(cors({origin: true, credentials: true}))
 router.use(json())
 
@@ -71,7 +71,7 @@ router.get('/api/me', ensureLoggedIn, (req, res) => {
   res.send(omit(req.user, 'accessToken'))
 })
 
-router.use(sentry.errorHandler())
+router.use(sentry.Handlers.errorHandler())
 router.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
   const {statusCode = 500} = error
 
