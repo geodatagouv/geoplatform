@@ -1,6 +1,6 @@
 {
   "name": "geoplatform",
-  "version": "2.0.13",
+  "version": "2.1.0",
   "private": true,
   "description": "Core API and processing tools for geo.data.gouv.fr",
   "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
