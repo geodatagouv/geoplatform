@@ -4,6 +4,7 @@ const {configureQueues, createJobQueue, disconnectQueues} = require('bull-manage
 
 const sentry = require('./lib/utils/sentry')
 const mongoose = require('./lib/utils/mongoose')
+const elastic = require('./lib/utils/elastic')
 const createRedis = require('./lib/utils/redis')
 
 const jobs = require('./lib/jobs/definition')
@@ -12,6 +13,7 @@ const {registerJobs: registerUdataJobs} = require('./plugins/publish-to-udata/jo
 
 async function main() {
   await mongoose.connect()
+  await elastic.createIndices()
 
   configureQueues({
     isSubscriber: true,
