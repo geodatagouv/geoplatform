@@ -133,6 +133,7 @@ function extractDownloadResources(resource) {
             filetype: 'remote'
           })
         }
+
         break
     }
   }
@@ -229,6 +230,7 @@ function map(sourceDataset) {
   if (result.title.length === 0) {
     throw new Error('title is a required field')
   }
+
   if (result.description.length === 0) {
     throw new Error('description is a required field')
   }

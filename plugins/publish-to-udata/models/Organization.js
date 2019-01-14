@@ -49,6 +49,7 @@ schema.pre('save', function (next) {
     this.createdAt = new Date()
     this.enabled = false
   }
+
   this.updatedAt = new Date()
   next()
 })

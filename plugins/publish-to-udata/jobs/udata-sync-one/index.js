@@ -21,6 +21,7 @@ exports.handler = async function ({data}) {
   if (publicationInfo && !action) {
     action = 'update'
   }
+
   if (!publicationInfo && !action) {
     action = 'publish'
   }
