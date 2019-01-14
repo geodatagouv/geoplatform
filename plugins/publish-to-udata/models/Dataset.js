@@ -119,6 +119,7 @@ schema.method('update', async function (options = {}) {
       if (error.message === 'Dataset doesn’t exist') {
         throw new Error('Target dataset doesn’t exist anymore')
       }
+
       throw error
     }
   }
@@ -127,6 +128,7 @@ schema.method('update', async function (options = {}) {
   if (!options.force && this.hash && this.hash === hash) {
     throw new Error('Unchanged dataset')
   }
+
   this.set('hash', hash)
 
   let publishedDataset
@@ -136,6 +138,7 @@ schema.method('update', async function (options = {}) {
     if (error.statusCode === 404) {
       throw new Error('Target dataset doesn’t exist anymore')
     }
+
     throw error
   }
 
@@ -214,6 +217,7 @@ schema.method('removeAndNotify', async function () {
     if (error.statusCode === 404) {
       return
     }
+
     throw error
   }
 

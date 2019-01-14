@@ -30,9 +30,11 @@ function normalizeName(producerName) {
   if (preparedTypo in errorIndex) {
     throw new Error('Rejected value')
   }
+
   if (preparedTypo in renameIndex) {
     return renameIndex[preparedTypo]
   }
+
   return producerName
 }
 
