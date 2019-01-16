@@ -38,7 +38,7 @@ exports.handler = async function ({data}) {
     await publicationInfo[action]()
 
     if (action !== 'update') {
-      await enqueue('index-record', recordId, {
+      await enqueue('index-record', `publication: ${action}`, {
         recordId
       })
     }
