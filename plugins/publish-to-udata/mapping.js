@@ -156,9 +156,15 @@ function extractResources(inputResources) {
         resources.push(...extractServiceResources(resource))
         break
 
-      case 'download':
-        resources.push(...extractDownloadResources(resource))
+      case 'download': {
+        if (resource.downloads.length > 50) {
+          alternateLinks.push(resource)
+        } else {
+          resources.push(...extractDownloadResources(resource))
+        }
+
         break
+      }
 
       default:
         debug(`Unknown resource type found: ${resource.type}`)
