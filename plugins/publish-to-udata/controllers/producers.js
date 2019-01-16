@@ -49,16 +49,14 @@ exports.dissociate = am(async (req, res) => {
   res.status(204).end()
 })
 
-const facetEligibilityCondition = {
-  $all: [
-    {$elemMatch: {name: 'availability', value: 'yes'}},
-    {$elemMatch: {name: 'opendata', value: 'yes'}}
-  ]
-}
-
 exports.listByOrganization = am(async (req, res) => {
   const eligibleProducerNames = await Record.distinct('organizations', {
-    facets: facetEligibilityCondition,
+    facets: {
+      $all: [
+        {$elemMatch: {name: 'availability', value: 'yes'}},
+        {$elemMatch: {name: 'opendata', value: 'yes'}}
+      ]
+    },
     catalogs: {$in: req.organization.sourceCatalogs}
   }).exec()
 
