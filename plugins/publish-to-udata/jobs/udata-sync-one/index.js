@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const debug = require('debug')('geoplatform:udata:jobs:udata-sync-one')
+const {enqueue} = require('bull-manager')
 
 const Dataset = mongoose.model('Dataset')
 
@@ -35,6 +36,12 @@ exports.handler = async function ({data}) {
 
   try {
     await publicationInfo[action]()
+
+    if (action !== 'update') {
+      await enqueue('index-record', `publication: ${action}`, {
+        recordId
+      })
+    }
 
     debug(`${recordId}: Published successfully`)
   } catch (error) {
