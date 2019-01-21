@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugins.publish-to-udata.mapping map() should map fixtures 1`] = `
+Object {
+  "description": "Couche contenant uniquement les périmètres des communes nouvelles à partir du 01/01/2016.
+
+__Origine__
+
+Fusion des contours de communes d&#x27;OpenStreetMap au 01/01/2015.
+
+
+__Organisations partenaires__
+
+Région Bretagne
+
+➞ [Consulter cette fiche sur geo.data.gouv.fr](undefined/fr/datasets/a9bcb983f29b66004c29c0cb3e0782b4cb1e663e)",
+  "extras": Object {
+    "geop:dataset_id": "a9bcb983f29b66004c29c0cb3e0782b4cb1e663e",
+    "inspire:identifier": "cc39d3e0-0ebb-4a91-8430-43a300a2b430",
+    "inspire:resource_identifier": "http://applications.region-bretagne.fr/geonetwork/srv/fre/xml.metadata.get?uuid=cc39d3e0-0ebb-4a91-8430-43a300a2b430",
+  },
+  "license": "lov2",
+  "resources": Array [
+    Object {
+      "description": "Conversion à la volée au format GeoJSON",
+      "extras": Object {
+        "geop:resource_id": "service.wfs:5bfd54c9cb932f8781e43a6e/rb:commune_nouvelle_geom",
+      },
+      "filetype": "remote",
+      "format": "JSON",
+      "title": "commune_nouvelle_geom (export GeoJSON)",
+      "url": "undefined/api/geogw/services/5bfd54c9cb932f8781e43a6e/feature-types/rb:commune_nouvelle_geom/download?format=GeoJSON&projection=WGS84",
+    },
+    Object {
+      "description": "Conversion à la volée au format Shapefile (WGS-84)",
+      "filetype": "remote",
+      "format": "SHP",
+      "title": "commune_nouvelle_geom (export SHP/WGS-84)",
+      "url": "undefined/api/geogw/services/5bfd54c9cb932f8781e43a6e/feature-types/rb:commune_nouvelle_geom/download?format=SHP&projection=WGS84",
+    },
+  ],
+  "supplier": Object {},
+  "tags": Array [
+    "boundaries",
+    "bretagne",
+    "donnees-ouvertes",
+    "communes-nouvelles",
+    "unites-administratives",
+    "passerelle-inspire",
+  ],
+  "title": "Périmètres des communes nouvelles à compter du 01/01/2016",
+}
+`;
+
+exports[`plugins.publish-to-udata.mapping map() should map fixtures 2`] = `
+Object {
+  "description": "SRCI valide du 01/01/2016 au 31/12/2016
+
+__Origine__
+
+-
+
+
+__Organisations partenaires__
+
+DDT Val-d&#x27;Oise
+
+__Liens annexes__
+
+ * [Vue XML des métadonnées](http://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST&#x3D;GetRecordById&amp;SERVICE&#x3D;CSW&amp;VERSION&#x3D;2.0.2&amp;RESULTTYPE&#x3D;results&amp;elementSetName&#x3D;full&amp;TYPENAMES&#x3D;gmd:MD_Metadata&amp;OUTPUTSCHEMA&#x3D;http://www.isotc211.org/2005/gmd&amp;ID&#x3D;fr-120066022-jdd-b0a22b2f-7633-4049-9069-2934b6605d54)
+ * [URL de base des services wms/wfs sur internet](http://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map&#x3D;/opt/data/carto/geoide-catalogue/1.4/org_38124/fded01ea-3244-4444-9c55-8dfa8c6c8040.internet.map)
+
+➞ [Consulter cette fiche sur geo.data.gouv.fr](undefined/fr/datasets/da40697278592843273355722d08ca2db742a902)",
+  "extras": Object {
+    "geop:dataset_id": "da40697278592843273355722d08ca2db742a902",
+    "inspire:identifier": "fr-120066022-jdd-b0a22b2f-7633-4049-9069-2934b6605d54",
+    "inspire:resource_identifier": "fded01ea-3244-4444-9c55-8dfa8c6c8040http://catalogue.geo-ide.developpement-durable.gouv.fr",
+  },
+  "license": "lov2",
+  "resources": Array [
+    Object {
+      "filetype": "remote",
+      "format": "ZIP",
+      "title": "L_INTERCOMMUNALITES_095_2016.TAB (archive)",
+      "url": "https://files.geo.data.gouv.fr/link-proxy/atom.geo-ide.developpement-durable.gouv.fr/2019-01-21/5c451b59154d740074ef2247/dataset-1548032856420.zip/dataset/l-intercommunalites-095-2016.zip",
+    },
+    Object {
+      "description": "Conversion à la volée au format GeoJSON",
+      "extras": Object {
+        "geop:resource_id": "download:5c035cf6e21d2363215ee3b7/5c451b59154d740074ef2247",
+      },
+      "filetype": "remote",
+      "format": "JSON",
+      "title": "L_INTERCOMMUNALITES_095_2016.TAB (export GeoJSON)",
+      "url": "undefined/api/geogw/links/5c035cf6e21d2363215ee3b7/downloads/5c451b59154d740074ef2247/download?format=GeoJSON&projection=WGS84",
+    },
+    Object {
+      "description": "Conversion à la volée au format Shapefile (WGS-84)",
+      "filetype": "remote",
+      "format": "SHP",
+      "title": "L_INTERCOMMUNALITES_095_2016.TAB (export SHP/WGS-84)",
+      "url": "undefined/api/geogw/links/5c035cf6e21d2363215ee3b7/downloads/5c451b59154d740074ef2247/download?format=SHP&projection=WGS84",
+    },
+  ],
+  "supplier": Object {},
+  "tags": Array [
+    "boundaries",
+    "donnees-ouvertes",
+    "passerelle-inspire",
+  ],
+  "title": "Schema départemental de cooperation intercommunale (2016)",
+}
+`;

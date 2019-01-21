@@ -1,0 +1,245 @@
+{
+  "_id": "5c035cf69e11758f77a72c06",
+  "catalogs": [
+      "539ebc2f1a66c51a7c52f5a3",
+      "538781513081a0b92eccc31a"
+  ],
+  "organizations": [
+      "DDT Val-d'Oise"
+  ],
+  "_featureTypes": [],
+  "_links": [
+      {
+          "name": "Vue XML des métadonnées",
+          "href": "http://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-b0a22b2f-7633-4049-9069-2934b6605d54",
+          "description": null,
+          "proxyId": "5c035cf6e21d2363215ee3ae",
+          "proxiedAt": "2019-01-21T01:07:36.429Z"
+      },
+      {
+          "name": "Téléchargement simple (Atom) du jeu et des documents associés via internet",
+          "href": "http://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=fded01ea-3244-4444-9c55-8dfa8c6c8040&dataType=dataset",
+          "description": null,
+          "proxyId": "5c035cf6e21d2363215ee3b7",
+          "proxiedAt": "2019-01-21T01:07:39.344Z"
+      },
+      {
+          "name": "URL de base des services wms/wfs sur internet",
+          "href": "http://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38124/fded01ea-3244-4444-9c55-8dfa8c6c8040.internet.map",
+          "description": null,
+          "proxyId": "5c035cf6e21d2363215ee3c0",
+          "proxiedAt": "2019-01-21T01:07:36.277Z"
+      }
+  ],
+  "resources": [
+      {
+          "name": "Vue XML des métadonnées",
+          "href": "http://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-b0a22b2f-7633-4049-9069-2934b6605d54",
+          "description": null,
+          "proxyId": "5c035cf6e21d2363215ee3ae",
+          "proxiedAt": "2019-01-21T01:07:36.429Z",
+          "type": "page"
+      },
+      {
+          "name": "Téléchargement simple (Atom) du jeu et des documents associés via internet",
+          "href": "http://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=fded01ea-3244-4444-9c55-8dfa8c6c8040&dataType=dataset",
+          "description": null,
+          "proxyId": "5c035cf6e21d2363215ee3b7",
+          "proxiedAt": "2019-01-21T01:07:39.344Z",
+          "type": "download",
+          "downloads": [
+              {
+                  "id": "5c451b59154d740074ef2247",
+                  "resourceType": "vector",
+                  "name": "L_INTERCOMMUNALITES_095_2016.TAB",
+                  "path": "dataset-1548032856420.zip/dataset/L_INTERCOMMUNALITES_095_2016.TAB",
+                  "archive": true,
+                  "type": "tab",
+                  "url": "https://files.geo.data.gouv.fr/link-proxy/atom.geo-ide.developpement-durable.gouv.fr/2019-01-21/5c451b59154d740074ef2247/dataset-1548032856420.zip/dataset/l-intercommunalites-095-2016.zip",
+                  "files": [
+                      {
+                          "name": "L_INTERCOMMUNALITES_095_2016.TAB",
+                          "size": 673,
+                          "digest": "sha384-TeMVG4uph45mBMU/BFJbJ7Hr/S2kHWhX8MT6Z7UC55qnF1rzKC4jFpRzfPi2iXwK"
+                      },
+                      {
+                          "name": "L_INTERCOMMUNALITES_095_2016.DAT",
+                          "size": 4000,
+                          "digest": "sha384-0pJhVyX7a51R2XFJ4Fjhm+fUVADtzJ0gRd8BumdleQap39AMnhKb5rtkinjf+7uX"
+                      },
+                      {
+                          "name": "L_INTERCOMMUNALITES_095_2016.ID",
+                          "size": 52,
+                          "digest": "sha384-OzjRvzeW+9gtB+wXN9yGVLEOrP0EJXSzOAWy6fkW86sFW8GkoSfti5/IxAmi/3Z6"
+                      },
+                      {
+                          "name": "L_INTERCOMMUNALITES_095_2016.IND",
+                          "size": 4096,
+                          "digest": "sha384-rSroYK00fOK40k2sRQQd78iIosM9NmiTpY+dT9lSUsM+X5BDhyMme2sjk8FgCh0h"
+                      },
+                      {
+                          "name": "L_INTERCOMMUNALITES_095_2016.MAP",
+                          "size": 742912,
+                          "digest": "sha384-UDiz1PD4dG5AWSoJAUOyN97RhQSXzJmmlqCuqyd+JzSwx9LSO16BUJr1OzBI4cNN"
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "name": "URL de base des services wms/wfs sur internet",
+          "href": "http://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38124/fded01ea-3244-4444-9c55-8dfa8c6c8040.internet.map",
+          "description": null,
+          "proxyId": "5c035cf6e21d2363215ee3c0",
+          "proxiedAt": "2019-01-21T01:07:36.277Z",
+          "type": "page"
+      },
+      {
+          "type": "service",
+          "serviceType": "wfs",
+          "serviceId": "5c111f131e5f77a5a7163c3e",
+          "href": "http://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=%2Fopt%2Fdata%2Fcarto%2Fgeoide-catalogue%2F1.4%2Forg_38124%2Ffded01ea-3244-4444-9c55-8dfa8c6c8040.internet.map",
+          "features": [
+              {
+                  "relatedTo": "da40697278592843273355722d08ca2db742a902",
+                  "typeName": "L_INTERCOMMUNALITES_095_2016",
+                  "available": false
+              }
+          ]
+      }
+  ],
+  "relatedTo": [],
+  "facets": [
+      {
+          "name": "opendata",
+          "value": "yes"
+      },
+      {
+          "name": "availability",
+          "value": "yes"
+      }
+  ],
+  "recordId": "da40697278592843273355722d08ca2db742a902",
+  "recordHash": "a3883379e09b9d08e1d12fd02cfd7d1c1652c196",
+  "revisionDate": "2018-12-12T05:40:46.664Z",
+  "metadata": {
+      "metadataType": "ISO 19139",
+      "id": "fr-120066022-jdd-b0a22b2f-7633-4049-9069-2934b6605d54",
+      "resourceId": "fded01ea-3244-4444-9c55-8dfa8c6c8040http://catalogue.geo-ide.developpement-durable.gouv.fr",
+      "title": "Schema départemental de cooperation intercommunale (2016)",
+      "alternateTitle": "L_INTERCOMMUNALITES_095_2016",
+      "description": "SRCI valide du 01/01/2016 au 31/12/2016",
+      "type": "dataset",
+      "keywords": [
+          "boundaries",
+          "Donnée générique/Intercommunalité",
+          "données ouvertes"
+      ],
+      "contacts": [
+          {
+              "relatedTo": "metadata",
+              "organizationName": "DDT Val-d'Oise",
+              "role": "other",
+              "email": "pg.bvat.direction.ddt-95@equipement-agriculture.gouv.fr",
+              "address": [
+                  "5 avenue Bernard Hirsch - CS 20105"
+              ],
+              "town": "Cergy-Pontoise cedex",
+              "postalCode": "95010",
+              "country": "France",
+              "phoneNumber": "0134252593"
+          },
+          {
+              "relatedTo": "data",
+              "organizationName": "DDT Val-d'Oise",
+              "role": "owner",
+              "email": "pg.bvat.direction.ddt-95@equipement-agriculture.gouv.fr",
+              "address": [
+                  "5 avenue Bernard Hirsch - CS 20105"
+              ],
+              "town": "Cergy-Pontoise cedex",
+              "postalCode": "95010",
+              "country": "France",
+              "phoneNumber": "0134252593"
+          },
+          {
+              "relatedTo": "data",
+              "organizationName": "DDT Val-d'Oise",
+              "role": "owner",
+              "email": "pg.bvat.direction.ddt-95@equipement-agriculture.gouv.fr",
+              "address": [
+                  "5 avenue Bernard Hirsch\r\nCS 20105"
+              ],
+              "town": "Cergy-Pontoise cedex",
+              "postalCode": "95010"
+          }
+      ],
+      "spatialRepresentationType": "vector",
+      "lineage": "-",
+      "purpose": null,
+      "credit": null,
+      "status": "obsolete",
+      "inspireTheme": null,
+      "topicCategory": "boundaries",
+      "thumbnails": [],
+      "links": [
+          {
+              "name": "Vue XML des métadonnées",
+              "href": "http://ogc.geo-ide.developpement-durable.gouv.fr/csw/all-dataset?REQUEST=GetRecordById&SERVICE=CSW&VERSION=2.0.2&RESULTTYPE=results&elementSetName=full&TYPENAMES=gmd:MD_Metadata&OUTPUTSCHEMA=http://www.isotc211.org/2005/gmd&ID=fr-120066022-jdd-b0a22b2f-7633-4049-9069-2934b6605d54",
+              "description": null
+          },
+          {
+              "name": "Téléchargement simple (Atom) du jeu et des documents associés via internet",
+              "href": "http://atom.geo-ide.developpement-durable.gouv.fr/atomArchive/GetResource?id=fded01ea-3244-4444-9c55-8dfa8c6c8040&dataType=dataset",
+              "description": null
+          },
+          {
+              "name": "URL de base des services wms/wfs sur internet",
+              "href": "http://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/carto/geoide-catalogue/1.4/org_38124/fded01ea-3244-4444-9c55-8dfa8c6c8040.internet.map",
+              "description": null
+          }
+      ],
+      "featureTypes": [],
+      "license": "lov2",
+      "spatialExtent": {
+          "type": "Polygon",
+          "coordinates": [
+              [
+                  [
+                      1.6087990999221802,
+                      48.9088134765625
+                  ],
+                  [
+                      2.594470500946045,
+                      48.9088134765625
+                  ],
+                  [
+                      2.594470500946045,
+                      49.23738098144531
+                  ],
+                  [
+                      1.6087990999221802,
+                      49.23738098144531
+                  ],
+                  [
+                      1.6087990999221802,
+                      48.9088134765625
+                  ]
+              ]
+          ]
+      },
+      "coveredTerritories": [
+          "fr:departement:95"
+      ],
+      "updateFrequency": null,
+      "equivalentScaleDenominator": null,
+      "spatialResolution": null,
+      "creationDate": "2017-01-01T00:00:00.000Z",
+      "revisionDate": "2017-01-03T00:00:00.000Z"
+  },
+  "createdAt": "2018-12-02T04:17:58.495Z",
+  "hash": "7f8b1aa8fee288c30a7be5e32f5e37e8706430fb",
+  "updatedAt": "2019-01-21T01:07:43.456Z",
+  "consolidatedAt": "2019-01-21T01:07:43.456Z",
+  "__v": 16
+}

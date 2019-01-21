@@ -1,0 +1,154 @@
+{
+  "_id": "5bfd54c90dc4320c5efbbb7e",
+  "catalogs": [
+      "54d5de332eb5568ca8350f3f",
+      "5387a37d785588482f5acb45",
+      "538781513081a0b92eccc31a"
+  ],
+  "organizations": [
+    "Région Bretagne"
+  ],
+  "_links": [],
+  "resources": [
+    {
+      "type": "service",
+      "serviceType": "wfs",
+      "serviceId": "5bfd54c9cb932f8781e43a6e",
+      "href": "http://ows.region-bretagne.fr/geoserver/rb/wfs",
+      "features": [
+        {
+          "typeName": "commune_nouvelle_geom",
+          "description": "Périmètres des communes nouvelles à compter du 01/01/2016 - Téléchargement",
+          "id": "5bfd54cacb932f8781e43cd5",
+          "name": "rb:commune_nouvelle_geom",
+          "available": true
+        }
+      ]
+    }
+  ],
+  "relatedTo": [],
+  "facets": [
+    {
+      "name": "opendata",
+      "value": "yes"
+    },
+    {
+      "name": "availability",
+      "value": "yes"
+    }
+  ],
+  "recordId": "a9bcb983f29b66004c29c0cb3e0782b4cb1e663e",
+  "recordHash": "f9c30e0bfd93792611acaaec4727a7b2610cea4c",
+  "revisionDate": "2018-12-19T11:17:41.000Z",
+  "metadata": {
+    "metadataType": "ISO 19139",
+    "id": "cc39d3e0-0ebb-4a91-8430-43a300a2b430",
+    "resourceId": "http://applications.region-bretagne.fr/geonetwork/srv/fre/xml.metadata.get?uuid=cc39d3e0-0ebb-4a91-8430-43a300a2b430",
+    "title": "Périmètres des communes nouvelles à compter du 01/01/2016",
+    "alternateTitle": null,
+    "description": "Couche contenant uniquement les périmètres des communes nouvelles à partir du 01/01/2016.",
+    "type": "dataset",
+    "keywords": [
+      "boundaries",
+      "Bretagne",
+      "données ouvertes",
+      "communes nouvelles",
+      "Unités administratives",
+      "limites administratives et découpage des territoires : limites administratives"
+    ],
+    "contacts": [
+      {
+        "relatedTo": "metadata",
+        "organizationName": "Région Bretagne",
+        "role": "other",
+        "email": "sig@bretagne.bzh",
+        "address": [
+          "283 Avenue du General Patton"
+        ],
+        "town": "Rennes",
+        "postalCode": "35711",
+        "country": "France"
+      },
+      {
+        "relatedTo": "data",
+        "organizationName": "Région Bretagne",
+        "role": "other",
+        "email": "sig@bretagne.bzh",
+        "address": [
+          "283 avenue Général Patton - CS 21101"
+        ],
+        "town": "Rennes",
+        "postalCode": "35711",
+        "country": "France"
+      }
+    ],
+    "spatialRepresentationType": "vector",
+    "lineage": "Fusion des contours de communes d'OpenStreetMap au 01/01/2015.",
+    "purpose": "Mise en évidence des changements de périmètre.",
+    "credit": null,
+    "status": "completed",
+    "inspireTheme": {
+      "id": "au",
+      "uri": "http://inspire.ec.europa.eu/theme/au",
+      "label": {
+        "fr": "Unités administratives",
+        "en": "Administrative units"
+      }
+    },
+    "topicCategory": "boundaries",
+    "thumbnails": [],
+    "links": [],
+    "featureTypes": [
+      {
+        "serviceURL": "http://ows.region-bretagne.fr/geoserver/rb/wfs",
+        "typeName": "commune_nouvelle_geom",
+        "description": "Périmètres des communes nouvelles à compter du 01/01/2016 - Téléchargement"
+      },
+      {
+        "serviceURL": "http://ows.region-bretagne.fr/geoserver/rb/wfs",
+        "typeName": "commune_nouvelle_geom",
+        "description": "Périmètres des communes nouvelles à compter du 01/01/2016 - visualisation WFS"
+      }
+    ],
+    "license": "lov2",
+    "spatialExtent": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -5.141333119601148,
+            47.277987575185094
+          ],
+          [
+            -1.015766262335082,
+            47.277987575185094
+          ],
+          [
+            -1.015766262335082,
+            48.900848594269476
+          ],
+          [
+            -5.141333119601148,
+            48.900848594269476
+          ],
+          [
+            -5.141333119601148,
+            47.277987575185094
+          ]
+        ]
+      ]
+    },
+    "coveredTerritories": [
+      "fr:region:53"
+    ],
+    "updateFrequency": "annually",
+    "equivalentScaleDenominator": 10000,
+    "spatialResolution": null,
+    "revisionDate": "2018-01-01T00:00:00.000Z"
+  },
+  "createdAt": "2018-11-27T14:29:29.795Z",
+  "hash": "46000cfa511588832deadd60a25b63e82ac88213",
+  "updatedAt": "2019-01-21T10:03:08.923Z",
+  "consolidatedAt": "2019-01-21T10:03:08.923Z",
+  "__v": 74
+}
