@@ -47,3 +47,15 @@ $ docker pull geodatagouv/geoplatform-web:latest
 ```bash
 $ docker pull geodatagouv/geoplatform-worker:latest
 ```
+
+## Miscellaneous
+
+```
+    ╚⊙ ⊙╝
+  ╚═(███)═╝
+ ╚═(███)═╝
+╚═(███)═╝
+ ╚═(███)═╝
+  ╚═(███)═╝
+   ╚═(███)═╝
+```
