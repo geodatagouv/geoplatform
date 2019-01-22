@@ -11,8 +11,13 @@ RUN yarn --production --frozen-lockfile
 FROM node:10-alpine
 ARG SOURCE_COMMIT=unknown
 
-RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main libcrypto1.1 && \
-    apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing gdal
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
+      libcrypto1.1 \
+      curl=7.63.0-r0  \
+      && \
+    apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+      proj4-dev=5.0.1-r1 \
+      gdal=2.4.0-r0
 
 RUN mkdir -p /opt/geoplatform-web
 WORKDIR /opt/geoplatform-web
