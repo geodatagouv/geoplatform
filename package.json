@@ -63,7 +63,7 @@
   "devDependencies": {
     "codecov": "^3.1.0",
     "jest": "^24.0.0",
-    "jest-junit": "^6.1.0",
+    "jest-junit": "^6.2.1",
     "lerna-changelog": "^0.8.2",
     "xo": "^0.24.0"
   },
