@@ -5,7 +5,7 @@ const debug = require('debug')('geoplatform:udata:mapping')
 
 moment.locale('fr')
 
-const {GEODATAGOUV_URL, ROOT_URL} = process.env
+const {GEODATAGOUV_URL, TRANSCODER_URL} = process.env
 
 const DOWNLOAD_RESOURCE_TYPE_ORDER = {
   vector: 1,
@@ -57,7 +57,7 @@ function extractServiceResources(service) {
     }
 
     resources.push({
-      url: `${ROOT_URL}/api/geogw/services/${service.serviceId}/feature-types/${feature.name}/download?format=GeoJSON&projection=WGS84`,
+      url: `${TRANSCODER_URL}/services/${service.serviceId}/feature-types/${feature.name}?format=GeoJSON&projection=WGS84`,
       title: `${feature.typeName} (export GeoJSON)`,
       description: 'Conversion à la volée au format GeoJSON',
       format: 'JSON',
@@ -68,7 +68,7 @@ function extractServiceResources(service) {
     })
 
     resources.push({
-      url: `${ROOT_URL}/api/geogw/services/${service.serviceId}/feature-types/${feature.name}/download?format=SHP&projection=WGS84`,
+      url: `${TRANSCODER_URL}/services/${service.serviceId}/feature-types/${feature.name}?format=SHP&projection=WGS84`,
       title: `${feature.typeName} (export SHP/WGS-84)`,
       description: 'Conversion à la volée au format Shapefile (WGS-84)',
       format: 'SHP',
@@ -104,7 +104,7 @@ function extractDownloadResources(resource) {
     switch (download.resourceType) {
       case 'vector': {
         resources.push({
-          url: `${ROOT_URL}/api/geogw/links/${resource.proxyId}/downloads/${download.id}/download?format=GeoJSON&projection=WGS84`,
+          url: `${TRANSCODER_URL}/links/${resource.proxyId}/downloads/${download.id}?format=GeoJSON&projection=WGS84`,
           title: `${download.name} (export GeoJSON)`,
           description: 'Conversion à la volée au format GeoJSON',
           format: 'JSON',
@@ -114,7 +114,7 @@ function extractDownloadResources(resource) {
           }
         })
         resources.push({
-          url: `${ROOT_URL}/api/geogw/links/${resource.proxyId}/downloads/${download.id}/download?format=SHP&projection=WGS84`,
+          url: `${TRANSCODER_URL}/links/${resource.proxyId}/downloads/${download.id}?format=SHP&projection=WGS84`,
           title: `${download.name} (export SHP/WGS-84)`,
           description: 'Conversion à la volée au format Shapefile (WGS-84)',
           format: 'SHP',
