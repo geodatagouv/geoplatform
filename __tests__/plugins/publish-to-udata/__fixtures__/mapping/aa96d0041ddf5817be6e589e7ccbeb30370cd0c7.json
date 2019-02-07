@@ -1,0 +1,181 @@
+{
+  "_id": "5bfd5ddca1b40da716da6a4f",
+  "catalogs": [
+      "538781513081a0b92eccc31a",
+      "53a01c8b23a9836106440e10"
+  ],
+  "organizations": [
+      "DREAL Centre-Val de Loire"
+  ],
+  "_links": [
+      {
+          "name": "metadata.show",
+          "href": "http://metadata.carmen.developpement-durable.gouv.fr/geosource/11/fre/metadata.show?uuid=ee520540-0ad4-4d61-9cdc-4827c92a3633",
+          "description": null,
+          "proxyId": "5bfd5ddccb932f878104ec7a",
+          "proxiedAt": "2019-02-05T09:13:59.763Z"
+      }
+  ],
+  "resources": [
+      {
+          "name": "metadata.show",
+          "href": "http://metadata.carmen.developpement-durable.gouv.fr/geosource/11/fre/metadata.show?uuid=ee520540-0ad4-4d61-9cdc-4827c92a3633",
+          "description": null,
+          "proxyId": "5bfd5ddccb932f878104ec7a",
+          "proxiedAt": "2019-02-05T09:13:59.763Z",
+          "type": "page"
+      },
+      {
+          "type": "service",
+          "serviceType": "wfs",
+          "serviceId": "5bfd5ea9cb932f8781072f79",
+          "href": "http://ws.carmen.developpement-durable.gouv.fr/WFS/11/eau_bassin1",
+          "features": [
+              {
+                  "relatedTo": "aa96d0041ddf5817be6e589e7ccbeb30370cd0c7",
+                  "typeName": "Sch__ma_d_Am__nagement_et_de_Gestion_des_Eaux",
+                  "available": false
+              }
+          ]
+      },
+      {
+          "type": "service",
+          "serviceType": "wfs",
+          "serviceId": "5bfd5d13cb932f8781029ca3",
+          "href": "http://metadata.carmen.developpement-durable.gouv.fr/geosource/11/fre/metadata.show",
+          "features": [
+              {
+                  "typeName": "metadata.show",
+                  "description": null,
+                  "available": false
+              }
+          ]
+      }
+  ],
+  "relatedTo": [],
+  "facets": [
+      {
+          "name": "opendata",
+          "value": "yes"
+      },
+      {
+          "name": "availability",
+          "value": "no"
+      }
+  ],
+  "recordId": "aa96d0041ddf5817be6e589e7ccbeb30370cd0c7",
+  "recordHash": "10074a1803579736414371d87ec6e151cf888503",
+  "revisionDate": "2017-01-12T10:44:59.000Z",
+  "metadata": {
+      "metadataType": "ISO 19139",
+      "id": "ee520540-0ad4-4d61-9cdc-4827c92a3633",
+      "resourceId": null,
+      "title": "Schémas d'Aménagement et de Gestion des Eaux (SAGE) du bassin Loire-Bretagne",
+      "alternateTitle": null,
+      "description": "Zone d'application des Schéma d'Aménagement et de Gestion des Eaux sur le bassin Loire-Bretagne Centre, hors SAGE en émergence.Les Schémas d'Aménagement et de Gestion des Eaux (SAGE) fixent, dans un groupement de sous-bassins ou un sous-bassin correspondant à une unité hydrographique ou à un système aquifère, les objectifs généraux d'une gestion équilibrée de l'eau afin de satisfaire aux principes énumérés à l'article 1 de la loi sur l'eau n°92-3 du 3 janvier 1992.Objectifs : Les SAGE fixent notamment, dans le respect des orientations retenues dans le schéma directeur (SDAGE) correspondant, les objectifs de protection des écosystèmes aquatiques et des ressources en eau, d'utilisation et de mise en valeur de ces ressources et de préservation des zones humides, pour l'ensemble des ressources situées dans leurs périmètres respectifs et la totalité des usages qui y sont exercés, de manière à satisfaire les besoins présents et futurs.Procédure : L'établissement d'un SAGE comporte principalement quatre grandes phases successives :1. La phase d'émergence du SAGE2. La phase d'instruction du projet : délimitation du périmètre du SAGE fixé par arrêté préfectoral.3. La phase d'élaboration du projet : mise en place de la Commission Locale de l'Eau (CLE) et conception proprement dite du SAGE.4. La phase de mise en œuvre et de suivi du SAGE (SAGE élaboré et approuvé)",
+      "type": "dataset",
+      "keywords": [
+          "environment",
+          "France",
+          "données ouvertes",
+          "SAGE",
+          "Aménagement",
+          "Loire-Bretagne",
+          "Zones de gestion, de restriction ou de réglementation et unités de déclaration"
+      ],
+      "contacts": [
+          {
+              "relatedTo": "metadata",
+              "organizationName": "DREAL Centre-Val de Loire",
+              "role": "other",
+              "email": "add.dreal-centre@developpement-durable.gouv.fr",
+              "address": [
+                  "5 av Buffon BP6407"
+              ],
+              "town": "ORLEANS CEDEX 2",
+              "postalCode": "45064",
+              "country": "France"
+          },
+          {
+              "relatedTo": "data",
+              "organizationName": "DREAL Centre-Val de Loire",
+              "role": "owner",
+              "email": "add.dreal-centre@developpement-durable.gouv.fr",
+              "address": [
+                  "5 av Buffon BP6407"
+              ],
+              "town": "ORLEANS CEDEX 2",
+              "postalCode": "45064",
+              "country": "France"
+          }
+      ],
+      "spatialRepresentationType": "vector",
+      "lineage": null,
+      "purpose": null,
+      "credit": null,
+      "status": null,
+      "inspireTheme": {
+          "id": "am",
+          "uri": "http://inspire.ec.europa.eu/theme/am",
+          "label": {
+              "fr": "Zones de gestion, de restriction ou de réglementation et unités de déclaration",
+              "en": "Area management/restriction/regulation zones and reporting units"
+          }
+      },
+      "topicCategory": "environment",
+      "thumbnails": [],
+      "links": [
+          {
+              "name": "metadata.show",
+              "href": "http://metadata.carmen.developpement-durable.gouv.fr/geosource/11/fre/metadata.show?uuid=ee520540-0ad4-4d61-9cdc-4827c92a3633",
+              "description": null
+          }
+      ],
+      "featureTypes": [
+          {
+              "serviceURL": "http://metadata.carmen.developpement-durable.gouv.fr/geosource/11/fre/metadata.show",
+              "typeName": "metadata.show",
+              "description": null
+          }
+      ],
+      "license": "lov2",
+      "spatialExtent": {
+          "type": "Polygon",
+          "coordinates": [
+              [
+                  [
+                      -4.12,
+                      43.4
+                  ],
+                  [
+                      4.76,
+                      43.4
+                  ],
+                  [
+                      4.76,
+                      49.94
+                  ],
+                  [
+                      -4.12,
+                      49.94
+                  ],
+                  [
+                      -4.12,
+                      43.4
+                  ]
+              ]
+          ]
+      },
+      "coveredTerritories": [],
+      "updateFrequency": null,
+      "equivalentScaleDenominator": 50000,
+      "spatialResolution": null,
+      "creationDate": "2010-11-23T00:00:00.000Z",
+      "revisionDate": "2016-12-02T00:00:00.000Z"
+  },
+  "createdAt": "2018-11-27T15:08:12.685Z",
+  "hash": "3b9f74fe85d0d84b511bf51762dd1d4871c1f861",
+  "updatedAt": "2019-02-06T09:54:30.772Z",
+  "consolidatedAt": "2019-02-06T09:54:30.772Z",
+  "__v": 59
+}
