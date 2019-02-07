@@ -210,6 +210,15 @@ function map(sourceDataset) {
   const history = extractHistory(sourceDataset.metadata.history)
   const tags = extractTags(sourceDataset.metadata.keywords)
 
+  const extras = {
+    'inspire:identifier': sourceDataset.metadata.id,
+    'geop:dataset_id': sourceDataset.recordId
+  }
+
+  if (sourceDataset.metadata.resourceId) {
+    extras['inspire:resource_identifier'] = sourceDataset.metadata.resourceId
+  }
+
   const result = {
     title: sourceDataset.metadata.title,
     description: bodyTemplate({
@@ -218,11 +227,7 @@ function map(sourceDataset) {
       inlineOrganizations,
       alternateLinks
     }),
-    extras: {
-      'inspire:identifier': sourceDataset.metadata.id,
-      'inspire:resource_identifier': sourceDataset.metadata.resourceId,
-      'geop:dataset_id': sourceDataset.recordId
-    },
+    extras,
     license: sourceDataset.metadata.license,
     supplier: {},
     tags,

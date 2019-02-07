@@ -111,3 +111,38 @@ __Liens annexes__
   "title": "Schema départemental de cooperation intercommunale (2016)",
 }
 `;
+
+exports[`plugins.publish-to-udata.mapping map() should map fixtures 3`] = `
+Object {
+  "description": "Zone d&#x27;application des Schéma d&#x27;Aménagement et de Gestion des Eaux sur le bassin Loire-Bretagne Centre, hors SAGE en émergence.Les Schémas d&#x27;Aménagement et de Gestion des Eaux (SAGE) fixent, dans un groupement de sous-bassins ou un sous-bassin correspondant à une unité hydrographique ou à un système aquifère, les objectifs généraux d&#x27;une gestion équilibrée de l&#x27;eau afin de satisfaire aux principes énumérés à l&#x27;article 1 de la loi sur l&#x27;eau n°92-3 du 3 janvier 1992.Objectifs : Les SAGE fixent notamment, dans le respect des orientations retenues dans le schéma directeur (SDAGE) correspondant, les objectifs de protection des écosystèmes aquatiques et des ressources en eau, d&#x27;utilisation et de mise en valeur de ces ressources et de préservation des zones humides, pour l&#x27;ensemble des ressources situées dans leurs périmètres respectifs et la totalité des usages qui y sont exercés, de manière à satisfaire les besoins présents et futurs.Procédure : L&#x27;établissement d&#x27;un SAGE comporte principalement quatre grandes phases successives :1. La phase d&#x27;émergence du SAGE2. La phase d&#x27;instruction du projet : délimitation du périmètre du SAGE fixé par arrêté préfectoral.3. La phase d&#x27;élaboration du projet : mise en place de la Commission Locale de l&#x27;Eau (CLE) et conception proprement dite du SAGE.4. La phase de mise en œuvre et de suivi du SAGE (SAGE élaboré et approuvé)
+
+
+
+__Organisations partenaires__
+
+DREAL Centre-Val de Loire
+
+__Liens annexes__
+
+ * [metadata.show](http://metadata.carmen.developpement-durable.gouv.fr/geosource/11/fre/metadata.show?uuid&#x3D;ee520540-0ad4-4d61-9cdc-4827c92a3633)
+
+➞ [Consulter cette fiche sur geo.data.gouv.fr](undefined/fr/datasets/aa96d0041ddf5817be6e589e7ccbeb30370cd0c7)",
+  "extras": Object {
+    "geop:dataset_id": "aa96d0041ddf5817be6e589e7ccbeb30370cd0c7",
+    "inspire:identifier": "ee520540-0ad4-4d61-9cdc-4827c92a3633",
+  },
+  "license": "lov2",
+  "resources": Array [],
+  "supplier": Object {},
+  "tags": Array [
+    "environment",
+    "france",
+    "donnees-ouvertes",
+    "sage",
+    "amenagement",
+    "loire-bretagne",
+    "passerelle-inspire",
+  ],
+  "title": "Schémas d'Aménagement et de Gestion des Eaux (SAGE) du bassin Loire-Bretagne",
+}
+`;
