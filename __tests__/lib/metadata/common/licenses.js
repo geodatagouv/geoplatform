@@ -1,4 +1,6 @@
-const {getLicenseFromLinks} = require('../../../../lib/metadata/common/licenses')
+const {ObjectId} = require('mongodb')
+
+const {getLicenseFromLinks, getLicenseFromCatalogs} = require('../../../../lib/metadata/common/licenses')
 
 describe('lib.metadata.common.licenses', () => {
   describe('getLicenseFromLinks()', () => {
@@ -16,6 +18,55 @@ describe('lib.metadata.common.licenses', () => {
         expect(getLicenseFromLinks([{
           name: source
         }])).toBe(expected)
+      }
+    })
+  })
+
+  describe('getLicenseFromCatalogs()', () => {
+    it('should return null if called with an empty array', () => {
+      const result = getLicenseFromCatalogs([])
+      expect(result).toBeNull()
+    })
+
+    it('should return null if called with a non-open catalog', () => {
+      const testCases = [
+        [
+          {_id: new ObjectId()}
+        ],
+        [
+          {_id: new ObjectId('000000000000000000000000')}
+        ],
+        [
+          {_id: new ObjectId()},
+          {_id: new ObjectId('000000000000000000000000')}
+        ]
+      ]
+
+      for (const testCase of testCases) {
+        expect(getLicenseFromCatalogs(testCase)).toBeNull()
+      }
+    })
+
+    it('should return the lov2 if called with an open catalog', () => {
+      const testCases = [
+        [
+          {_id: new ObjectId()},
+          {_id: new ObjectId('54f5a39a62781800bf6db9e6')}
+        ],
+        [
+          {_id: new ObjectId('54f5a39a62781800bf6db9e6')}
+        ],
+        [
+          {_id: new ObjectId('53a01c3c23a9836106440e0f')}
+        ],
+        [
+          {_id: new ObjectId('54f5a39a62781800bf6db9e6')},
+          {_id: new ObjectId('53a01c3c23a9836106440e0f')}
+        ]
+      ]
+
+      for (const testCase of testCases) {
+        expect(getLicenseFromCatalogs(testCase)).toBe('lov2')
       }
     })
   })
