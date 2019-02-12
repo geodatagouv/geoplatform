@@ -37,6 +37,12 @@ describe('lib.metadata.common.licenses', () => {
           new ObjectId('000000000000000000000000')
         ],
         [
+          '000000000000000000000000'
+        ],
+        [
+          'something else random'
+        ],
+        [
           new ObjectId(),
           new ObjectId('000000000000000000000000')
         ]
@@ -54,14 +60,21 @@ describe('lib.metadata.common.licenses', () => {
           new ObjectId('54f5a39a62781800bf6db9e6')
         ],
         [
+          new ObjectId(),
+          '54f5a39a62781800bf6db9e6'
+        ],
+        [
           new ObjectId('54f5a39a62781800bf6db9e6')
+        ],
+        [
+          '54f5a39a62781800bf6db9e6'
         ],
         [
           new ObjectId('53a01c3c23a9836106440e0f')
         ],
         [
           new ObjectId('54f5a39a62781800bf6db9e6'),
-          new ObjectId('53a01c3c23a9836106440e0f')
+          '53a01c3c23a9836106440e0f'
         ]
       ]
 
