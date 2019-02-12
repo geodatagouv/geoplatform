@@ -31,14 +31,14 @@ describe('lib.metadata.common.licenses', () => {
     it('should return null if called with a non-open catalog', () => {
       const testCases = [
         [
-          {_id: new ObjectId()}
+          new ObjectId()
         ],
         [
-          {_id: new ObjectId('000000000000000000000000')}
+          new ObjectId('000000000000000000000000')
         ],
         [
-          {_id: new ObjectId()},
-          {_id: new ObjectId('000000000000000000000000')}
+          new ObjectId(),
+          new ObjectId('000000000000000000000000')
         ]
       ]
 
@@ -50,18 +50,18 @@ describe('lib.metadata.common.licenses', () => {
     it('should return the lov2 if called with an open catalog', () => {
       const testCases = [
         [
-          {_id: new ObjectId()},
-          {_id: new ObjectId('54f5a39a62781800bf6db9e6')}
+          new ObjectId(),
+          new ObjectId('54f5a39a62781800bf6db9e6')
         ],
         [
-          {_id: new ObjectId('54f5a39a62781800bf6db9e6')}
+          new ObjectId('54f5a39a62781800bf6db9e6')
         ],
         [
-          {_id: new ObjectId('53a01c3c23a9836106440e0f')}
+          new ObjectId('53a01c3c23a9836106440e0f')
         ],
         [
-          {_id: new ObjectId('54f5a39a62781800bf6db9e6')},
-          {_id: new ObjectId('53a01c3c23a9836106440e0f')}
+          new ObjectId('54f5a39a62781800bf6db9e6'),
+          new ObjectId('53a01c3c23a9836106440e0f')
         ]
       ]
 
