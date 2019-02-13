@@ -49,5 +49,18 @@ describe('lib.metadata.iso.index', () => {
         }
       })).toMatchSnapshot()
     })
+
+    it('should map fixtures', () => {
+      const fixtures = [
+        '1edc94510a82f1e369e27234e1dc674cb85c0f8e'
+      ]
+
+      expect.assertions(fixtures.length)
+
+      for (const fixture of fixtures) {
+        const record = require(`./__fixtures__/${fixture}`)
+        expect(convert(record.content)).toMatchSnapshot()
+      }
+    })
   })
 })

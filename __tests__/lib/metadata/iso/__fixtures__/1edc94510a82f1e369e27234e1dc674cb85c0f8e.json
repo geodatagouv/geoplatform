@@ -1,0 +1,278 @@
+{
+  "_id": "5bfd563ccb932f8781ea34b6",
+  "recordHash": "1fd82f0c1375f106389934836c518fbe9b2b3753",
+  "recordId": "1edc94510a82f1e369e27234e1dc674cb85c0f8e",
+  "__v": 0,
+  "content": {
+    "fileIdentifier": "IGNF_BDORTHOr_2-0.xml",
+    "language": "fre",
+    "characterSet": "utf8",
+    "hierarchyLevel": "series",
+    "hierarchyLevelName": "Produit",
+    "contact": {
+      "organisationName": "Institut National de l'Information Géographique et Forestière (IGN-F)",
+      "contactInfo": {
+        "address": {
+          "deliveryPoint": [
+            "IGN - Service Clients",
+            "73 avenue de Paris"
+          ],
+          "city": "SAINT-MANDE cedex",
+          "postalCode": "94165",
+          "country": "FRANCE",
+          "electronicMailAddress": "sav.bd@ign.fr"
+        }
+      },
+      "role": "pointOfContact"
+    },
+    "dateStamp": "2017-03-09T11:19:17.000Z",
+    "metadataStandardName": "ISO 19115",
+    "metadataStandardVersion": "2003 Cor.1:2006",
+    "identificationInfo": {
+      "citation": {
+        "title": "BD ORTHO®",
+        "alternateTitle": "Base de Données Orthophotographiques",
+        "date": [
+          {
+            "date": "2007-02-01T00:00:00.000Z",
+            "dateType": "publication"
+          }
+        ],
+        "edition": "1970-01-01T00:00:00.000Z",
+        "identifier": "IGNF_BDORTHOr_2-0"
+      },
+      "abstract": "Le produit BD ORTHO® V2 est une collection de mosaïques d'orthophotographies numériques en couleurs ou en Infra Rouge couleurs, rectifiées dans la projection adaptée au territoire couvert.",
+      "purpose": "La BD ORTHO® V2 se compose d'images numériques (sans habillage ni surcharge) et d'indications de géoréférencement. Le contenu informationnel permet localement une utilisation jusqu'au 1 :2,000ième pour mettre en valeur le territoire, enrichir la visualisation des données et des projets.",
+      "status": "onGoing",
+      "pointOfContact": [
+        {
+          "organisationName": "Institut National de l'Information Géographique et Forestière (IGN-F)",
+          "contactInfo": {
+            "address": {
+              "deliveryPoint": [
+                "IGN - Service Clients",
+                "73 avenue de Paris"
+              ],
+              "city": "SAINT-MANDE cedex",
+              "postalCode": "94165",
+              "country": "FRANCE",
+              "electronicMailAddress": "sav.bd@ign.fr"
+            }
+          },
+          "role": "pointOfContact"
+        }
+      ],
+      "resourceMaintenance": {
+        "maintenanceAndUpdateFrequency": "irregular"
+      },
+      "descriptiveKeywords": [
+        {
+          "keyword": [
+            "Ortho-imagerie"
+          ],
+          "thesaurusName": {
+            "title": "GEMET - INSPIRE themes, version 1.0",
+            "date": [
+              {
+                "date": "2008-06-01T00:00:00.000Z",
+                "dateType": "publication"
+              }
+            ]
+          }
+        },
+        {
+          "keyword": [
+            "ortho-imagerie"
+          ],
+          "type": "theme"
+        }
+      ],
+      "resourceConstraints": [
+        {
+          "accessConstraints": [
+            "license"
+          ],
+          "useConstraints": [
+            "license"
+          ]
+        }
+      ],
+      "spatialRepresentationType": "grid",
+      "spatialResolution": {
+        "distance": {
+          "unit": "m",
+          "value": 0.5
+        }
+      },
+      "language": "fre",
+      "topicCategory": "imageryBaseMapsEarthCover",
+      "extent": [
+        {
+          "description": "France métropolitaine",
+          "geographicElement": {
+            "westBoundLongitude": -3.62630933886,
+            "eastBoundLongitude": 8.29253552725,
+            "southBoundLatitude": 42.51802699783,
+            "northBoundLatitude": 50.12481955997
+          }
+        },
+        {
+          "description": "Martinique",
+          "geographicElement": {
+            "westBoundLongitude": -70,
+            "eastBoundLongitude": -60,
+            "southBoundLatitude": 10,
+            "northBoundLatitude": 20
+          }
+        },
+        {
+          "description": "Guadeloupe",
+          "geographicElement": {
+            "westBoundLongitude": -70,
+            "eastBoundLongitude": -60,
+            "southBoundLatitude": 10,
+            "northBoundLatitude": 20
+          }
+        },
+        {
+          "description": "Guyane",
+          "geographicElement": {
+            "westBoundLongitude": -60,
+            "eastBoundLongitude": -50,
+            "northBoundLatitude": 10
+          }
+        },
+        {
+          "description": "Réunion",
+          "geographicElement": {
+            "westBoundLongitude": 50,
+            "eastBoundLongitude": 60,
+            "southBoundLatitude": -30,
+            "northBoundLatitude": -20
+          }
+        },
+        {
+          "description": "Mayotte",
+          "geographicElement": {
+            "westBoundLongitude": 44.9,
+            "eastBoundLongitude": 45.3,
+            "southBoundLatitude": -13.1,
+            "northBoundLatitude": -12.6
+          }
+        },
+        {
+          "description": "Wallis et Futuna",
+          "geographicElement": {
+            "westBoundLongitude": -178.12,
+            "eastBoundLongitude": -175.43,
+            "southBoundLatitude": -13.72,
+            "northBoundLatitude": -12.51
+          }
+        },
+        {
+          "description": "Saint-Pierre et Miquelon",
+          "geographicElement": {
+            "westBoundLongitude": -56.58,
+            "eastBoundLongitude": -56.08,
+            "southBoundLatitude": 46.73,
+            "northBoundLatitude": 47.15
+          }
+        }
+      ]
+    },
+    "distributionInfo": {
+      "distributionFormat": [
+        {
+          "name": "TIF",
+          "version": "6.0"
+        },
+        {
+          "name": "ECW",
+          "version": "1.0"
+        },
+        {
+          "name": "JP2",
+          "version": "ISO/IEC 15444-1"
+        }
+      ],
+      "transferOptions": [
+        {
+          "onLine": [
+            {
+              "linkage": "http://www.ign.fr/",
+              "function": "information"
+            },
+            {
+              "linkage": "http://www.geoportail.fr/",
+              "function": "information"
+            },
+            {
+              "linkage": "http://professionnels.ign.fr/sites/default/files/DL_raster_ORTHO.pdf"
+            }
+          ]
+        },
+        {
+          "onLine": [
+            {
+              "linkage": "http://www.ign.fr/",
+              "function": "information"
+            },
+            {
+              "linkage": "http://www.geoportail.fr/",
+              "function": "information"
+            }
+          ]
+        },
+        {
+          "onLine": [
+            {
+              "linkage": "http://www.ign.fr/",
+              "function": "information"
+            },
+            {
+              "linkage": "http://www.geoportail.fr/",
+              "function": "information"
+            }
+          ]
+        },
+        {
+          "onLine": [
+            {
+              "linkage": "http://www.ign.fr/",
+              "function": "information"
+            },
+            {
+              "linkage": "http://www.geoportail.fr/",
+              "function": "information"
+            }
+          ]
+        },
+        {
+          "onLine": [
+            {
+              "linkage": "http://www.ign.fr/",
+              "function": "information"
+            },
+            {
+              "linkage": "http://www.geoportail.fr/",
+              "function": "information"
+            }
+          ]
+        }
+      ]
+    },
+    "dataQualityInfo": {
+      "scope": {
+        "level": "series"
+      },
+      "lineage": {
+        "statement": "Le nombre de clichés nécessaires pour couvrir un département est important, ces clichés présentent des disparités fortes d'ensoleillement, d'apparence colorée, de paysage, de comportement d'objets (carrières, sables, surfaces d'eau, ...) et parfois de saison. Dans l'idéal, l'ortho-image d'un département doit être continue et homogène sans surface saturée conséquente. En pratique, l'aspect radiométrique de la mosaïque est le résultat d'un compromis sur tout le département tenant compte des disparités mentionnées. Pour la couleur, chaque cliché est corrigé des effets internes d'éclairement et de couleurs liés à l'ensoleillement. L'ensemble des clichés est ensuite homogénéisé et la mosaïque est finalement globalement rehaussée en couleur et en dynamique afin d'obtenir un rendu le plus naturel possible. Pour le canal infra-rouge, chaque cliché est corrigé des effets internes d'éclairement et de couleur liés à l'ensoleillement, puis la mosaïque est corrigée globalement afin d'exploiter au mieux le spectre radiométrique d'une façon proche des canaux rouge et vert qui composent avec le canal infra-rouge les images infra-rouge couleur.\r\nProduit par l'Institut Géographique National (IGN-F)"
+      }
+    }
+  },
+  "createdAt": "2018-11-27T14:35:40.551Z",
+  "recordType": "MD_Metadata",
+  "revisionDate": "2017-03-09T11:19:17.000Z",
+  "touchedAt": "2019-02-13T01:02:29.016Z",
+  "featured": false
+}
