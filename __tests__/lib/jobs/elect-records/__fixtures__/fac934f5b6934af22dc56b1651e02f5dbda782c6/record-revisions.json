@@ -1,0 +1,2386 @@
+[
+  {
+    "_id": {
+      "$oid": "5c6701c54cdfc4254fd852c4"
+    },
+    "recordHash": "1026a4a95b13921386802f404fed9e8bb3fa4ad9",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-15T19:15:14.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc_s.png",
+            "fileDescription": "thumbnail",
+            "fileType": "png"
+          },
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "large_thumbnail",
+            "fileType": "png"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "open data"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Occupation des terres"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Licence ouverte"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "imageryBaseMapsEarthCover",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-15T18:15:33.398Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": null,
+    "touchedAt": "2019-02-15T18:18:45.604Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c6577c14cdfc4254fc1bd19"
+    },
+    "recordHash": "1ee32def2d409b4315576afc04bb1dec1e11f14e",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-08T16:45:10.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "Carte de Localisation",
+            "fileType": "PNG"
+          },
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_visu.png",
+            "fileDescription": "Carte de Visualisation",
+            "fileType": "PNG"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Usage des sols"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Restriction liée à l'exercice du droit moral"
+            ],
+            "accessConstraints": [
+              "copyright"
+            ],
+            "useConstraints": [
+              "copyright"
+            ]
+          },
+          {
+            "useLimitation": [
+              "Restriction liée à l’exercice du droit patrimonial"
+            ],
+            "accessConstraints": [
+              "intellectualPropertyRights"
+            ],
+            "useConstraints": [
+              "intellectualPropertyRights"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "planningCadastre",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ],
+        "transferOptions": [
+          {
+            "onLine": [
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "WWW:LINK-1.0-http--link",
+                "name": "Application CARMEN",
+                "description": "Carte",
+                "function": "download"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:WFS",
+                "name": "Application CARMEN",
+                "description": "Flux WFS",
+                "function": "search"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:ATOM",
+                "name": "Application CARMEN",
+                "description": "Flux ATOM"
+              }
+            ]
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-14T14:14:25.241Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": "2019-02-08T16:45:10.000Z",
+    "touchedAt": "2019-02-14T14:14:25.241Z",
+    "featured": false
+  },
+  {
+    "_id": {
+      "$oid": "5c66affc4cdfc4254fd7305c"
+    },
+    "recordHash": "2cb7ab08b58fce32929e685f899d2579e82cd4e0",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-15T13:19:00.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "Carte de Localisation",
+            "fileType": "PNG"
+          },
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_visu.png",
+            "fileDescription": "Carte de Visualisation",
+            "fileType": "PNG"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "données ouvertes"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Usage des sols"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ],
+              "identifier": "geonetwork.thesaurus.external.theme.inspire-theme"
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          },
+          {
+            "useLimitation": [
+              "Licence Ouverte / Open Licence Version 2.0  https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "planningCadastre",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ],
+        "transferOptions": [
+          {
+            "onLine": [
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "WWW:LINK-1.0-http--link",
+                "name": "Application CARMEN",
+                "description": "Carte",
+                "function": "download"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:WFS",
+                "name": "Application CARMEN",
+                "description": "Flux WFS",
+                "function": "search"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:ATOM",
+                "name": "Application CARMEN",
+                "description": "Flux ATOM"
+              }
+            ]
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-15T12:26:36.576Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": null,
+    "touchedAt": "2019-02-15T12:36:11.193Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c6700064cdfc4254fd84c6a"
+    },
+    "recordHash": "2eed07a2bcf137fa2dd72f5c99ee32ecc80ae821",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-15T19:07:45.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc_s.png",
+            "fileDescription": "thumbnail",
+            "fileType": "png"
+          },
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "large_thumbnail",
+            "fileType": "png"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "données ouvertes"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Occupation des terres",
+              "Zones de gestion, de restriction ou de réglementation et unités de déclaration"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Licence ouverte"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "imageryBaseMapsEarthCover",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-15T18:08:06.353Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": null,
+    "touchedAt": "2019-02-15T18:08:06.353Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c66b89d4cdfc4254fd74eb2"
+    },
+    "recordHash": "84c8b1809f2ef44d00fc57ec23ec891580e7ffd5",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-15T14:02:58.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc_s.png",
+            "fileDescription": "thumbnail",
+            "fileType": "png"
+          },
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "large_thumbnail",
+            "fileType": "png"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "données ouvertes"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Occupation des terres",
+              "Zones de gestion, de restriction ou de réglementation et unités de déclaration"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          },
+          {
+            "useLimitation": [
+              "Licence Ouverte / Open Licence Version 2.0  https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "imageryBaseMapsEarthCover",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-15T13:03:25.173Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": null,
+    "touchedAt": "2019-02-15T17:06:17.032Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c659c7b4cdfc4254fc2419e"
+    },
+    "recordHash": "8f049e57c75861172c656cbf36f9bba0f9a7a8f5",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-14T16:59:01.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "Carte de Localisation",
+            "fileType": "PNG"
+          },
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_visu.png",
+            "fileDescription": "Carte de Visualisation",
+            "fileType": "PNG"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "données ouvertes"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Usage des sols"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          },
+          {
+            "useLimitation": [
+              "Licence Ouverte / Open Licence Version 2.0  https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf"
+            ],
+            "accessConstraints": [
+              "license"
+            ],
+            "useConstraints": [
+              "license"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "planningCadastre",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ],
+        "transferOptions": [
+          {
+            "onLine": [
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "WWW:LINK-1.0-http--link",
+                "name": "Application CARMEN",
+                "description": "Carte",
+                "function": "download"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:WFS",
+                "name": "Application CARMEN",
+                "description": "Flux WFS",
+                "function": "search"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:ATOM",
+                "name": "Application CARMEN",
+                "description": "Flux ATOM"
+              }
+            ]
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-14T16:51:07.333Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": null,
+    "touchedAt": "2019-02-15T01:03:49.609Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c65795f4cdfc4254fc1c3e6"
+    },
+    "recordHash": "a24dca49b3a26ade60a3251f17030a70dddce77b",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-14T15:19:05.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "Carte de Localisation",
+            "fileType": "PNG"
+          },
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_visu.png",
+            "fileDescription": "Carte de Visualisation",
+            "fileType": "PNG"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "données ouvertes"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Usage des sols"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Restriction liée à l'exercice du droit moral"
+            ],
+            "accessConstraints": [
+              "copyright"
+            ],
+            "useConstraints": [
+              "copyright"
+            ]
+          },
+          {
+            "useLimitation": [
+              "Restriction liée à l’exercice du droit patrimonial"
+            ],
+            "accessConstraints": [
+              "intellectualPropertyRights"
+            ],
+            "useConstraints": [
+              "intellectualPropertyRights"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "planningCadastre",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ],
+        "transferOptions": [
+          {
+            "onLine": [
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "WWW:LINK-1.0-http--link",
+                "name": "Application CARMEN",
+                "description": "Carte",
+                "function": "download"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:WFS",
+                "name": "Application CARMEN",
+                "description": "Flux WFS",
+                "function": "search"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:ATOM",
+                "name": "Application CARMEN",
+                "description": "Flux ATOM"
+              }
+            ]
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-14T14:21:19.624Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": null,
+    "touchedAt": "2019-02-14T15:42:47.918Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c6709984cdfc4254fd86e6e"
+    },
+    "recordHash": "d6aea94a9acdb4c2ea001433fbbf58187ee9b317",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-15T19:48:35.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc_s.png",
+            "fileDescription": "thumbnail",
+            "fileType": "png"
+          },
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "large_thumbnail",
+            "fileType": "png"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "open data"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Occupation des terres"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Réutilisation libre sous réserve de mentionner la source \"ONF, 2018\"",
+              "Licence ouverte https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+            ],
+            "accessConstraints": [
+              "otherRestrictions"
+            ],
+            "useConstraints": [
+              "license"
+            ],
+            "otherConstraints": [
+              "Pas de restriction d’accès public"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "imageryBaseMapsEarthCover",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-15T18:48:56.982Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": null,
+    "touchedAt": "2019-02-15T18:48:56.982Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c5a98024cdfc4254f981a13"
+    },
+    "recordHash": "f838ac675e1d5bd718f935d55bedd447fafd250e",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-01-23T10:15:50.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "Carte de Localisation",
+            "fileType": "PNG"
+          },
+          {
+            "fileName": "http://xpat98-101.arbre.foret.onf.fr/geocatalogue/fiches/9200/ONF_FOR_PUBL_L93_FR/FOR_PUBL_L93_FR_visu.png",
+            "fileDescription": "Carte de Visualisation",
+            "fileType": "PNG"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Usage des sols"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Restriction liée à l'exercice du droit moral"
+            ],
+            "accessConstraints": [
+              "copyright"
+            ],
+            "useConstraints": [
+              "copyright"
+            ]
+          },
+          {
+            "useLimitation": [
+              "Restriction liée à l’exercice du droit patrimonial"
+            ],
+            "accessConstraints": [
+              "intellectualPropertyRights"
+            ],
+            "useConstraints": [
+              "intellectualPropertyRights"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "planningCadastre",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.84,
+              "southBoundLatitude": -21.39,
+              "northBoundLatitude": -20.87
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.84,
+              "southBoundLatitude": -21.39,
+              "northBoundLatitude": -20.87
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.84,
+              "southBoundLatitude": -21.39,
+              "northBoundLatitude": -20.87
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.84,
+              "southBoundLatitude": -21.39,
+              "northBoundLatitude": -20.87
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.84,
+              "southBoundLatitude": -21.39,
+              "northBoundLatitude": -20.87
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.84,
+              "southBoundLatitude": -21.39,
+              "northBoundLatitude": -20.87
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ],
+        "transferOptions": [
+          {
+            "onLine": [
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "WWW:LINK-1.0-http--link",
+                "name": "Application CARMEN",
+                "description": "Carte",
+                "function": "download"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:WMS",
+                "name": "Application CARMEN",
+                "description": "Flux WMS",
+                "function": "search"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:WFS",
+                "name": "Application CARMEN",
+                "description": "Flux WFS",
+                "function": "search"
+              },
+              {
+                "linkage": "http://metadata.carmencarto.fr/geosource/105/find?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+                "protocol": "OGC:ATOM",
+                "name": "Application CARMEN",
+                "description": "Flux ATOM"
+              }
+            ]
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-06T08:17:06.295Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": "2019-01-23T10:15:50.000Z",
+    "touchedAt": "2019-02-12T01:06:15.959Z",
+    "featured": true
+  },
+  {
+    "_id": {
+      "$oid": "5c6762df4cdfc4254fdc6e7d"
+    },
+    "recordHash": "f9c19ab9f60f0cd7e27161a099c402c7437cf828",
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "content": {
+      "fileIdentifier": "fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4",
+      "language": "fre",
+      "characterSet": "utf8",
+      "hierarchyLevel": "dataset",
+      "hierarchyLevelName": "dataset",
+      "contact": {
+        "individualName": "Nicolas MARCHAND",
+        "organisationName": "Office National des Forêts",
+        "positionName": "Pôle SIG - DG/DEFSI/Département des Solutions Métier",
+        "contactInfo": {
+          "address": {
+            "deliveryPoint": [
+              "10 RUE PASTEUR"
+            ],
+            "city": "SAINT-MEMMIE",
+            "postalCode": "51470"
+          }
+        },
+        "role": "originator"
+      },
+      "dateStamp": "2019-02-15T20:04:42.000Z",
+      "metadataStandardName": "INSPIRE Metadata Implementing Rules: Technical Guidelines based on EN ISO 19115 and EN ISO 19119",
+      "metadataStandardVersion": "V. 1.2",
+      "identificationInfo": {
+        "citation": {
+          "title": "Forêts publiques (diffusion publique)",
+          "date": [
+            {
+              "date": "2016-06-13T00:00:00.000Z",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-09-14T00:00:00.000Z",
+              "dateType": "publication"
+            },
+            {
+              "date": "2018-10-21T00:00:00.000Z",
+              "dateType": "revision"
+            }
+          ],
+          "identifier": "http://metadata.carmencarto.fr/geosource/105/metadata/fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4"
+        },
+        "abstract": "La forêt est un bien foncier immeuble détenu par un ou plusieurs propriétaires fonciers. Elle est le plus souvent caractérisée par une formation végétale composée d’arbres et d’arbustes, et considérée par l’ONF comme l’unité spatiale de référence pour l’aménagement forestier et la mise en œuvre de la gestion durable. L’ONF est gestionnaire de forêts par voie légale (régime forestier) ou contractuelle.",
+        "purpose": "Contours des forêts publiques relevant du régime forestier : terrains domaniaux et communaux, y compris les terrains qui ne sont pas en nature de forêt. Ces contours ne doivent pas être considérés comme un référentiel mais uniquement à titre informatif.",
+        "credit": "9200",
+        "pointOfContact": [
+          {
+            "individualName": "Groupe de production SIG national",
+            "organisationName": "Office National des Forêts",
+            "contactInfo": {
+              "phone": {
+                "voice": "01.40.19.58.00"
+              },
+              "address": {
+                "deliveryPoint": [
+                  "2 Avenue de Saint-Mandé"
+                ],
+                "city": "PARIS Cedex 12",
+                "postalCode": "75570",
+                "electronicMailAddress": "production-sig@onf.fr"
+              }
+            },
+            "role": "pointOfContact"
+          }
+        ],
+        "resourceMaintenance": {
+          "maintenanceAndUpdateFrequency": "biannually"
+        },
+        "graphicOverview": [
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc_s.png",
+            "fileDescription": "thumbnail",
+            "fileType": "png"
+          },
+          {
+            "fileName": "http://metadata.carmencarto.fr/geosource/105/fre/resources.get?uuid=fr-662043116-7D3DC709-E1EB-470B-9FD0-8ABF8AAFD8E4&fname=FOR_PUBL_L93_FR_loc.png",
+            "fileDescription": "large_thumbnail",
+            "fileType": "png"
+          }
+        ],
+        "descriptiveKeywords": [
+          {
+            "keyword": [
+              "france",
+              "forêts",
+              "onf",
+              "données publiques",
+              "open data"
+            ],
+            "type": "theme"
+          },
+          {
+            "keyword": [
+              "Occupation des terres"
+            ],
+            "type": "theme",
+            "thesaurusName": {
+              "title": "GEMET - INSPIRE themes, version 1.0",
+              "date": [
+                {
+                  "date": "2008-06-01T00:00:00.000Z",
+                  "dateType": "publication"
+                }
+              ]
+            }
+          }
+        ],
+        "resourceConstraints": [
+          {
+            "useLimitation": [
+              "Réutilisation libre sous réserve de mentionner la source : \"Forêts publiques, ONF Paris, 2018.\"",
+              "Licence ouverte https://www.etalab.gouv.fr/licence-ouverte-open-licence"
+            ],
+            "accessConstraints": [
+              "otherRestrictions"
+            ],
+            "useConstraints": [
+              "license"
+            ],
+            "otherConstraints": [
+              "Pas de restriction d’accès public"
+            ]
+          }
+        ],
+        "spatialRepresentationType": "vector",
+        "spatialResolution": {
+          "distance": {
+            "unit": "m",
+            "value": 50
+          }
+        },
+        "language": "fre",
+        "characterSet": "8859part1",
+        "topicCategory": "imageryBaseMapsEarthCover",
+        "extent": [
+          {
+            "description": "France métropolitaine",
+            "geographicElement": {
+              "westBoundLongitude": -5.15,
+              "eastBoundLongitude": 9.57,
+              "southBoundLatitude": 41.32,
+              "northBoundLatitude": 51.1
+            }
+          },
+          {
+            "description": "Guadeloupe",
+            "geographicElement": {
+              "westBoundLongitude": -61.82,
+              "eastBoundLongitude": -60.99,
+              "southBoundLatitude": 15.82,
+              "northBoundLatitude": 16.52
+            }
+          },
+          {
+            "description": "Guyane",
+            "geographicElement": {
+              "westBoundLongitude": -54.61,
+              "eastBoundLongitude": -51.61,
+              "southBoundLatitude": 2.1,
+              "northBoundLatitude": 5.76
+            }
+          },
+          {
+            "description": "Martinique",
+            "geographicElement": {
+              "westBoundLongitude": -61.24,
+              "eastBoundLongitude": -60.8,
+              "southBoundLatitude": 14.38,
+              "northBoundLatitude": 14.89
+            }
+          },
+          {
+            "description": "Mayotte",
+            "geographicElement": {
+              "westBoundLongitude": 45.01,
+              "eastBoundLongitude": 45.31,
+              "southBoundLatitude": -13.02,
+              "northBoundLatitude": -12.63
+            }
+          },
+          {
+            "description": "Réunion",
+            "geographicElement": {
+              "westBoundLongitude": 55.21,
+              "eastBoundLongitude": 55.85,
+              "southBoundLatitude": -21.4,
+              "northBoundLatitude": -20.86
+            }
+          }
+        ]
+      },
+      "distributionInfo": {
+        "distributionFormat": [
+          {
+            "name": "Fichier de formes",
+            "version": "1.0"
+          }
+        ]
+      },
+      "dataQualityInfo": {
+        "scope": {
+          "level": "dataset"
+        },
+        "lineage": {
+          "statement": "Forêts obtenues par fusion des parcelles forestières sur l'identifiant national forêt (propriétaire)."
+        }
+      }
+    },
+    "createdAt": "2019-02-16T01:09:51.640Z",
+    "recordType": "MD_Metadata",
+    "revisionDate": "2019-02-15T20:04:42.000Z",
+    "touchedAt": "2019-02-22T01:10:49.215Z"
+  }
+]
