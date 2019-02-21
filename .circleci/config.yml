@@ -13,7 +13,7 @@ defaults:
     working_directory: *workspace_root
     docker:
       - image: circleci/node:10-stretch
-      - image: mongo:4.0
+      - image: mongo:4
 
   golang_container: &golang_container
     working_directory: *workspace_root
