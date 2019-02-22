@@ -9,6 +9,12 @@ defaults:
     docker:
       - image: circleci/node:10-stretch
 
+  test_container: &test_container
+    working_directory: *workspace_root
+    docker:
+      - image: circleci/node:10-stretch
+      - image: mongo:4
+
   golang_container: &golang_container
     working_directory: *workspace_root
     docker:
@@ -80,7 +86,7 @@ jobs:
           command: yarn lint
 
   test:
-    <<: *nodejs_container
+    <<: *test_container
     steps:
       - *attach_workspace
       - *restore_node_modules

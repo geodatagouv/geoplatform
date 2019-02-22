@@ -1,0 +1,32 @@
+[
+  {
+    "_id": {
+      "$oid": "5c6577c14cdfc4254fc1bd25"
+    },
+    "catalog": {
+      "$oid": "5c63120425690e00081f03c5"
+    },
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "createdAt": "2019-02-14T14:14:25.250Z",
+    "recordHash": "f9c19ab9f60f0cd7e27161a099c402c7437cf828",
+    "revisionDate": "2019-02-15T20:04:42.000Z",
+    "touchedAt": "2019-02-22T01:10:49.231Z",
+    "updatedAt": "2019-02-16T01:09:51.646Z"
+  },
+  {
+    "_id": {
+      "$oid": "5c5a98024cdfc4254f981a92"
+    },
+    "catalog": {
+      "$oid": "5387a959785588482f5acb51"
+    },
+    "recordId": "fac934f5b6934af22dc56b1651e02f5dbda782c6",
+    "__v": 0,
+    "createdAt": "2019-02-06T08:17:06.314Z",
+    "recordHash": "f9c19ab9f60f0cd7e27161a099c402c7437cf828",
+    "revisionDate": "2019-02-15T20:04:42.000Z",
+    "touchedAt": "2019-02-22T01:03:50.506Z",
+    "updatedAt": "2019-02-20T01:06:14.153Z"
+  }
+]
