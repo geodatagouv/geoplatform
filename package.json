@@ -53,7 +53,7 @@
     "passport-oauth2": "^1.4.0",
     "pump": "^3.0.0",
     "stream-each": "^1.2.3",
-    "through2": "^3.0.0",
+    "through2": "^3.0.1",
     "tldjs": "^2.0.0",
     "underscore.string": "^3.3",
     "urijs": "^1.16.1",
