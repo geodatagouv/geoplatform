@@ -36,7 +36,7 @@
     "file-type": "^10.9.0",
     "fresh": "^0.5.2",
     "got": "^9.6.0",
-    "handlebars": "^4.1.0",
+    "handlebars": "^4.1.1",
     "hasha": "^3.0.0",
     "ioredis": "^4.6.2",
     "ipaddr.js": "^1.9.0",
