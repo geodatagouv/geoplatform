@@ -32,7 +32,7 @@
     "dotenv": "^6.2.0",
     "elasticsearch": "^15.4.1",
     "express": "^4.16.4",
-    "express-session": "^1.15.6",
+    "express-session": "^1.17.0",
     "file-type": "^10.9.0",
     "fresh": "^0.5.2",
     "got": "^9.6.0",
