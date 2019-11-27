@@ -27,7 +27,7 @@
     "connect-mongo": "^2.0.3",
     "cors": "^2.8.5",
     "csv-parse": "^4.3.4",
-    "csw-client": "^0.18.2",
+    "csw-client": "^0.18.3",
     "debug": "^4.1.1",
     "dotenv": "^6.2.0",
     "elasticsearch": "^15.4.1",

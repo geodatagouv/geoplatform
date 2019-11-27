@@ -2573,10 +2573,10 @@ csv-parse@^4.3.4:
   resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.3.4.tgz#fc896c170ebbdf6fb286de85c41bbaea4973d25f"
   integrity sha512-M1R4WL+vt81+GnkKzi0s1qQM6WXvHQKDecNkpozzAEG8LHvIW9bq5eBnOKFQn50fTuAos7JodBh/07MK+J6G2Q==
 
-csw-client@^0.18.2:
-  version "0.18.2"
-  resolved "https://registry.yarnpkg.com/csw-client/-/csw-client-0.18.2.tgz#5c25aa2e207e874b23444625b72978ffba1b69ac"
-  integrity sha512-snkMsX4IJqqMiY+02uqz0j0P4uSmY2RMYIPPOaG2jZAeCgMhjvFU8GTX6FB6n3CSbKs5zaEfhMF8BADoCAr84Q==
+csw-client@^0.18.3:
+  version "0.18.3"
+  resolved "https://registry.yarnpkg.com/csw-client/-/csw-client-0.18.3.tgz#c4269e08023a522b9c41e9743011ffcb5a6aee2f"
+  integrity sha512-XOLMhHkhq5qQJAOAsJSLJj2V3kv7Msr90bzKmEiEmG2Pimzgp26oGz2RlW2EXHlb2+KCiC1JZIiq4frc5mKb9g==
   dependencies:
     bluebird "^3.5.1"
     chalk "^2.4.1"
