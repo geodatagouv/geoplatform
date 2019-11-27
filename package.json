@@ -50,7 +50,7 @@
     "natural": "^0.6.3",
     "on-finished": "^2.3.0",
     "passport": "^0.4.0",
-    "passport-oauth2": "^1.4.0",
+    "passport-oauth2": "^1.5.0",
     "pump": "^3.0.0",
     "stream-each": "^1.2.3",
     "through2": "^3.0.1",
